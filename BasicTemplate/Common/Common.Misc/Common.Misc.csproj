@@ -44,6 +44,7 @@
       <HintPath>..\..\packages\RabbitMQ.Client.5.1.0\lib\net451\RabbitMQ.Client.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
@@ -58,11 +59,14 @@
     <Compile Include="CookieHelper.cs" />
     <Compile Include="EncryptionHelper.cs" />
     <Compile Include="EncryptUtil.cs" />
+    <Compile Include="Extension\StringExtension.cs" />
+    <Compile Include="FeatureHelper.cs" />
     <Compile Include="GuidUtil.cs" />
     <Compile Include="LogsManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RabbitMQHelper.cs" />
     <Compile Include="RabbitMQUtil.cs" />
+    <Compile Include="SessionRedis.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -71,6 +75,14 @@
     <ProjectReference Include="..\Common.Entity\Common.Entity.csproj">
       <Project>{ec60c30f-2aa4-4730-a076-e30472bea23c}</Project>
       <Name>Common.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.Enums\Common.Enums.csproj">
+      <Project>{2a597f6d-4aac-48e7-9aaf-9d553cb6d8e3}</Project>
+      <Name>Common.Enums</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.Interface\Common.Interface.csproj">
+      <Project>{89f40a8c-421c-4e60-95aa-bc33372f12e4}</Project>
+      <Name>Common.Interface</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

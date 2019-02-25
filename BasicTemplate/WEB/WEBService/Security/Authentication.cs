@@ -25,6 +25,14 @@ namespace WEBService.Security
 
         #region <当前登录用户对象>
 
+        public static string Url
+        {
+            get
+            {
+                return $"{HttpContext.Current.Request.Url.Scheme}://{HttpContext.Current.Request.Url.Authority}/";
+            }
+        }
+
         /// <summary>
         /// 当前登录用户对象
         /// </summary>
@@ -139,9 +147,9 @@ namespace WEBService.Security
                 }
                 context.LoginStatus = context.Status;
                 context.GuidKey = GuidUtil.GuidKey;
-                //string url = SkinManager.Url.Replace("//www.", "").Replace("//WWW.", "");
-                context.Token = EncryptionHelper.Md5Encryption(context.GuidKey, "");
-                string loginSessionID = EncryptionHelper.Md5Encryption(context.GuidKey, context.Id.ToString(), "");//SessionRedis.SessionID
+                string url = Url.Replace("//www.", "").Replace("//WWW.", "");
+                context.Token = EncryptionHelper.Md5Encryption(context.GuidKey, url);
+                string loginSessionID = EncryptionHelper.Md5Encryption(context.GuidKey, context.Id.ToString(), SessionRedis.SessionID);
                 context.LoginSessionID = $"{LoginToken}_{loginSessionID}";
                 CookieHelper.Set(LoginToken, loginSessionID);
                 AddSessionID(context.LoginSessionID, context);
@@ -201,8 +209,22 @@ namespace WEBService.Security
 
         private static void RemoveSessionID(string loginSessionID, string listId, string setId = null, int userId = 0, bool isSelf = false)
         {
+            if (!string.IsNullOrWhiteSpace(loginSessionID))
+            {
+                //CacheHelper.Remove(loginSessionID);
+                //CacheUtil.Remove(loginSessionID);
+            }
+            if (!string.IsNullOrWhiteSpace(listId) && !isSelf)
+            {
+                //CacheHelper.Remove(listId);
+                //CacheUtil.Remove(listId);
+            }
 
-
+            if (!string.IsNullOrWhiteSpace(setId))
+            {
+                //修改时间, 不移除, 为了日访问量统计
+                //CacheHelper.AddItemToSortedSet(setId, userId.ToString(), TimeStamp.DateTimeToUnix(DateTime.Now.AddMinutes(-10)));
+            }
         }
 
         /// <summary>
