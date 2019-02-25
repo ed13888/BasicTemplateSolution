@@ -207,6 +207,10 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\Common.Misc\Common.Misc.csproj">
+      <Project>{eb72d8a0-37a4-46f5-ba51-81f2a97f8e1c}</Project>
+      <Name>Common.Misc</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WEBService\WEBService.csproj">
       <Project>{CB8B19D9-4F92-446E-A1F3-8886FBE6A4A0}</Project>
       <Name>WEBService</Name>
