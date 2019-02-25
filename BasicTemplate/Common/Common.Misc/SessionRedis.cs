@@ -16,6 +16,6 @@ namespace Common.Misc
         /// <summary>
         /// Cookie中的ASP.NET_SessionId
         /// </summary>
-        public static string SessionID => FeatureHelpers.IsApi ? HttpContext.Current.Request.Headers.Get("ASP.NET_SessionId") : CookieHelper.Get("ASP.NET_SessionId");
+        public static string SessionID => FeatureHelper.IsApi ? HttpContext.Current.Request.Headers.Get("ASP.NET_SessionId") : CookieHelper.Get("ASP.NET_SessionId");
     }
 }

@@ -4,15 +4,21 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Common.Misc
 {
-    public partial class FeatureHelpers
+    public partial class FeatureHelper
     {
         public static string GetEncryptionCode()
         {
             return "$u#e7$4g7asdrs*ds&7=";
         }
+
+        /// <summary>
+        /// 服务器组
+        /// </summary>
+        public const string WebSiteGroupID = "OfficialCash";
 
         /// <summary>
         /// 是否API接口（前后端分离）
@@ -22,5 +28,28 @@ namespace Common.Misc
         /// 是否APP接口（原生APP）
         /// </summary>
         public static bool IsApp => ConfigurationManager.AppSettings["IsApp"].Value<bool>();
+
+        /// <summary>
+        /// Redis “写”链接池链接数 
+        /// </summary>
+        public static int MaxWritePoolSize
+        {
+            get
+            {
+                XElement xml = null;// FeatureItem.Get("RedisConfig").Value;
+                return Convert.ToInt32(xml.Element("RedisConfig").Element("MaxWritePoolSize").Value);
+            }
+        }
+        /// <summary>
+        /// Redis “读”链接池链接数 
+        /// </summary>
+        public static int MaxReadPoolSize
+        {
+            get
+            {
+                XElement xml = null;//FeatureItem.Get("RedisConfig").Value;
+                return Convert.ToInt32(xml.Element("RedisConfig").Element("MaxReadPoolSize").Value);
+            }
+        }
     }
 }
