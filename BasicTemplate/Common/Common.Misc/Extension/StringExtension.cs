@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common.Enums;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -87,5 +88,10 @@ namespace Common.Misc
             return result;
         }
 
+
+        public static void WriterLog(this LogType logType, string logs)
+        {
+            //CustomLogger.WriterLog(logType, logs);
+        }
     }
 }
