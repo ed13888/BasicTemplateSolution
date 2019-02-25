@@ -19,7 +19,7 @@ namespace WEBService.Security
 
         public int CompanyId { get; set; }
 
-        //public Role Role { get; set; }
+        public Role Role { get; set; }
 
         public int Status { get; set; }
 
@@ -87,5 +87,19 @@ namespace WEBService.Security
         public int CurrentPlayGameId { get; set; }
 
         public int OldPlayGameId { get; set; }
+    }
+    public enum Role
+    {
+        User,
+        Proxy,
+        Administrator,
+        Guest
+    }
+
+    [Serializable]
+    public class UserToken
+    {
+        public int UserID { get; set; }
+        public string Token { get; set; }
     }
 }

@@ -79,6 +79,46 @@ namespace WEBService.Security
             }
             return context;
         }
+
+        private static bool IsAuthenticated()
+        {
+            bool isAuthenticated = false;
+            if (string.IsNullOrWhiteSpace(CurrentSessionID))
+            {
+                isAuthenticated = false;
+            }
+            else
+            {
+                var uc = CacheContext;
+                if (uc != null && uc.Id > 0)
+                {
+                    isAuthenticated = true;
+                }
+            }
+            return isAuthenticated;
+        }
+
+        /// <summary>
+        /// 返回登录状态：0-正常，1-未登录过，2-登录超时，3-首次登录要求强制修改密码
+        /// </summary>
+        /// <returns></returns>
+        public static int CheckAuthentication()
+        {
+            int isAuthenticated;
+            bool flag = IsAuthenticated();
+            if (flag)
+            {
+                if (CacheContext.ForcesChangePWD)  //需要强制修改密码
+                    isAuthenticated = 3;
+                else
+                    isAuthenticated = 0;
+            }
+            else
+            {
+                isAuthenticated = 1;//未登录过
+            }
+            return isAuthenticated;
+        }
         #endregion
 
         public static bool Login(Context context, bool isIgnoreValid = false)
