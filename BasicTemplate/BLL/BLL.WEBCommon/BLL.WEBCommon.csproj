@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{89F40A8C-421C-4E60-95AA-BC33372F12E4}</ProjectGuid>
+    <ProjectGuid>{AE8305A6-6A7D-4911-B2C5-E4CBC1F6E996}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Common.Interface</RootNamespace>
-    <AssemblyName>Common.Interface</AssemblyName>
+    <RootNamespace>BLL.WEBCommon</RootNamespace>
+    <AssemblyName>BLL.WEBCommon</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -42,15 +43,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ISystemConfigRepository.cs" />
+    <Compile Include="WCFRegister.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WcfInterface\IBalanceService.cs" />
-    <Compile Include="WcfInterface\IWCFInterface.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common.Entity\Common.Entity.csproj">
+    <ProjectReference Include="..\..\Common\Common.Entity\Common.Entity.csproj">
       <Project>{EC60C30F-2AA4-4730-A076-E30472BEA23C}</Project>
       <Name>Common.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Common.Enums\Common.Enums.csproj">
+      <Project>{2A597F6D-4AAC-48E7-9AAF-9D553CB6D8E3}</Project>
+      <Name>Common.Enums</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Common.Interface\Common.Interface.csproj">
+      <Project>{89f40a8c-421c-4e60-95aa-bc33372f12e4}</Project>
+      <Name>Common.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Common.Misc\Common.Misc.csproj">
+      <Project>{EB72D8A0-37A4-46F5-BA51-81F2A97F8E1C}</Project>
+      <Name>Common.Misc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BLL.WCFServices\BLL.WCFServices.csproj">
+      <Project>{4383D9F7-9DDB-4810-A788-044F512C9F07}</Project>
+      <Name>BLL.WCFServices</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

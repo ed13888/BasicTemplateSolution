@@ -98,6 +98,7 @@
     <Reference Include="System.Numerics.Vectors, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Numerics.Vectors.4.4.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Runtime.CompilerServices.Unsafe.4.5.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
@@ -124,15 +125,19 @@
   <ItemGroup>
     <Compile Include="CacheHelper.cs" />
     <Compile Include="CacheKeys.cs" />
+    <Compile Include="CacheUtil.cs" />
     <Compile Include="ClientIpHelper.cs" />
+    <Compile Include="CommonClass.cs" />
     <Compile Include="CookieHelper.cs" />
     <Compile Include="EncryptionHelper.cs" />
     <Compile Include="EncryptUtil.cs" />
+    <Compile Include="EnumUtilty.cs" />
     <Compile Include="Extension\StringExtension.cs" />
     <Compile Include="FeatureHelper.cs" />
     <Compile Include="GlobalBase.cs" />
     <Compile Include="GuidUtil.cs" />
     <Compile Include="GzipString.cs" />
+    <Compile Include="LazyServiceBase.cs" />
     <Compile Include="LogsManager.cs" />
     <Compile Include="Logs\FileHelper.cs" />
     <Compile Include="MonitorUtil.cs" />
@@ -149,6 +154,7 @@
     <Compile Include="SystemConfigKeys.cs" />
     <Compile Include="Thread\ThreadManager.cs" />
     <Compile Include="Thread\ThreadPoolManager.cs" />
+    <Compile Include="WCF\ServiceConfigHelper.cs" />
     <Compile Include="WCF\WCFMonitorData.cs" />
     <Compile Include="WCF\WCFServiceFactory.cs" />
   </ItemGroup>

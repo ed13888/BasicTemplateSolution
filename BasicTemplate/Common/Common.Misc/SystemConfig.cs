@@ -127,5 +127,22 @@ namespace Common.Misc
             }
         }
 
+
+        /// <summary>
+        /// 是否开发环境
+        /// </summary>
+        public static bool IsDevelopment => GetConfigValue(SystemConfigKeys.IsDevelopment).Value<bool>();
+
+        /// <summary>
+        /// 余额、账变服务地址
+        /// </summary>
+        public static string BalanceServiceUrl
+        {
+            get
+            {
+                return GetConfigValue(SystemConfigKeys.BalanceServiceUrl);
+            }
+        }
+
     }
 }

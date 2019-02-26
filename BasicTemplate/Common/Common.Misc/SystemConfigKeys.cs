@@ -20,5 +20,15 @@ namespace Common.Misc
         /// 消息队列链接字符串
         /// </summary>
         public const string RabbitMQConnection = "RabbitMQConnection";
+
+        /// <summary>
+        /// 是否开发环境
+        /// </summary>
+        public const string IsDevelopment = "IsDevelopment";
+
+        /// <summary>
+        /// 余额、账变服务地址
+        /// </summary>
+        public const string BalanceServiceUrl = "BalanceServiceUrl";
     }
 }
