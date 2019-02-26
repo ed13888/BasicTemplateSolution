@@ -57,7 +57,7 @@ namespace BLL.WCFServices
                     cacheData = CacheHelper.Get<List<TWcfRegister>>(key);
                     if (cacheData == null)
                     {
-                        cacheData = null;// SqlHelper.ExecuteReader<TWcfRegister>(null, "procGetWcfRegisterList").FindAll(a => a.FServiceName == serviceType.ToString());
+                        cacheData = SqlHelper.Query<TWcfRegister>(null, "procGetWcfRegisterList").ToList().FindAll(a => a.FServiceName == serviceType.ToString());
                         CacheHelper.Set(key, cacheData);
                     }
                     if (cacheData != null)
