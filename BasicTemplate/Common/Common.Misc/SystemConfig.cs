@@ -90,6 +90,20 @@ namespace Common.Misc
         }
 
         /// <summary>
+        /// 获取配置的值
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public static string GetConfigValue(string key)
+        {
+            if (CacheData.ContainsKey(key.ToLower()))
+            {
+                return CacheData[key.ToLower()];
+            }
+            return "";
+        }
+
+        /// <summary>
         /// Redis配置
         /// </summary>
         public static string RedisConfig
@@ -99,6 +113,17 @@ namespace Common.Misc
                 var configRows = GetSystemConfigs();
                 var configRow = configRows.FirstOrDefault(a => a.FKey.Equals(SystemConfigKeys.RedisConfig));
                 return configRow != null ? configRow.FValue : "";
+            }
+        }
+
+        /// <summary>
+        /// 消息队列链接字符串
+        /// </summary>
+        public static string RabbitMQConnection
+        {
+            get
+            {
+                return GetConfigValue(SystemConfigKeys.RabbitMQConnection);
             }
         }
 

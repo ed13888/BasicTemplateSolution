@@ -10,19 +10,22 @@ using System.Threading.Tasks;
 
 namespace TimerService
 {
-    public partial class Service1 : ServiceBase
+    public partial class CommonService : ServiceBase
     {
-        public Service1()
+        private readonly MainService main = new MainService();
+        public CommonService()
         {
             InitializeComponent();
         }
 
         protected override void OnStart(string[] args)
         {
+            main.Start();
         }
 
         protected override void OnStop()
         {
+            main.Stop();
         }
     }
 }
