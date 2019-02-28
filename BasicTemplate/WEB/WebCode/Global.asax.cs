@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Common.Misc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Unity.AspNet.Mvc;
 
 namespace WebCode
 {
@@ -17,7 +19,8 @@ namespace WebCode
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            var container = BootStrapper.Initialise();
+            GlobalBase.Init();
+            DependencyResolver.SetResolver(new UnityDependencyResolver(UnityHelper.Container));
         }
     }
 }

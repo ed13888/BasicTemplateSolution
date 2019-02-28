@@ -20,6 +20,8 @@ namespace Common.Misc
         {
             string configDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Config");
             XmlConfigurator.Configure(new FileInfo(Path.Combine(configDir, "log4net.config")));
+
+            UnityHelper.Initialize();
             //StructureMapHelpers.Initialize(Path.Combine(configDir, "StructureMap.config"));
             CacheHelper.Configure();
             if (isDeleteLogs)

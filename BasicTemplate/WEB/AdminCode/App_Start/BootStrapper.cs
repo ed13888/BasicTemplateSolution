@@ -8,7 +8,7 @@ using System.Web.Mvc;
 using Unity;
 using Unity.AspNet.Mvc;
 
-namespace AdminCode.App_Start
+namespace AdminCode
 {
     public class BootStrapper
     {

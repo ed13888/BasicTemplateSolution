@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Common.Misc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Unity.AspNet.Mvc;
 
 namespace AdminCode
 {
@@ -16,6 +18,11 @@ namespace AdminCode
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            GlobalBase.Init();
+            DependencyResolver.SetResolver(new UnityDependencyResolver(UnityHelper.Container));
+
+
         }
 
 

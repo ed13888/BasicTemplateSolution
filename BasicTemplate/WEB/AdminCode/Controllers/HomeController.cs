@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WEBService.AdminBusiness;
+using WEBService.BusinessModels.ParamModel;
 using WEBService.Security;
 using WEBService.Util;
 
@@ -47,12 +49,12 @@ namespace AdminCode.Controllers
             username = username.Trim();
             password = password.Trim();
 
-            //var param = new LoginData() { AccountFid = accountfid, GoogleCode = googlecode, UserName = username, Password = password, ValidateCode = validateCode, ClientFlag = "", OnlyFlag = "" };
-            //var result = AccountBll.Login(this, CurrentSkin, false, param);
-            //if (!string.IsNullOrEmpty(result.Url) && result.Status)
-            //{
-            //    return Redirect(Url.Content(result.Url));
-            //}
+            var param = new LoginData() { AccountFid = accountfid, GoogleCode = googlecode, UserName = username, Password = password, ValidateCode = validateCode, ClientFlag = "", OnlyFlag = "" };
+            var result = AccountBll.Login(this, false, param);
+            if (!string.IsNullOrEmpty(result.Url) && result.Status)
+            {
+                return Redirect(Url.Content(result.Url));
+            }
 
             return View();
         }
