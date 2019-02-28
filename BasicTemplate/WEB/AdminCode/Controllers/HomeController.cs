@@ -4,10 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WEBService.Security;
+using WEBService.Util;
 
 namespace AdminCode.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {
@@ -17,7 +18,7 @@ namespace AdminCode.Controllers
             }
             else
             {
-                Authentication.Logout();
+                RedirectToAction("Login");
             }
             return View();
         }
