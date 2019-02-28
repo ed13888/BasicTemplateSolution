@@ -18,7 +18,7 @@ namespace AdminCode.Controllers
             }
             else
             {
-                RedirectToAction("Login");
+                return Redirect("/Home/Login");
             }
             return View();
         }

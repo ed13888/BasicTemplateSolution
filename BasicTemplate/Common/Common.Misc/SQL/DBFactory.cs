@@ -1,5 +1,6 @@
 ﻿using Microsoft.Practices.EnterpriseLibrary.Data;
 using Microsoft.Practices.EnterpriseLibrary.Data.Sql;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -72,6 +73,17 @@ namespace Common.Misc
             if (string.IsNullOrEmpty(connctString))
                 throw new ArgumentNullException(connctString, "连接字符串不允许为空");
             SqlConnection sqlConnection = new SqlConnection(connctString);
+            if (sqlConnection.State != ConnectionState.Open)
+                sqlConnection.Open();
+            return sqlConnection;
+        }
+
+        public static MySqlConnection CreateMySqlConnection(string databaseName)
+        {
+            string connctString = DBFactory.GetConnctString(databaseName);
+            if (string.IsNullOrEmpty(connctString))
+                throw new ArgumentNullException(connctString, "连接字符串不允许为空");
+            MySqlConnection sqlConnection = new MySqlConnection(connctString);
             if (sqlConnection.State != ConnectionState.Open)
                 sqlConnection.Open();
             return sqlConnection;
