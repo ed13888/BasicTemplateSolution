@@ -4,6 +4,7 @@
         , base: layui.cache.base //记录layuiAdmin文件夹所在路径
         , views: layui.cache.base + 'views/' //视图所在目录
         , entry: '/Home/Main' //默认视图文件名
+        , loginEntry: '/Home/Login' //默认视图文件名
         , engine: '.html' //视图文件后缀名
         , pageTabs: false //是否开启页面选项卡功能。单页版不推荐开启
 

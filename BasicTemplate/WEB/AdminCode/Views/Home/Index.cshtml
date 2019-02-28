@@ -27,17 +27,30 @@
             <span class="layui-nav-bar" style="left: 38px; top: 48px; width: 0px; opacity: 0;"></span>
         </ul>
         <ul class="layui-nav layui-layout-right">
-            <li class="layui-nav-item">
+            <li class="layui-nav-item" lay-unselect="">
+                <a lay-href="app/message/" layadmin-event="message">
+                    <i class="layui-icon layui-icon-notice"></i>
+                    <span class="layui-badge-dot"></span>
+                </a>
+            </li>
+            <li class="layui-nav-item" lay-unselect="">
                 <a href="javascript:;">
                     <cite>贤心</cite>
                     <span class="layui-nav-more"></span>
                 </a>
-                <dl class="layui-nav-child">
-                    <dd><a href="">基本资料</a></dd>
-                    <dd><a href="">安全设置</a></dd>
+                <dl class="layui-nav-child layui-anim layui-anim-upbit">
+                    <dd>
+                        <a lay-href="set/user/info">基本资料</a>
+                    </dd>
+                    <dd>
+                        <a lay-href="set/user/password">修改密码</a>
+                    </dd>
+                    <hr>
+                    <dd layadmin-event="logout" style="text-align: center;">
+                        <a>退出</a>
+                    </dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="">退了</a></li>
         </ul>
     </div>
 

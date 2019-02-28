@@ -142,6 +142,7 @@
     <Content Include="dist\controller\console.js" />
     <Content Include="dist\style\admin.css" />
     <Content Include="dist\config.js" />
+    <Content Include="dist\style\login.css" />
     <Content Include="dist\style\res\logo.png" />
     <Content Include="dist\view.js" />
     <Content Include="dist\views\index.html" />
@@ -298,6 +299,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Main.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -315,6 +317,16 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Common.Misc\Common.Misc.csproj">
+      <Project>{eb72d8a0-37a4-46f5-ba51-81f2a97f8e1c}</Project>
+      <Name>Common.Misc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WEBService\WEBService.csproj">
+      <Project>{cb8b19d9-4f92-446e-a1f3-8886fbe6a4a0}</Project>
+      <Name>WEBService</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -378,6 +378,9 @@
             },
             shade: function () {
                 C.sideFlexible()
+            },
+            logout: function () {
+                location = n.loginEntry;
             }
         };
     !function () {
