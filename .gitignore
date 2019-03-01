@@ -935,3 +935,12 @@
 /BasicTemplate/WEB/WEBService/bin/Debug/WEBService.dll.config
 /BasicTemplate/WEB/WebCode/bin/Common.Misc.dll.config
 /BasicTemplate/WEB/WebCode/bin/WEBService.dll.config
+/BasicTemplate/BLL/BLL.Account/bin/Debug/DAL.Account.dll
+/BasicTemplate/BLL/BLL.Account/bin/Debug/DAL.Account.pdb
+/BasicTemplate/DAL/DAL.Account/bin/Debug/Common.Entity.dll
+/BasicTemplate/DAL/DAL.Account/bin/Debug/Common.Entity.pdb
+/BasicTemplate/DAL/DAL.Account/bin/Debug/Common.Enums.dll
+/BasicTemplate/DAL/DAL.Account/bin/Debug/Common.Enums.pdb
+/BasicTemplate/DAL/DAL.Account/bin/Debug/Common.Interface.dll
+/BasicTemplate/DAL/DAL.Account/bin/Debug/Common.Interface.pdb
+/BasicTemplate/DAL/DAL.Account/obj/Debug/DAL.Account.csproj.CopyComplete

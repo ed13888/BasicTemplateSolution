@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace Common.Interface.AccountInterface.DAL
 {
     public interface IAccountRepository
     {
-        void AccountLogin();
+        TAccount AccountLogin(string userName, string passWord, string validateCode, string ipAddress, int companyId, ref int status);
     }
 }

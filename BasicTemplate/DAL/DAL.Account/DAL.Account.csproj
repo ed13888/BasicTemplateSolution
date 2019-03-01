@@ -41,7 +41,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Common.Entity\Common.Entity.csproj">
+      <Project>{ec60c30f-2aa4-4730-a076-e30472bea23c}</Project>
+      <Name>Common.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Common.Enums\Common.Enums.csproj">
+      <Project>{2a597f6d-4aac-48e7-9aaf-9d553cb6d8e3}</Project>
+      <Name>Common.Enums</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Common.Interface\Common.Interface.csproj">
+      <Project>{89F40A8C-421C-4E60-95AA-BC33372F12E4}</Project>
+      <Name>Common.Interface</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

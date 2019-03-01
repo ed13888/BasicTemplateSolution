@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -55,6 +56,10 @@
     <ProjectReference Include="..\..\Common\Common.Interface\Common.Interface.csproj">
       <Project>{89f40a8c-421c-4e60-95aa-bc33372f12e4}</Project>
       <Name>Common.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DAL\DAL.Account\DAL.Account.csproj">
+      <Project>{3774dc26-53cc-4c6c-9207-6430b80513fd}</Project>
+      <Name>DAL.Account</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -79,6 +79,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\Common.Entity\Common.Entity.csproj">
+      <Project>{ec60c30f-2aa4-4730-a076-e30472bea23c}</Project>
+      <Name>Common.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Common.Enums\Common.Enums.csproj">
+      <Project>{2a597f6d-4aac-48e7-9aaf-9d553cb6d8e3}</Project>
+      <Name>Common.Enums</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Common\Common.Interface\Common.Interface.csproj">
       <Project>{89f40a8c-421c-4e60-95aa-bc33372f12e4}</Project>
       <Name>Common.Interface</Name>

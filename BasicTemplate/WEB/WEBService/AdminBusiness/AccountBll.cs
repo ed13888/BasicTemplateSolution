@@ -24,10 +24,11 @@ namespace WEBService.AdminBusiness
         /// <returns></returns>
         public static LoginResult Login(Controller controller, bool isMobile, LoginData data)
         {
-            CommonClass.AccountService.AccountLogin();
+            int status = 0;
+            var user = CommonClass.AccountService.AccountLogin(data.UserName, data.Password, data.ValidateCode, "", 0, ref status);
 
             Context context = new Context();
-            //context.Id = userId;
+            context.Id = user.FAccountID;
             //context.GradeId = gradeId;
             //context.UserName = row.Element("faccount").Value;
             //context.GradeName = GradeName;
