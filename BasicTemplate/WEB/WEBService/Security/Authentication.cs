@@ -273,6 +273,11 @@ namespace WEBService.Security
         /// </summary>
         public static string UserName => CacheContext.UserName;
 
+        /// <summary>
+        /// 用户角色
+        /// </summary>
+        public static string Role => CacheContext.Role.ToString();
+
 
     }
 }

@@ -944,3 +944,5 @@
 /BasicTemplate/DAL/DAL.Account/bin/Debug/Common.Interface.dll
 /BasicTemplate/DAL/DAL.Account/bin/Debug/Common.Interface.pdb
 /BasicTemplate/DAL/DAL.Account/obj/Debug/DAL.Account.csproj.CopyComplete
+/BasicTemplate/Common/Common.Interface/bin/Debug/Common.Entity.pdb
+/BasicTemplate/Common/Common.Interface/bin/Debug/Common.Entity.dll

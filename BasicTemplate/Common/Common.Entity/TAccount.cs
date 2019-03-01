@@ -27,6 +27,11 @@ namespace Common.Entity
         public string FLogonPass { get; set; }
 
         /// <summary>
+        /// 角色
+        /// </summary>
+        public string FRole { get; set; }
+
+        /// <summary>
         /// 安全密码
         /// </summary>
         public string FInsurePass { get; set; }

@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Error";
+    var msg = string.IsNullOrEmpty(ViewBag.Message) ? "您输入的数据存在有误参数，请重新输入" : ViewBag.Message;
+}
+<script type="text/javascript">
+    $(function () {
+        $("#btnReturn").bind('click', function () {
+            window.history.go(-1);
+        });
+    });
+</script>
+<div style="text-align:center; margin-top:100px;">
+    <h1 style="color:red">@msg</h1>
+    <div style="margin-top:10px;">
+        <a href="javascript:void(0)" id="btnReturn" class="btn">返回</a>
+    </div>
+</div>
+
