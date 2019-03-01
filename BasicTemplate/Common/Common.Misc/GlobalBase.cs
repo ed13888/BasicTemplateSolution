@@ -21,14 +21,17 @@ namespace Common.Misc
             string configDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Config");
             XmlConfigurator.Configure(new FileInfo(Path.Combine(configDir, "log4net.config")));
 
+            //初始化Unity
             UnityHelper.Initialize();
             //StructureMapHelpers.Initialize(Path.Combine(configDir, "StructureMap.config"));
-            CacheHelper.Configure();
+            //初始化缓存
+            //CacheHelper.Configure();
             if (isDeleteLogs)
             {
                 FileHelper.DeleteLogs();
             }
-            RabbitMQHelper.Init(SystemConfig.RabbitMQConnection);
+            //初始化消息队列
+            //RabbitMQHelper.Init(SystemConfig.RabbitMQConnection);
 
             //var selfGameRabbitMqConfig = SystemConfig.SelfGameRabbitMQConfig;
 

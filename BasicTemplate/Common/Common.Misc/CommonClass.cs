@@ -13,11 +13,11 @@ namespace Common.Misc
     public static class CommonClass
     {
         #region <Service>
-        public static IAccountService AccountService => UnityHelper.Container.Resolve<IAccountService>("");
+        public static IAccountService AccountService => UnityHelper.Container.Resolve<IAccountService>("AccountService");
         #endregion
 
         #region <Repository>
-        public static IAccountRepository AccountRepository => UnityHelper.Container.Resolve<IAccountRepository>("");
+        public static IAccountRepository AccountRepository => UnityHelper.Container.Resolve<IAccountRepository>("AccountRepository");
 
         public static ISystemConfigRepository SystemConfigRepository => null;// ObjectFactory.GetInstance<ISystemConfigRepository>();
         #endregion

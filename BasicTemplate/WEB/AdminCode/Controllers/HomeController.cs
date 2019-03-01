@@ -34,7 +34,7 @@ namespace AdminCode.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Login(string username, string password, string validateCode, string googlecode = "", int accountfid = 0)
+        public ActionResult Login(string username, string password, string validateCode = "", string googlecode = "", int accountfid = 0)
         {
             //表示需要验证谷歌验证码
             ViewBag.UserName = username;

@@ -49,7 +49,9 @@ namespace AdminCode.Filters
             var authentication = Authentication.CheckAuthentication(); ;
             if (authentication == 1)
             {
-                filterContext.Result = FilterUtil.GetResult(filterContext, "/Admin/PermissionTips?type=000");
+                //filterContext.Result = FilterUtil.GetResult(filterContext, "/Admin/PermissionTips?type=000");
+
+                filterContext.Result = FilterUtil.GetResult(filterContext, "/Home/Login");
             }
             else if (authentication == 2)
             {

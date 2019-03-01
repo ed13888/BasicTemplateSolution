@@ -22,7 +22,8 @@ namespace Common.Misc
         {
             string currentAssemblyGuid = DBFactory.GetCurrentAssemblyGuid();
             string empty = string.Empty;
-            return EncryptHelper.DecryptConnctString(!string.IsNullOrWhiteSpace(databaseName) ? ConfigurationManager.ConnectionStrings[databaseName].ConnectionString : ConfigurationManager.ConnectionStrings["Cash"].ConnectionString, currentAssemblyGuid);
+            //return EncryptHelper.DecryptConnctString(!string.IsNullOrWhiteSpace(databaseName) ? ConfigurationManager.ConnectionStrings[databaseName].ConnectionString : ConfigurationManager.ConnectionStrings["Cash"].ConnectionString, currentAssemblyGuid);
+            return !string.IsNullOrWhiteSpace(databaseName) ? ConfigurationManager.ConnectionStrings[databaseName].ConnectionString : ConfigurationManager.ConnectionStrings["DB"].ConnectionString;
         }
 
         private static string GetCurrentAssemblyGuid()

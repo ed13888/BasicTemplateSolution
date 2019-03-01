@@ -2,7 +2,7 @@
     var t = layui.jquery
         , a = layui.laytpl
         , n = layui.layer
-        , r = null//layui.setter
+        , r = layui.setter
         , o = (layui.device(),
             layui.hint())
         , i = function (e) {

@@ -37,7 +37,8 @@ namespace Common.Misc
             get
             {
                 XElement xml = null;// FeatureItem.Get("RedisConfig").Value;
-                return Convert.ToInt32(xml.Element("RedisConfig").Element("MaxWritePoolSize").Value);
+                //return Convert.ToInt32(xml.Element("RedisConfig").Element("MaxWritePoolSize").Value);
+                return 100;
             }
         }
         /// <summary>
@@ -48,7 +49,8 @@ namespace Common.Misc
             get
             {
                 XElement xml = null;//FeatureItem.Get("RedisConfig").Value;
-                return Convert.ToInt32(xml.Element("RedisConfig").Element("MaxReadPoolSize").Value);
+                //return Convert.ToInt32(xml.Element("RedisConfig").Element("MaxReadPoolSize").Value);
+                return 100;
             }
         }
     }

@@ -20,6 +20,7 @@ namespace AdminCode
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             GlobalBase.Init();
+            //UnityHelper.Initialize();
             DependencyResolver.SetResolver(new UnityDependencyResolver(UnityHelper.Container));
 
 
