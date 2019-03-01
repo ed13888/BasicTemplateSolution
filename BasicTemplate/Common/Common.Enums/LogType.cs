@@ -12,5 +12,13 @@ namespace Common.Enums
         /// 监控
         /// </summary>
         Monitor,
+        /// <summary>
+        /// 系统日志
+        /// </summary>
+        SystemLog,
+        /// <summary>
+        /// 慢日志
+        /// </summary>
+        SlowLog,
     }
 }

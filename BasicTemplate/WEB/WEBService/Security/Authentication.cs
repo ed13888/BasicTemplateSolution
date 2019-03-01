@@ -262,5 +262,17 @@ namespace WEBService.Security
             }
         }
 
+
+        /// <summary>
+        /// 用户编号
+        /// </summary>
+        public static int Id => CacheContext.Id;
+
+        /// <summary>
+        /// 用户账号
+        /// </summary>
+        public static string UserName => CacheContext.UserName;
+
+
     }
 }

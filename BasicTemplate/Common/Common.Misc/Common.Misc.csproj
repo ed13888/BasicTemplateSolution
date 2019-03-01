@@ -161,6 +161,8 @@
     <Compile Include="GzipString.cs" />
     <Compile Include="LazyServiceBase.cs" />
     <Compile Include="LogsManager.cs" />
+    <Compile Include="Logs\CustomLog4.cs" />
+    <Compile Include="Logs\CustomLogger.cs" />
     <Compile Include="Logs\FileHelper.cs" />
     <Compile Include="MonitorUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

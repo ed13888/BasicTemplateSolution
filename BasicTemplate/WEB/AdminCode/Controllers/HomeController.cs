@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdminCode.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,7 @@ namespace AdminCode.Controllers
 {
     public class HomeController : BaseController
     {
+        [CustomAction]
         public ActionResult Index()
         {
             if (Authentication.CheckAuthentication() == 0)
@@ -59,7 +61,7 @@ namespace AdminCode.Controllers
             return View();
         }
 
-
+        [CustomAction]
         public ActionResult Main()
         {
             return View();
