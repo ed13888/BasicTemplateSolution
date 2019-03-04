@@ -9,7 +9,7 @@ namespace WEBService.Util
 {
     public class FilterUtil
     {
-        public static ActionResult GetResult(ActionExecutingContext filterContext, string url)
+        public static ActionResult GetResult(ControllerContext filterContext, string url)
         {
             if (filterContext.HttpContext.Request.IsAjaxRequest())
             {

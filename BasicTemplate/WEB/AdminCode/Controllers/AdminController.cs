@@ -12,6 +12,14 @@ namespace AdminCode.Controllers
         // GET: Admin
         public ActionResult Index()
         {
+            if (Authentication.CheckAuthentication() == 0)
+            {
+                ViewBag.Local = true;
+            }
+            else
+            {
+                return Redirect("/Home/Login");
+            }
             return View();
         }
 

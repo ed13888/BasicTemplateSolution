@@ -53,5 +53,10 @@ namespace Common.Misc
                 return 100;
             }
         }
+
+        public static string DB_Main { get; set; } = "DB_Main";
+
+        public static string DB_ReadOnly { get; set; } = "DB_ReadOnly";
+
     }
 }

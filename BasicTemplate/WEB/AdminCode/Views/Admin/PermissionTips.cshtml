@@ -1,7 +1,60 @@
-﻿
-@{
-    ViewBag.Title = "PermissionTips";
+﻿@{
+    ViewBag.Title = ViewBag.Type == "000" ? "" : "超权操作";
 }
 
-<h2>PermissionTips</h2>
+@section PageScript {
+    <script type="text/javascript">
+        layui.use(['layer'], function () {
+            var type = "@ViewBag.Type";
+            var msg = "@ViewBag.Msg";
+            var referrer = document.referrer;
+            var logout = '/Admin/Logout';
+            var message = '';
+            switch (type) {
+                case "000": message = "您的网络异常，请重新登录"; break;
+                case "100": message = "您的账户已被停用，请重新登录。"; break;
+                case "200": message = "您的权限发生变化，或者被禁用,请重新刷新页面。"; break;
+                case "300": message = "您的权限发生变化，请重新登录。"; break;
+                case "400": message = "登录超时，请重新登录。"; break;
+                case "401":
+                case "404":message = "抱歉，此用户没有权限"; break;
+                case "405": message = "抱歉，您的登录账户还没有任何权限请与系统管理员联系"; break;
+                case "406": message = "抱歉，您的IP发生变化，请重新登录！"; break;
+                case "500": message = "您已在另一地方登录，请重新登录。"; break;
+                default: message = ''; break;
+            }
 
+            if (type == '401' && msg != '') {
+                message =  msg ;
+            }
+
+            if (message != '') {
+                layer.msg(message, {
+                offset: '15px'
+                , icon: 1
+                , time: 1000
+                }, function () {
+                    //防止重复跳转
+                    if (document.location.href == document.referrer) {
+                        document.location.href = logout;
+                    }
+                    else if (type == '404' || type == '200') {
+                        if (!referrer.Contains("/Admin/Index")) {
+                            document.location.href = document.referrer;
+                        }
+                    }
+                    else {
+                        top.location.href = logout;
+                        //document.location.href = logout;
+                    }
+                });
+
+            }
+            else
+            {
+                top.location.href = logout;
+                //document.location.href = logout;
+            }
+        });
+    </script>
+}

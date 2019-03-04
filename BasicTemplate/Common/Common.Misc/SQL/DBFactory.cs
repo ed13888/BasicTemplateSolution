@@ -12,7 +12,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common.Misc
+namespace Common.Misc.SQL
 {
     public class DBFactory
     {
@@ -23,7 +23,7 @@ namespace Common.Misc
             string currentAssemblyGuid = DBFactory.GetCurrentAssemblyGuid();
             string empty = string.Empty;
             //return EncryptHelper.DecryptConnctString(!string.IsNullOrWhiteSpace(databaseName) ? ConfigurationManager.ConnectionStrings[databaseName].ConnectionString : ConfigurationManager.ConnectionStrings["Cash"].ConnectionString, currentAssemblyGuid);
-            return !string.IsNullOrWhiteSpace(databaseName) ? ConfigurationManager.ConnectionStrings[databaseName].ConnectionString : ConfigurationManager.ConnectionStrings["DB"].ConnectionString;
+            return !string.IsNullOrWhiteSpace(databaseName) ? ConfigurationManager.ConnectionStrings[databaseName].ConnectionString : ConfigurationManager.ConnectionStrings[FeatureHelper.DB_Main].ConnectionString;
         }
 
         private static string GetCurrentAssemblyGuid()

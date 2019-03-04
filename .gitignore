@@ -1059,3 +1059,5 @@
 /BasicTemplate/WEB/AdminCode/bin/DAL.Account.dll
 /BasicTemplate/WEB/AdminCode/bin/DAL.Account.dll.config
 /BasicTemplate/WEB/AdminCode/bin/DAL.Account.pdb
+/BasicTemplate/WEB/AdminCode/bin/Newtonsoft.Json.pdb
+/BasicTemplate/WEB/WebCode/bin/Newtonsoft.Json.pdb

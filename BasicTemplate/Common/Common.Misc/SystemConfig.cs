@@ -1,4 +1,5 @@
 ﻿using Common.Entity;
+using Common.Misc.SQL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -86,7 +87,7 @@ namespace Common.Misc
 
         private static List<ConfigEntity> GetSystemConfigs()
         {
-            return SqlHelper.Query<ConfigEntity>("", "procGetSystemConfig").ToList();
+            return MySqlHelper.Query<ConfigEntity>("", "select * from SystemConfig").ToList();
         }
 
         /// <summary>

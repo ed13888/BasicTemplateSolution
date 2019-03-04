@@ -9,7 +9,8 @@ namespace AdminCode
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/Script/layui").Include(
-                        "~/layui/layui.js"
+                        "~/layui/layui.js",
+                        "~/js/BusinessExtenssion.js"
                         ));
 
             bundles.Add(new StyleBundle("~/Content/layui").Include(

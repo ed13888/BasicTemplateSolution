@@ -14,6 +14,8 @@ namespace Common.Misc
             int maxWritePoolSize = FeatureHelper.MaxWritePoolSize;
             int maxReadPoolSize = FeatureHelper.MaxReadPoolSize;
             string redisConfig = SystemConfig.RedisConfig;
+            if (string.IsNullOrEmpty(redisConfig)) return;
+
             if (redisConfig.Contains("#"))
             {
                 var arr = redisConfig.Split('#');

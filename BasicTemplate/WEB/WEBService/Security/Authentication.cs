@@ -11,6 +11,7 @@ namespace WEBService.Security
     public class Authentication
     {
 
+        private static TimeSpan RunTimeOut = CacheTimeOut.ThirtyMinute;// CacheTimeOut.ThirtySecond;
         /// <summary>
         /// 登录存储客户端的Cookie名称
         /// </summary>
@@ -44,6 +45,14 @@ namespace WEBService.Security
             }
         }
 
+        public static bool Approved
+        {
+            get
+            {
+                return IsAuthenticated();
+            }
+        }
+
         private static Context GetCurrentContext()
         {
             string loginSessionID = CurrentSessionID;
@@ -52,29 +61,32 @@ namespace WEBService.Security
             {
                 if (!string.IsNullOrWhiteSpace(loginSessionID))
                 {
-                    //context = CacheUtil.Get<Context>(loginSessionID);
-                    //if (context == null)
-                    //{
-                    //    string listId = CacheHelper.Get<string>(loginSessionID);
-                    //    if (!string.IsNullOrWhiteSpace(listId))
-                    //    {
-                    //        context = CacheHelper.Get<Context>(listId);
-                    //        if (context == null)
-                    //        {
-                    //            RemoveSessionID(loginSessionID, listId);
-                    //            LogsManager.Error(string.Format("Redis缓存数据为空，key：{0}", listId));
-                    //        }
-                    //        else
-                    //        {
-                    //            context.LoginSessionID = loginSessionID;
-                    //            AddSessionID(loginSessionID, context);
-                    //        }
-                    //    }
-                    //    else
-                    //    {
-                    //        RemoveSessionID(loginSessionID, listId);
-                    //    }
-                    //}
+                    context = CacheUtil.Get<Context>(loginSessionID);
+                    if (context == null)
+                    {
+                        string listId = CacheUtil.Get<string>(loginSessionID);
+                        RemoveSessionID(loginSessionID, listId);
+
+                        //string listId = CacheHelper.Get<string>(loginSessionID);
+                        //if (!string.IsNullOrWhiteSpace(listId))
+                        //{
+                        //    context = CacheHelper.Get<Context>(listId);
+                        //    if (context == null)
+                        //    {
+                        //        RemoveSessionID(loginSessionID, listId);
+                        //        LogsManager.Error(string.Format("Redis缓存数据为空，key：{0}", listId));
+                        //    }
+                        //    else
+                        //    {
+                        //        context.LoginSessionID = loginSessionID;
+                        //        AddSessionID(loginSessionID, context);
+                        //    }
+                        //}
+                        //else
+                        //{
+                        //    RemoveSessionID(loginSessionID, listId);
+                        //}
+                    }
                 }
             }
             catch (Exception ex)
@@ -196,8 +208,10 @@ namespace WEBService.Security
             //UpdateGameOnlineInfo(context);
 
             string listId = GetContextKey(context.Id);
-            //CacheUtil.Set(loginSessionID, context, RunTimeOut);
-            //CacheUtil.Set(listId, loginSessionID, RunTimeOut);
+
+            //小站点只使用运行时缓存
+            CacheUtil.Set(loginSessionID, context, RunTimeOut);
+            CacheUtil.Set(listId, loginSessionID, RunTimeOut);
             //CacheHelper.Set(loginSessionID, listId, RedisTimeOut);
             //CacheHelper.Set(listId, context, RedisTimeOut);
 
@@ -212,12 +226,12 @@ namespace WEBService.Security
             if (!string.IsNullOrWhiteSpace(loginSessionID))
             {
                 //CacheHelper.Remove(loginSessionID);
-                //CacheUtil.Remove(loginSessionID);
+                CacheUtil.Remove(loginSessionID);
             }
             if (!string.IsNullOrWhiteSpace(listId) && !isSelf)
             {
                 //CacheHelper.Remove(listId);
-                //CacheUtil.Remove(listId);
+                CacheUtil.Remove(listId);
             }
 
             if (!string.IsNullOrWhiteSpace(setId))
@@ -235,12 +249,12 @@ namespace WEBService.Security
             get
             {
                 string loginSessionId = string.Empty;
-                if (true)
+                if (FeatureHelper.IsApi)
                 {
                     loginSessionId = HttpContext.Current.Request.Headers.Get(LoginToken);
                     //LogsManager.Debug("IsApiloginSessionId：" + loginSessionId);
                 }
-                else if (true)
+                else if (FeatureHelper.IsApp)
                 {
                     loginSessionId = HttpContext.Current.Request["SessionId"] ?? "";
                     if (string.IsNullOrWhiteSpace(loginSessionId))
@@ -251,7 +265,7 @@ namespace WEBService.Security
                 }
                 else
                 {
-                    //loginSessionId = CookieHelpers.Get(LoginToken);
+                    loginSessionId = CookieHelper.Get(LoginToken);
                     //LogsManager.Debug("loginSessionId：" + loginSessionId);
                 }
                 if (!string.IsNullOrWhiteSpace(loginSessionId))

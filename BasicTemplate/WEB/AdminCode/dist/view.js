@@ -44,29 +44,29 @@
                 e.data[n.tokenName] = n.tokenName in d ? e.data[n.tokenName] : layui.data(r.tableName)[n.tokenName] || "",
                     e.headers[n.tokenName] = n.tokenName in e.headers ? e.headers[n.tokenName] : layui.data(r.tableName)[n.tokenName] || ""
             }
-            return delete e.success,
-                delete e.error,
-                t.ajax(t.extend({
-                    type: "get",
-                    dataType: "json",
-                    success: function (t) {
-                        var n = o.statusCode;
-                        if (t[o.statusName] == n.ok)
-                            "function" == typeof e.done && e.done(t);
-                        else if (t[o.statusName] == n.logout)
-                            i.exit();
-                        else {
-                            var r = ["<cite>Error：</cite> " + (t[o.msgName] || "返回状态码异常"), s()].join("");
-                            i.error(r)
-                        }
-                        "function" == typeof a && a(t)
-                    },
-                    error: function (e, t) {
-                        var a = ["请求异常，请重试<br><cite>错误信息：</cite>" + t, s()].join("");
-                        i.error(a),
-                            "function" == typeof a && a(res)
+            //return delete e.success,
+            //    delete e.error,
+            return t.ajax(t.extend({
+                type: "get",
+                dataType: "json",
+                success: function (t) {
+                    var n = o.statusCode;
+                    if (t[o.statusName] == n.ok)
+                        "function" == typeof e.done && e.done(t);
+                    else if (t[o.statusName] == n.logout)
+                        i.exit();
+                    else {
+                        var r = ["<cite>Error：</cite> " + (t[o.msgName] || "返回状态码异常"), s()].join("");
+                        i.error(r)
                     }
-                }, e))
+                    "function" == typeof a && a(t)
+                },
+                error: function (e, t) {
+                    var a = ["请求异常，请重试<br><cite>错误信息：</cite>" + t, s()].join("");
+                    i.error(a),
+                        "function" == typeof a && a(res)
+                }
+            }, e))
         }
         ,
         i.popup = function (e) {

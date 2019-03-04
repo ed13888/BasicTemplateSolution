@@ -24,14 +24,14 @@ namespace Common.Misc
             //初始化Unity
             UnityHelper.Initialize();
             //StructureMapHelpers.Initialize(Path.Combine(configDir, "StructureMap.config"));
-            //初始化缓存
-            //CacheHelper.Configure();
+            //初始化分布式缓存
+            CacheHelper.Configure();
             if (isDeleteLogs)
             {
                 FileHelper.DeleteLogs();
             }
             //初始化消息队列
-            //RabbitMQHelper.Init(SystemConfig.RabbitMQConnection);
+            RabbitMQHelper.Init();
 
             //var selfGameRabbitMqConfig = SystemConfig.SelfGameRabbitMQConfig;
 

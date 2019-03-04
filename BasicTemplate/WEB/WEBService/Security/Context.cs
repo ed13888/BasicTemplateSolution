@@ -90,10 +90,19 @@ namespace WEBService.Security
     }
     public enum Role
     {
+        /// <summary>
+        /// 游客
+        /// </summary>
+        Guest,
+        /// <summary>
+        /// 普通用户
+        /// </summary>
         User,
-        Proxy,
+        //Proxy,
+        /// <summary>
+        /// 管理员
+        /// </summary>
         Administrator,
-        Guest
     }
 
     [Serializable]

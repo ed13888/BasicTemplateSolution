@@ -14,7 +14,7 @@ namespace Common.Misc
         private static IConnection rabbitMqConn;
         private static IModel _sendChannel;
         private static IModel _receiveChannel;
-        private static string _subName { get; set; } = "";
+        private static string _subName { get; set; } = "MYMQ";
 
         private static Dictionary<string, IModel> __sendChannelPools = new Dictionary<string, IModel>();
         private static Dictionary<string, IModel> _receiveChannelPools = new Dictionary<string, IModel>();
@@ -55,9 +55,38 @@ namespace Common.Misc
 
         }
 
-        public static void Init(string connection)
+        public static void Init()
         {
+            try
+            {
+                //amqp://user:pass@hostName:port/vhost
 
+                //rabbitMqFactory = new ConnectionFactory
+                //{
+                //    HostName = model.HostName,
+                //    Port = model.HostPort,
+                //    VirtualHost = model.ExtendInfo,
+                //    UserName = model.UserName,
+                //    Password = model.Password
+                //};
+                var conn = SystemConfig.RabbitMQConnection;
+                if (string.IsNullOrEmpty(conn)) return;
+
+                rabbitMqFactory = new ConnectionFactory
+                {
+                    Uri = new Uri(conn)
+                };
+
+                //_subName = model.SubName;
+                rabbitMqConn = rabbitMqFactory.CreateConnection();
+                _sendChannel = rabbitMqConn.CreateModel();
+                _receiveChannel = rabbitMqConn.CreateModel();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+                //ex.Error($"[{MQName}]", "RabbitMQManager");
+            }
         }
         public static void Subscribe(string queuesName, Func<string, Task> tempAction, MsgType msgType = MsgType.Queue)
         {
@@ -129,7 +158,13 @@ namespace Common.Misc
     }
     public enum MsgType
     {
+        /// <summary>
+        /// 广播模式
+        /// </summary>
         Fanout,
+        /// <summary>
+        /// 队列模式
+        /// </summary>
         Queue
     }
 }

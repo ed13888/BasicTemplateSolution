@@ -2,6 +2,7 @@
 using Common.Enums;
 using Common.Interface.WcfInterface;
 using Common.Misc;
+using Common.Misc.SQL;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -57,7 +58,7 @@ namespace BLL.WCFServices
                     cacheData = CacheHelper.Get<List<TWcfRegister>>(key);
                     if (cacheData == null)
                     {
-                        cacheData = SqlHelper.Query<TWcfRegister>(null, "procGetWcfRegisterList").ToList().FindAll(a => a.FServiceName == serviceType.ToString());
+                        cacheData = MySqlHelper.Query<TWcfRegister>(null, "procGetWcfRegisterList").ToList().FindAll(a => a.FServiceName == serviceType.ToString());
                         CacheHelper.Set(key, cacheData);
                     }
                     if (cacheData != null)

@@ -16,13 +16,13 @@ namespace Common.Misc.SQL
           string databaseName,
           string storedProcName,
           object param = null,
-          CommandType commandType = CommandType.StoredProcedure)
+          CommandType commandType = CommandType.Text)
         {
             using (MySqlConnection connection = DBFactory.CreateMySqlConnection(databaseName))
                 return connection.ExecuteScalar<T>(storedProcName, param, (IDbTransaction)null, new int?(), new CommandType?(commandType));
         }
 
-        public static int Execute(string storedProcName, object param = null, CommandType commandType = CommandType.StoredProcedure)
+        public static int Execute(string storedProcName, object param = null, CommandType commandType = CommandType.Text)
         {
             using (MySqlConnection connection = DBFactory.CreateMySqlConnection((string)null))
                 return connection.Execute(storedProcName, param, (IDbTransaction)null, new int?(), new CommandType?(commandType));
@@ -31,7 +31,7 @@ namespace Common.Misc.SQL
         public static async Task<int> ExecuteAsync(
           string storedProcName,
           object param = null,
-          CommandType commandType = CommandType.StoredProcedure)
+          CommandType commandType = CommandType.Text)
         {
             int num;
             using (MySqlConnection conn = DBFactory.CreateMySqlConnection((string)null))
@@ -43,7 +43,7 @@ namespace Common.Misc.SQL
           string databaseName,
           string storedProcName,
           object param = null,
-          CommandType commandType = CommandType.StoredProcedure)
+          CommandType commandType = CommandType.Text)
         {
             using (MySqlConnection connection = DBFactory.CreateMySqlConnection(databaseName))
                 return connection.Query<T>(storedProcName, param, (IDbTransaction)null, true, new int?(), new CommandType?(commandType));
@@ -53,7 +53,7 @@ namespace Common.Misc.SQL
           string databaseName,
           string storedProcName,
           object param = null,
-          CommandType commandType = CommandType.StoredProcedure)
+          CommandType commandType = CommandType.Text)
         {
             IEnumerable<T> objs;
             using (MySqlConnection conn = DBFactory.CreateMySqlConnection(databaseName))
@@ -65,7 +65,7 @@ namespace Common.Misc.SQL
           string databaseName,
           string storedProcName,
           object param = null,
-          CommandType commandType = CommandType.StoredProcedure)
+          CommandType commandType = CommandType.Text)
         {
             using (MySqlConnection connection = DBFactory.CreateMySqlConnection(databaseName))
                 return connection.QueryFirstOrDefault<T>(storedProcName, param, (IDbTransaction)null, new int?(), new CommandType?(commandType));
@@ -75,7 +75,7 @@ namespace Common.Misc.SQL
           string databaseName,
           string storedProcName,
           object param = null,
-          CommandType commandType = CommandType.StoredProcedure)
+          CommandType commandType = CommandType.Text)
         {
             T obj;
             using (MySqlConnection conn = DBFactory.CreateMySqlConnection(databaseName))
@@ -87,7 +87,7 @@ namespace Common.Misc.SQL
           string databaseName,
           string storedProcName,
           object param = null,
-          CommandType commandType = CommandType.StoredProcedure)
+          CommandType commandType = CommandType.Text)
         {
             MySqlConnection connection = DBFactory.CreateMySqlConnection(databaseName);
             if (connection.State != ConnectionState.Open)
@@ -99,7 +99,7 @@ namespace Common.Misc.SQL
           string databaseName,
           string storedProcName,
           object param = null,
-          CommandType commandType = CommandType.StoredProcedure)
+          CommandType commandType = CommandType.Text)
         {
             MySqlConnection connection = DBFactory.CreateMySqlConnection(databaseName);
             if (connection.State != ConnectionState.Open)
@@ -111,7 +111,7 @@ namespace Common.Misc.SQL
           string databaseName,
           string storedProcName,
           object param = null,
-          CommandType commandType = CommandType.StoredProcedure)
+          CommandType commandType = CommandType.Text)
         {
             using (MySqlConnection connection = DBFactory.CreateMySqlConnection(databaseName))
                 return connection.QuerySingleOrDefault<T>(storedProcName, param, (IDbTransaction)null, new int?(), new CommandType?(commandType));
@@ -121,7 +121,7 @@ namespace Common.Misc.SQL
           string databaseName,
           string storedProcName,
           object param = null,
-          CommandType commandType = CommandType.StoredProcedure)
+          CommandType commandType = CommandType.Text)
         {
             T obj;
             using (MySqlConnection conn = DBFactory.CreateMySqlConnection(databaseName))
@@ -134,7 +134,7 @@ namespace Common.Misc.SQL
           string storedProcName,
           object param = null,
           Action<IDataReader> executed = null,
-          CommandType commandType = CommandType.StoredProcedure)
+          CommandType commandType = CommandType.Text)
         {
             using (MySqlConnection connection = DBFactory.CreateMySqlConnection(databaseName))
             {

@@ -11,6 +11,7 @@ using WEBService.Util;
 
 namespace AdminCode.Controllers
 {
+
     public class HomeController : BaseController
     {
         [CustomAction]
@@ -55,7 +56,10 @@ namespace AdminCode.Controllers
             var result = AccountBll.Login(this, false, param);
             if (!string.IsNullOrEmpty(result.Url) && result.Status)
             {
-                return Redirect(Url.Content(result.Url));
+                if (HttpContext.Request.IsAjaxRequest())
+                    return Json(new { url = Url.Content(result.Url) });
+                else
+                    return Redirect(Url.Content(result.Url));
             }
 
             return View();
@@ -67,6 +71,8 @@ namespace AdminCode.Controllers
             return View();
         }
 
+        [CustomAction]
+        [CustomAuthorize("User")]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

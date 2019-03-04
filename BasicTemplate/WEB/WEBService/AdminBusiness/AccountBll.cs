@@ -30,10 +30,10 @@ namespace WEBService.AdminBusiness
             Context context = new Context();
             context.Id = user.FAccountID;
             //context.GradeId = gradeId;
-            //context.UserName = row.Element("faccount").Value;
+            context.UserName = user.FAccount;
             //context.GradeName = GradeName;
             //context.CompanyId = IsCustomerServiceAccount ? skin.CompanyID : row.Element("fcompanyid").Value<int>();
-            //context.Role = Role.Administrator;
+            context.Role = user.FRole.StringToEnum<Role>();
             //context.ParentID = row.Element("fparentid") == null || string.IsNullOrWhiteSpace(row.Element("fparentid").Value) ? -1 : Int32.Parse(row.Element("fparentid").Value);
             //context.ForcesChangePWD = row.Element("fforceschangepwd") == null ? false : bool.Parse(row.Element("fforceschangepwd").Value);
             //context.IsAgent = isAgent;
@@ -44,8 +44,19 @@ namespace WEBService.AdminBusiness
 
             //bool isBranchCompany = context.AuthorityGradeID == FeatureHelpers.BranchCompany && !IsCustomerServiceAccount;
 
+            if (Authentication.Login(context))
+            {
+                //var key = $"{CacheKeys.ErrorPassword}_{userId}";
+                //CacheHelper.Remove(key);
+                //info = $"登录日志：用户编号={Authentication.Id}，用户名称={Authentication.UserName}，等级名称={Authentication.GradeName}，所属公司={Authentication.CompanyID}，登录时间={DateTime.Now:yyyy-MM-dd HH:mm:ss}，登录IP={ipAddress}";
+                //CustomLogger.WriterLog(LXYD.WebGame.Util.EnumHelpers.LogType.Login, info);
+                //CommonAction.WriteLoginLog(1, userId, "", context, skin);
+                var url = "/Admin/Index";
+                return new LoginResult { Status = true, Info = "", Url = url };
+            }
 
-            return null;
+
+            return new LoginResult { Status = false, Info = "", Code = APICodeEnum.ConnectedCodeError };
         }
     }
 }

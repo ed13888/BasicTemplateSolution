@@ -22,7 +22,7 @@ namespace DAL.Account
         {
             status = 0;
             var t = MySqlHelper.FirstOrDefault<TAccount>(databaseName: "DB",
-                storedProcName: "select * from TAccount where FUserName=@FUserName and FLogonPass=@FLogonPass",
+                storedProcName: "select * from TAccount where FAccount=@FUserName and FLogonPass=@FLogonPass",
                 param: new { @FUserName = userName, @FLogonPass = passWord },
                 commandType: CommandType.Text);
             if (t != null) status = 0;

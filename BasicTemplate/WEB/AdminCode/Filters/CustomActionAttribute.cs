@@ -53,10 +53,12 @@ namespace AdminCode.Filters
 
                 filterContext.Result = FilterUtil.GetResult(filterContext, "/Home/Login");
             }
-            else if (authentication == 2)
-            {
-                filterContext.Result = FilterUtil.GetResult(filterContext, "/Admin/PermissionTips?type=400");
-            }
+            //else if (authentication == 2)
+            //{
+            //    filterContext.Result = FilterUtil.GetResult(filterContext, "/Admin/PermissionTips?type=400");
+            //}
         }
+
+
     }
 }

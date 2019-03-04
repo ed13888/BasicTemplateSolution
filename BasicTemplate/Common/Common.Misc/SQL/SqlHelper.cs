@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common.Misc
+namespace Common.Misc.SQL
 {
     /// <summary>Dapper帮助类</summary>
     public static class SqlHelper
@@ -16,13 +16,13 @@ namespace Common.Misc
           string databaseName,
           string storedProcName,
           object param = null,
-          CommandType commandType = CommandType.StoredProcedure)
+          CommandType commandType = CommandType.Text)
         {
             using (SqlConnection connection = DBFactory.CreateConnection(databaseName))
                 return connection.ExecuteScalar<T>(storedProcName, param, (IDbTransaction)null, new int?(), new CommandType?(commandType));
         }
 
-        public static int Execute(string storedProcName, object param = null, CommandType commandType = CommandType.StoredProcedure)
+        public static int Execute(string storedProcName, object param = null, CommandType commandType = CommandType.Text)
         {
             using (SqlConnection connection = DBFactory.CreateConnection((string)null))
                 return connection.Execute(storedProcName, param, (IDbTransaction)null, new int?(), new CommandType?(commandType));
@@ -31,7 +31,7 @@ namespace Common.Misc
         public static async Task<int> ExecuteAsync(
           string storedProcName,
           object param = null,
-          CommandType commandType = CommandType.StoredProcedure)
+          CommandType commandType = CommandType.Text)
         {
             int num;
             using (SqlConnection conn = DBFactory.CreateConnection((string)null))
@@ -43,7 +43,7 @@ namespace Common.Misc
           string databaseName,
           string storedProcName,
           object param = null,
-          CommandType commandType = CommandType.StoredProcedure)
+          CommandType commandType = CommandType.Text)
         {
             using (SqlConnection connection = DBFactory.CreateConnection(databaseName))
                 return connection.Query<T>(storedProcName, param, (IDbTransaction)null, true, new int?(), new CommandType?(commandType));
@@ -53,7 +53,7 @@ namespace Common.Misc
           string databaseName,
           string storedProcName,
           object param = null,
-          CommandType commandType = CommandType.StoredProcedure)
+          CommandType commandType = CommandType.Text)
         {
             IEnumerable<T> objs;
             using (SqlConnection conn = DBFactory.CreateConnection(databaseName))
@@ -65,7 +65,7 @@ namespace Common.Misc
           string databaseName,
           string storedProcName,
           object param = null,
-          CommandType commandType = CommandType.StoredProcedure)
+          CommandType commandType = CommandType.Text)
         {
             using (SqlConnection connection = DBFactory.CreateConnection(databaseName))
                 return connection.QueryFirstOrDefault<T>(storedProcName, param, (IDbTransaction)null, new int?(), new CommandType?(commandType));
@@ -75,7 +75,7 @@ namespace Common.Misc
           string databaseName,
           string storedProcName,
           object param = null,
-          CommandType commandType = CommandType.StoredProcedure)
+          CommandType commandType = CommandType.Text)
         {
             T obj;
             using (SqlConnection conn = DBFactory.CreateConnection(databaseName))
@@ -87,7 +87,7 @@ namespace Common.Misc
           string databaseName,
           string storedProcName,
           object param = null,
-          CommandType commandType = CommandType.StoredProcedure)
+          CommandType commandType = CommandType.Text)
         {
             SqlConnection connection = DBFactory.CreateConnection(databaseName);
             if (connection.State != ConnectionState.Open)
@@ -99,7 +99,7 @@ namespace Common.Misc
           string databaseName,
           string storedProcName,
           object param = null,
-          CommandType commandType = CommandType.StoredProcedure)
+          CommandType commandType = CommandType.Text)
         {
             SqlConnection connection = DBFactory.CreateConnection(databaseName);
             if (connection.State != ConnectionState.Open)
@@ -111,7 +111,7 @@ namespace Common.Misc
           string databaseName,
           string storedProcName,
           object param = null,
-          CommandType commandType = CommandType.StoredProcedure)
+          CommandType commandType = CommandType.Text)
         {
             using (SqlConnection connection = DBFactory.CreateConnection(databaseName))
                 return connection.QuerySingleOrDefault<T>(storedProcName, param, (IDbTransaction)null, new int?(), new CommandType?(commandType));
@@ -121,7 +121,7 @@ namespace Common.Misc
           string databaseName,
           string storedProcName,
           object param = null,
-          CommandType commandType = CommandType.StoredProcedure)
+          CommandType commandType = CommandType.Text)
         {
             T obj;
             using (SqlConnection conn = DBFactory.CreateConnection(databaseName))
@@ -134,7 +134,7 @@ namespace Common.Misc
           string storedProcName,
           object param = null,
           Action<IDataReader> executed = null,
-          CommandType commandType = CommandType.StoredProcedure)
+          CommandType commandType = CommandType.Text)
         {
             using (SqlConnection connection = DBFactory.CreateConnection(databaseName))
             {
