@@ -189,7 +189,8 @@
 
         conn.start().done(function (data) {
             var content = $("#info").val();
-            $("#info").val("连接成功，connectionId 为： " + data.id + "\r\n" + content);
+            var name = getCookie("connectionName");
+            $("#info").val("连接成功，您的名片为： " + name + "\r\n" + content);
         });
 
         conn.received(function (data) {

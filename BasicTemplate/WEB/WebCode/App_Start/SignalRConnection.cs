@@ -34,6 +34,8 @@ namespace WebCode
             {
                 int random = new Random().Next(0, 7);
                 dic.Add(value, dicName[$"{random}"]);
+
+                CookieHelper.Set("connectionName", dicName[$"{random}"]);
             }
             return Connection.Send(value, "Welcome!");
         }
