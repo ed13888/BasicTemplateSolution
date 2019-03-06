@@ -1,12 +1,12 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - 我的 ASP.NET 应用程序</title>
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/layer")
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -17,27 +17,147 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("应用程序名称", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <a class="navbar-brand" href="/">巴啦啦</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("主页", "Index", "Home")</li>
-                    <li>@Html.ActionLink("关于", "About", "Home")</li>
-                    <li>@Html.ActionLink("联系方式", "Contact", "Home")</li>
+                    <li><a href="/">主页</a></li>
+                    <li><a href="/Home/About">关于</a></li>
+                    <li><a href="/Home/Contact">联系方式</a></li>
                 </ul>
             </div>
         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
+
+        <div class="container">
+            <div class="row text-center">
+                <p>小礼物走一走，你的支持就是我们最大的努力</p>
+            </div>
+            <div class="row text-center">
+                <div id="btn-pay" class="btn btn-pay">赞赏支持</div>
+            </div>
+        </div>
+        <audio src="~/Resource/mp3/2.mp3" id="audio" autoplay="autoplay" controls="controls" loop="true" hidden="true"></audio>
+        <input type="button" onclick="autoPlay()" value="播放" />
+        <input type="button" onclick="closePlay()" value="关闭" />
+
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 应用程序</p>
+        <footer class="text-center">
+            <p>footer</p>
+            <p>&copy; <span id="footer_time"></span></p>
         </footer>
+    </div>
+    <div id="gotop" data-am-widget="gotop" class="am-gotop am-gotop-fixed am-no-layout am-active">
+        <a href="javascript:void(0)">
+            <img class="am-gotop-icon-custom" src="http://www.51bbw.cn/images/goTop.png">
+        </a>
+    </div>
+
+
+    <div data-am-widget="navbar" class="am-navbar am-cf am-navbar-default  am-no-layout">
+        <ul class="am-navbar-nav am-cf am-avg-sm-4 smnav">
+            <li>
+                <a href="/">
+                    <span class="glyphicon glyphicon-home"></span>
+                    <span class="am-navbar-label">主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="#m-num" data-am-offcanvas="">
+                    <span class="glyphicon glyphicon-list"></span>
+                    <span class="am-navbar-label">菜单</span>
+                </a>
+            </li>
+            <li>
+                <a href="/">
+                    <span class="glyphicon glyphicon-globe"></span>
+                    <span class="am-navbar-label">网页</span>
+                </a>
+            </li>
+            <li>
+                <a href="/">
+                    <span class="glyphicon glyphicon-facetime-video"></span>
+                    <span class="am-navbar-label">视频</span>
+                </a>
+            </li>
+            <li>
+                <a href="/">
+                    <span class="glyphicon glyphicon-shopping-cart"></span>
+                    <span class="am-navbar-label">购物</span>
+                </a>
+            </li>
+        </ul>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/layer")
     @RenderSection("scripts", required: false)
+
+    <script>
+        $(function () {
+
+            setGoTop();
+
+            $("#btn-pay").bind("click", function () {
+                layer.open({
+                    type: 1,
+                    title: false,
+                    closeBtn: 0,
+                    shadeClose: true,
+                    skin: 'layui-layer-nobg',
+                    content: "<img src='/Resource/img/alipay.png'/>"
+                });
+            })
+
+            $(window).scroll(function () {
+                setGoTop();
+            });
+
+            function setGoTop() {
+                var scrH = document.documentElement.scrollTop + document.body.scrollTop;
+                if (scrH > 200) {
+                    $('#gotop').fadeIn(400);
+                } else {
+                    $('#gotop').stop().fadeOut(400);
+                }
+            }
+            $('#gotop').click(function () {
+                $('html,body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            autoPlay();
+
+            showtime();
+        });
+
+        function autoPlay() {
+            var myAuto = document.getElementById('audio');
+            myAuto.play();
+        }
+        function closePlay() {
+            var myAuto = document.getElementById('audio');
+            myAuto.pause();
+            myAuto.load();
+        }
+        function showtime() {
+            var now_time = new Date();  // 创建时间对象
+            var year = now_time.getFullYear();
+            var month = now_time.getMonth() + 1;
+            var day = now_time.getDay();
+            var hours = now_time.getHours(); //获得当前小时数
+            var minutes = now_time.getMinutes(); //获得当前分钟数
+            var seconds = now_time.getSeconds(); //获得当前秒数
+            var timer = year + "-" + month + "-" + day + " " + ((hours > 12) ? hours - 12 : hours); //将小时数值赋予变量timer
+            timer += ((minutes < 10) ? ":0" : ":") + minutes; //将分钟数值赋予变量timer
+            timer += ((seconds < 10) ? ":0" : ":") + seconds; //将秒数值赋予变量timer
+            timer += " " + ((hours > 12) ? "pm" : "am"); //将字符am或pm赋予变量timer
+            $("#footer_time").html(timer); //在名为clock的表单中输出变量timer的值
+            setTimeout("showtime()", 1000); //设置每隔一秒钟自动调用一次showtime()函数
+
+        }
+    </script>
 </body>
 </html>
