@@ -140,3 +140,16 @@ textarea {
     background-color: #ea6f5a;
     border-radius: 20px;
 }
+
+
+/*PC 不显示页底菜单*/
+@media only screen and (min-width : 768px) {
+    #footer_nav {
+        display: none;
+    }
+}
+
+/*   Mobile  */
+@media only screen and (max-width : 768px) {
+
+}
