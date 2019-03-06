@@ -20,7 +20,12 @@ namespace WebCode
             { "4","芈月"},
             { "5","赵云"},
             { "6","刘备"},
-            { "7","无名氏"},
+            { "7","风车车"},
+            { "8","假老练"},
+            { "9","莽娃儿"},
+            { "10","吕布"},
+            { "11","貂蝉"},
+            { "12","无名氏"},
         };
         protected override Task OnConnected(IRequest request, string connectionId)
         {
@@ -32,11 +37,12 @@ namespace WebCode
             }
             if (!dic.ContainsKey(value))
             {
-                int random = new Random().Next(0, 7);
+                int random = new Random().Next(0, 12);
                 dic.Add(value, dicName[$"{random}"]);
 
                 CookieHelper.Set("connectionName", dicName[$"{random}"]);
             }
+            Connection.Broadcast($"欢迎{dic[value]}进入聊天室~");
             return Connection.Send(value, "Welcome!");
         }
 
