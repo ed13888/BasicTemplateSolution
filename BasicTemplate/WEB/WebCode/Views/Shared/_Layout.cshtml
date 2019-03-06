@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/layer")
+    @Styles.Render("~/Plugins/layer/css")
     @Styles.Render("~/Content/css")
 </head>
 <body>
@@ -102,14 +102,35 @@
             setGoTop();
 
             $("#btn-pay").bind("click", function () {
+                //询问框
                 layer.open({
-                    type: 1,
-                    title: false,
-                    closeBtn: 0,
-                    shadeClose: true,
-                    skin: 'layui-layer-nobg',
-                    content: "<img src='/Resource/img/alipay.png'/>"
+                    content: '请选择支付方式？'
+                    , btn: ['微信', '支付宝']
+                    , yes: function (index) {
+                        layer.close(index);
+                        layer.open({
+                            type: 1,
+                            title: false,
+                            closeBtn: 0,
+                            shadeClose: true,
+                            skin: 'layui-layer-nobg',
+                            content: "<img src='/Resource/img/wxpay.png'/>"
+                        });
+                    }
+                    , no: function (index) {
+                        layer.close(index);
+                        layer.open({
+                            type: 1,
+                            title: false,
+                            closeBtn: 0,
+                            shadeClose: true,
+                            skin: 'layui-layer-nobg',
+                            content: "<img src='/Resource/img/alipay.png'/>"
+                        });
+                    }
                 });
+
+
             })
 
             $(window).scroll(function () {
