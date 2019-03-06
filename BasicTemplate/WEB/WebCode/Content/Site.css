@@ -98,6 +98,10 @@ textarea {
     line-height: 20px;
 }
 
+#footer_nav li.active * {
+    color: red;
+}
+
 *, :after, :before {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -122,6 +126,7 @@ textarea {
     max-width: 30px;
     vertical-align: middle;
 }
+
 .am-gotop-fixed a {
     display: block;
 }

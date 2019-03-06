@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@{
+    string requestUrl = Request.Url.ToString();
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -49,14 +52,17 @@
             <p>&copy; <span id="footer_time"></span></p>
         </footer>
     </div>
+
+    <!--跳转顶部-->
     <div id="gotop" data-am-widget="gotop" class="am-gotop am-gotop-fixed am-no-layout am-active">
         <a href="javascript:void(0)">
-            <img class="am-gotop-icon-custom" src="http://www.51bbw.cn/images/goTop.png">
+            <img class="am-gotop-icon-custom" src="~/Resource/img/goTop.png">
         </a>
     </div>
 
 
-    <div data-am-widget="navbar" class="am-navbar am-cf am-navbar-default  am-no-layout">
+    <!--页底菜单-->
+    <div id="footer_nav" data-am-widget="navbar" class="am-navbar am-cf am-navbar-default  am-no-layout">
         <ul class="am-navbar-nav am-cf am-avg-sm-4 smnav">
             <li>
                 <a href="/">
@@ -94,13 +100,20 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/layer")
+    @Scripts.Render("~/bundles/site")
     @RenderSection("scripts", required: false)
 
     <script>
+
         $(function () {
 
+            //设置返回顶部按钮
             setGoTop();
 
+            //刷新页底菜单
+            refreshFooterNav();
+
+            //打赏
             $("#btn-pay").bind("click", function () {
                 //询问框
                 layer.open({
@@ -133,52 +146,21 @@
 
             })
 
+            //滚动控制按钮显示
             $(window).scroll(function () {
                 setGoTop();
             });
-
-            function setGoTop() {
-                var scrH = document.documentElement.scrollTop + document.body.scrollTop;
-                if (scrH > 200) {
-                    $('#gotop').fadeIn(400);
-                } else {
-                    $('#gotop').stop().fadeOut(400);
-                }
-            }
+            //返回顶部按钮绑定事件
             $('#gotop').click(function () {
                 $('html,body').animate({ scrollTop: '0px' }, 200);
             });
 
+            //播放音乐
             autoPlay();
 
+            //显示时间
             showtime();
         });
-
-        function autoPlay() {
-            var myAuto = document.getElementById('audio');
-            myAuto.play();
-        }
-        function closePlay() {
-            var myAuto = document.getElementById('audio');
-            myAuto.pause();
-            myAuto.load();
-        }
-        function showtime() {
-            var now_time = new Date();  // 创建时间对象
-            var year = now_time.getFullYear();
-            var month = now_time.getMonth() + 1;
-            var day = now_time.getDay();
-            var hours = now_time.getHours(); //获得当前小时数
-            var minutes = now_time.getMinutes(); //获得当前分钟数
-            var seconds = now_time.getSeconds(); //获得当前秒数
-            var timer = year + "-" + month + "-" + day + " " + ((hours > 12) ? hours - 12 : hours); //将小时数值赋予变量timer
-            timer += ((minutes < 10) ? ":0" : ":") + minutes; //将分钟数值赋予变量timer
-            timer += ((seconds < 10) ? ":0" : ":") + seconds; //将秒数值赋予变量timer
-            timer += " " + ((hours > 12) ? "pm" : "am"); //将字符am或pm赋予变量timer
-            $("#footer_time").html(timer); //在名为clock的表单中输出变量timer的值
-            setTimeout("showtime()", 1000); //设置每隔一秒钟自动调用一次showtime()函数
-
-        }
     </script>
 </body>
 </html>
