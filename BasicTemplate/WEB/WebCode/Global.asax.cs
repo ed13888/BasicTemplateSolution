@@ -1,7 +1,9 @@
 ﻿using Common.Misc;
+using Microsoft.AspNet.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Timers;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -21,6 +23,18 @@ namespace WebCode
 
             GlobalBase.Init();
             DependencyResolver.SetResolver(new UnityDependencyResolver(UnityHelper.Container));
+
+
+            //Timer timer = new Timer(5000);
+            //timer.Elapsed += timer_Elapsed;
+            //timer.Start();
+        }
+
+
+        void timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            var context = GlobalHost.ConnectionManager.GetConnectionContext<SignalRConnection>();
+            context.Connection.Broadcast("我在 " + DateTime.Now.ToString() + " 主动向浏览器发送数据。");
         }
     }
 }

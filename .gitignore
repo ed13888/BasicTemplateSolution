@@ -1985,3 +1985,16 @@
 /BasicTemplate/WEB/AdminCode/obj/Release/AdminCode.dll
 /BasicTemplate/WEB/AdminCode/obj/Release/AdminCode.pdb
 /BasicTemplate/WEB/WebCode/obj/Release/DesignTimeResolveAssemblyReferencesInput.cache
+/BasicTemplate/WEB/WebCode/bin/Microsoft.AspNet.SignalR.Core.dll
+/BasicTemplate/WEB/WebCode/bin/Microsoft.AspNet.SignalR.Core.pdb
+/BasicTemplate/WEB/WebCode/bin/Microsoft.AspNet.SignalR.Core.xml
+/BasicTemplate/WEB/WebCode/bin/Microsoft.AspNet.SignalR.SystemWeb.dll
+/BasicTemplate/WEB/WebCode/bin/Microsoft.AspNet.SignalR.SystemWeb.pdb
+/BasicTemplate/WEB/WebCode/bin/Microsoft.AspNet.SignalR.SystemWeb.xml
+/BasicTemplate/WEB/WebCode/bin/Microsoft.Owin.Host.SystemWeb.dll
+/BasicTemplate/WEB/WebCode/bin/Microsoft.Owin.Host.SystemWeb.xml
+/BasicTemplate/WEB/WebCode/bin/Microsoft.Owin.Security.dll
+/BasicTemplate/WEB/WebCode/bin/Microsoft.Owin.Security.xml
+/BasicTemplate/WEB/WebCode/bin/Microsoft.Owin.dll
+/BasicTemplate/WEB/WebCode/bin/Microsoft.Owin.xml
+/BasicTemplate/WEB/WebCode/bin/Owin.dll

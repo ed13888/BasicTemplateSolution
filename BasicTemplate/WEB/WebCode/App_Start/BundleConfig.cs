@@ -9,9 +9,12 @@ namespace WebCode
         public static void RegisterBundles(BundleCollection bundles)
         {
             BundleTable.EnableOptimizations = false;
+            //cdn
+            bundles.UseCdn = true;
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/jquery.signalR-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
