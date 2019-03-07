@@ -1998,3 +1998,5 @@
 /BasicTemplate/WEB/WebCode/bin/Microsoft.Owin.dll
 /BasicTemplate/WEB/WebCode/bin/Microsoft.Owin.xml
 /BasicTemplate/WEB/WebCode/bin/Owin.dll
+/BasicTemplate/Common/Common.Entity/obj/Release/Common.Entity.csprojAssemblyReference.cache
+/BasicTemplate/Common/Common.Enums/obj/Release/Common.Enums.csprojAssemblyReference.cache

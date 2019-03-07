@@ -69,3 +69,40 @@ function getCookie(sName) {
     }
     return null;
 }
+
+
+function setLoading(val) {
+    val = val || 0;
+    var progressBar = $("#loadingModal .progress-bar");
+    if (val >= 100) {
+        //$("#progress").fadeOut(100);
+        $("#loadingModal").modal('hide');
+    }
+    else {
+        progressBar.animate({ width: (val || 0) + '%' }, 100);
+    }
+}
+
+function loadSignalR(func) {
+
+    var conn = $.connection("/myPath");
+
+    conn.start().done(function (data) {
+        var content = $("#info").val();
+        var name = getCookie("connectionName");
+        $("#info").val("连接成功，您的名片为： " + name + "\r\n" + content);
+    });
+
+    conn.received(function (data) {
+        var content = $("#info").val();
+        $("#info").val(data + "\r\n" + content);
+    });
+
+    function sendMsg() {
+        var val = $('#msg').val();
+        if (val != "") {
+            conn.send(val);
+            $('#msg').val("");
+        }
+    }
+}

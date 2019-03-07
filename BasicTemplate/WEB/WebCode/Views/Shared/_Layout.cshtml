@@ -101,6 +101,16 @@
         </ul>
     </div>
 
+    <!--进度条-->
+    <div class="modal fade" id="loadingModal">
+        <div style="width: 200px;height:20px; z-index: 20000; position: absolute; text-align: center; left: 50%; top: 50%;margin-left:-100px;margin-top:-10px">
+            <div class="progress progress-striped active" style="margin-bottom: 0;">
+                <div class="progress-bar" style="width: 0%;"></div>
+            </div>
+            <h5>正在加载...</h5>
+        </div>
+    </div>
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/layer")
@@ -108,14 +118,23 @@
     @RenderSection("scripts", required: false)
 
     <script>
+        $('#loadingModal').modal({ backdrop: 'static', keyboard: false });
+        $("#loadingModal").modal('show');
+
+        document.onreadystatechange = function () {
+            if (document.readyState == 'complete') {
+                setLoading(100);
+            }
+        };
 
         $(function () {
-
             //设置返回顶部按钮
             setGoTop();
+            setLoading(10);
 
             //刷新页底菜单
             refreshFooterNav();
+            setLoading(20);
 
             //打赏
             $("#btn-pay").bind("click", function () {
@@ -161,9 +180,14 @@
 
             //播放音乐
             autoPlay();
+            setLoading(50);
 
             //显示时间
             showtime();
+            setLoading(70);
+
+            //signalR
+            loadSignalR();
         });
     </script>
     <div class="container">
@@ -184,28 +208,6 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        var conn = $.connection("/myPath");
-
-        conn.start().done(function (data) {
-            var content = $("#info").val();
-            var name = getCookie("connectionName");
-            $("#info").val("连接成功，您的名片为： " + name + "\r\n" + content);
-        });
-
-        conn.received(function (data) {
-            var content = $("#info").val();
-            $("#info").val(data + "\r\n" + content);
-        });
-
-        function sendMsg() {
-            var val = $('#msg').val();
-            if (val != "") {
-                conn.send(val);
-                $('#msg').val("");
-            }
-        }
-    </script>
 
     <!--百度统计-->
     <script>
@@ -233,6 +235,5 @@
             s.parentNode.insertBefore(bp, s);
         })();
     </script>
-
 </body>
 </html>
