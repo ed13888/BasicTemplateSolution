@@ -83,7 +83,8 @@ function setLoading(val) {
     }
 }
 
-function loadSignalR(func) {
+
+function loadSignalR() {
 
     var conn = $.connection("/myPath");
 
@@ -98,6 +99,13 @@ function loadSignalR(func) {
         $("#info").val(data + "\r\n" + content);
     });
 
+    $("#btnSendMsg").bind("click", sendMsg)
+    $("#msg").bind("keydown", function (event) {
+        if (event.keyCode == "13") {
+            sendMsg();
+        }
+    })
+
     function sendMsg() {
         var val = $('#msg').val();
         if (val != "") {
@@ -105,4 +113,6 @@ function loadSignalR(func) {
             $('#msg').val("");
         }
     }
+
+    return conn;
 }
