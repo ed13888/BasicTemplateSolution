@@ -25,3 +25,94 @@
         <p><a class="btn btn-default" href="#">Learn more &raquo;</a></p>
     </div>
 </div>
+
+<!--打赏-->
+<div class="row text-center">
+    <p>小礼物走一走，你的支持就是我们最大的努力</p>
+</div>
+<div class="row text-center">
+    <div id="btn-pay" class="btn btn-pay">赞赏支持</div>
+</div>
+<div class="row">
+    <audio src="~/Resource/mp3/2.mp3" id="audio" autoplay="autoplay" controls="controls" loop="true" hidden="true"></audio>
+    <input class="form-control" type="button" onclick="autoPlay()" value="播放" />
+    <input class="form-control" type="button" onclick="closePlay()" value="关闭" />
+</div>
+
+<!--聊天室-->
+<div class="row text-center">
+    <div class="col-md-12">
+        <textarea id="info" class="form-control" cols="60" rows="10"></textarea>
+    </div>
+</div>
+<div class="row">
+    <label class="col-md-2 control-label">要发送到服务器的消息：</label>
+    <div class="col-md-10">
+        <input class="form-control" type="text" id="msg" size="20" />
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <input class="btn btn-default" type="button" value="发送消息" onclick="sendMsg();" />
+    </div>
+</div>
+
+<hr />
+<footer class="text-center">
+    <p>footer</p>
+    <p>&copy; <span id="footer_time"></span></p>
+</footer>
+
+@section scripts {
+    <script>
+        $(function () {
+            //打赏
+            $("#btn-pay").bind("click", function () {
+                //询问框
+                layer.open({
+                    content: '请选择支付方式？'
+                    , btn: ['微信', '支付宝']
+                    , yes: function (index) {
+                        layer.close(index);
+                        layer.open({
+                            type: 1,
+                            title: false,
+                            closeBtn: 0,
+                            shadeClose: true,
+                            skin: 'layui-layer-nobg',
+                            content: "<img src='/Resource/img/wxpay.png'/>"
+                        });
+                    }
+                    , no: function (index) {
+                        layer.close(index);
+                        layer.open({
+                            type: 1,
+                            title: false,
+                            closeBtn: 0,
+                            shadeClose: true,
+                            skin: 'layui-layer-nobg',
+                            content: "<img src='/Resource/img/alipay.png'/>"
+                        });
+                    }
+                });
+
+
+            })
+
+            //播放音乐
+            autoPlay();
+            setLoading(50);
+
+            //显示时间
+            showtime();
+            setLoading(70);
+
+            //signalR
+            loadSignalR();
+
+
+        });
+
+    </script>
+
+}

@@ -24,6 +24,34 @@ textarea {
 }*/
 
 
+.mt-2 {
+    margin-top: 15px !important
+}
+
+.mb-2 {
+    margin-bottom: 15px !important
+}
+
+.ml-2 {
+    margin-left: 15px !important
+}
+
+.mr-2 {
+    margin-right: 15px !important
+}
+
+.mx-2 {
+    margin-right: 15px !important;
+    margin-left: 15px !important
+}
+
+.my-2 {
+    margin-top: 15px !important;
+    margin-bottom: 15px !important
+}
+
+
+
 
 
 /*自定义样式*/
@@ -151,5 +179,4 @@ textarea {
 
 /*   Mobile  */
 @media only screen and (max-width : 768px) {
-
 }
