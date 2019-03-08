@@ -87,7 +87,7 @@ namespace Common.Misc
 
         private static List<ConfigEntity> GetSystemConfigs()
         {
-            return MySqlHelper.Query<ConfigEntity>("", "select * from SystemConfig").ToList();
+            return MySqlHelper.Query<ConfigEntity>("", "select * from TSystemConfig").ToList();
         }
 
         /// <summary>
