@@ -14,6 +14,7 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Plugins/layer/css")
+    @Styles.Render("~/Plugins/fileinput/css")
     @Styles.Render("~/Content/css")
 </head>
 <body>
@@ -30,8 +31,8 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="/">主页</a></li>
-                    <li><a href="/Home/About">关于</a></li>
-                    <li><a href="/Home/Contact">联系方式</a></li>
+                    <li><a href="/">菜单</a></li>
+                    <li><a href="/template/index.html">网页</a></li>
                 </ul>
             </div>
         </div>
@@ -103,6 +104,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/layer")
+    @Scripts.Render("~/bundles/fileinput")
     @Scripts.Render("~/bundles/site")
     @RenderSection("scripts", required: false)
 

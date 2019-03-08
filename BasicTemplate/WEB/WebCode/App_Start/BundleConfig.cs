@@ -23,6 +23,12 @@ namespace WebCode
                       "~/Plugins/layer/layer.js",
                       "~/Plugins/layer/mobile/layer.js"));
 
+
+            bundles.Add(new ScriptBundle("~/bundles/fileinput").Include(
+                      "~/Plugins/bootstrap-fileinput/js/fileinput.js",
+                      "~/Plugins/bootstrap-fileinput/js/locales/zh.js"));
+
+
             bundles.Add(new ScriptBundle("~/bundles/site").Include(
                       "~/Scripts/site.js"));
 
@@ -34,6 +40,11 @@ namespace WebCode
             bundles.Add(new StyleBundle("~/Plugins/layer/css").Include(
                       "~/Plugins/layer/theme/default/layer.css",
                       "~/Plugins/layer/mobile/need/layer.css"));
+
+
+            bundles.Add(new StyleBundle("~/Plugins/fileinput/css").Include(
+                      "~/Plugins/bootstrap-fileinput/css/fileinput.css"));
+
 
 
         }
