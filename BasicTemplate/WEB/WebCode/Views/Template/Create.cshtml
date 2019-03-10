@@ -1,4 +1,4 @@
-﻿
+﻿@model Common.Entity.Business.TemplateEntity
 @{
     Layout = null;
 }
@@ -8,10 +8,37 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Create</title>
+    <title>@Model.FTitle</title>
 </head>
-<body>
-    <div> 
+<body onload="autoPlay();">
+    <div>
+        <center>
+
+            <p>这是您创建的模板哟~</p>
+
+            <p>@Model.FP1</p><br />
+
+            <p>@Model.FP2</p><br />
+
+            <p>@Model.FP3</p><br />
+
+            <p>@Model.FP4</p><br />
+
+            <p>@Model.FDescription</p><br />
+
+            <p>@Model.FProducer</p><br />
+
+        </center>
+
+        <audio src="@Model.FMusic" id="audio" autoplay="autoplay" controls="controls" loop="true" hidden="true"></audio>
     </div>
+
+    <script>
+        function autoPlay() {
+            var myAuto = document.getElementById('audio');
+            myAuto.play();
+        }
+
+    </script>
 </body>
 </html>

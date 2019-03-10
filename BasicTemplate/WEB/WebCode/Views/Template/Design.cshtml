@@ -4,17 +4,17 @@
     var count = Convert.ToInt32(ViewBag.Count);
     var dic = ViewBag.Dic as IDictionary<int, string>;
 }
-<form class="form-horizontal">
+<form class="form-horizontal" method="post" action="/template/create">
     <div class="control-group my-2">
         <label class="control-label" for="title">网站标题*</label>
         <div class="controls">
-            <input class="form-control" type="text" id="title" name="title" placeholder="网站标题">
+            <input class="form-control" type="text" id="title" name="ftitle" value="我是标题___啦啦啦" placeholder="网站标题">
         </div>
     </div>
     <div class="control-group my-2">
         <label class="control-label" for="music">背景音乐*</label>
         <div class="controls">
-            <input class="form-control" type="text" id="music" name="music" placeholder="背景音乐">
+            <input class="form-control" type="text" id="music" name="fmusic" placeholder="背景音乐" value="http://www.zaiyiqiba.com/mp3/kgmp3.php?id=86F6B12AF4D1F8898B6AA755BCFD36B8" style="display:none;">
             <select class="form-control" onchange="document.getElementById('music').value = '' + this.options[this.selectedIndex].value">
                 <option value="">页面背景音乐</option>
                 <option value="http://www.zaiyiqiba.com/mp3/kgmp3.php?id=86F6B12AF4D1F8898B6AA755BCFD36B8">《暖暖》----------------【梁静茹】</option>
@@ -31,26 +31,26 @@
         <div class="control-group my-2">
             <label class="control-label" for="p@(i)">第@(dic[i])句话*</label>
             <div class="controls">
-                <textarea class="form-control" rows="6" id="p@(i)" name="p@(i)" placeholder="第@(dic[i])句话"></textarea>
+                <textarea class="form-control" rows="6" id="p@(i)" name="fp@(i)" placeholder="第@(dic[i])句话">@(i)</textarea>
             </div>
         </div>
     }
     <div class="control-group my-2">
         <label class="control-label" for="photo">选择照片*</label>
         <div class="controls">
-            <input id="photo" class="form-control" type="file" multiple="multiple" accept="image/*">
+            <input id="photo" name="fphoto" class="form-control" type="file" multiple="multiple" accept="image/*">
         </div>
     </div>
     <div class="control-group my-2">
         <label class="control-label" for="description">页面介绍*</label>
         <div class="controls">
-            <textarea class="form-control" rows="6" id="description" name="description" placeholder="这个页面是我在 我要沙雕网给你制作的，希望你会喜欢"></textarea>
+            <textarea class="form-control" rows="6" id="description" name="fdescription" placeholder="这个页面是我在 我要沙雕网给你制作的，希望你会喜欢">这里是页面介绍哟</textarea>
         </div>
     </div>
     <div class="control-group my-2">
         <label class="control-label" for="producer">制作人*</label>
         <div class="controls">
-            <input class="form-control" type="text" id="producer" name="producer" placeholder="制作人" value="">
+            <input class="form-control" type="text" id="producer" name="fproducer" placeholder="制作人" value="这里是显示制作人哟">
         </div>
     </div>
     <div class="row my-2 text-center">

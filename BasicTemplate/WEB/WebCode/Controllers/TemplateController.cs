@@ -1,9 +1,12 @@
-﻿using System;
+﻿using Common.Entity.Business;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WEBService.Util;
+using WEBService.WebBusiness;
 
 namespace WebCode.Controllers
 {
@@ -42,7 +45,20 @@ namespace WebCode.Controllers
         [HttpPost]
         public ActionResult Create()
         {
-            return View();
+            string json = "";
+            for (int i = 0; i < Request.Form.Keys.Count; i++)
+            {
+                if (Request.Form.Keys[i].ToString().Substring(0, 1) != "_")
+                {
+                    json += Request.Form.Keys[i].ToString() + " : \"" + Request.Form[i].ToString() + "\",";
+                }
+            }
+            json = $"{{{json}}}";
+
+            var m = JsonConvert.DeserializeObject<TemplateEntity>(json);
+            //var val = BusinessBll.CreateTemplate(this, m);
+
+            return View(m);
         }
     }
 }

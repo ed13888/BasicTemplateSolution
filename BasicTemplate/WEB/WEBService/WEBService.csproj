@@ -73,6 +73,7 @@
     <Compile Include="Security\Context.cs" />
     <Compile Include="Util\BaseController.cs" />
     <Compile Include="Util\FilterUtil.cs" />
+    <Compile Include="WebBusiness\BusinessBll.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
