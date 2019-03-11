@@ -10,53 +10,75 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@Model.FTitle</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
         img {
             width: 200px;
             height: 200px;
         }
+
+        #iframe {
+        }
     </style>
 </head>
-<body onload="autoPlay();">
-    <div>
-        <center>
+<body>
 
-            <p>这是您创建的模板哟~</p>
+    <iframe id="iframe" style="width:100vw;height:100vh;" frameborder="0"></iframe>
+    @*<div>
+            <center>
 
-            <p>@Model.FP1</p><br />
+                <p>这是您创建的模板哟~</p>
 
-            <p>@Model.FP2</p><br />
+                <p>@Model.FP1</p><br />
 
-            <p>@Model.FP3</p><br />
+                <p>@Model.FP2</p><br />
 
-            <p>@Model.FP4</p><br />
+                <p>@Model.FP3</p><br />
 
-            <p>@Model.FDescription</p><br />
+                <p>@Model.FP4</p><br />
 
-            <p>@Model.FProducer</p><br />
+                <p>@Model.FDescription</p><br />
 
-            @for (int i = 0; i < ImgList.Count; i++)
-            {
-                <p><img src="@(ImgList[i])" /></p><br />
-            }
+                <p>@Model.FProducer</p><br />
 
-        </center>
+                @for (int i = 0; i < ImgList.Count; i++)
+                {
+                    <p><img src="@(ImgList[i])" /></p><br />
+                }
 
-        <audio src="@Model.FMusic" id="audio" autoplay="autoplay" controls="controls" loop="true" hidden="true"></audio>
-    </div>
+                <div id="test_div">
+
+                </div>
+
+
+            </center>
+
+            <audio src="@Model.FMusic" id="audio" autoplay="autoplay" controls="controls" loop="true" hidden="true"></audio>
+        </div>*@
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
     <script>
         $(function () {
+            var json = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+            json.FPhoto = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ImgList));
+            localStorage.json = JSON.stringify(json);
 
+            //$.ajax({
+            //    url: '/Template/Test.html',
+            //    type: 'get',
+            //    success: function (res) {
+            //        $('#test_div').html($(res));
+            //    }
+            //});
+
+            $("#iframe").attr("src","@Html.Raw(Model.Template.FTemplateUrl)");
+            //$('#test_div').load('/Template/Test.html');
         });
-    </script>
-
-    <script>
-        function autoPlay() {
-            var myAuto = document.getElementById('audio');
-            myAuto.play();
-        }
-
     </script>
 </body>
 </html>

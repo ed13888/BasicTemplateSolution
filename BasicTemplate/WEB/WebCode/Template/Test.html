@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        img {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="main" class="container">
+    </div>
+    <script src="../Scripts/jquery-3.3.1.min.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script>
+        $(function () {
+            var json = JSON.parse(localStorage.json);
+            var main = $("#main");
+
+            for (var i = 1; i <= json.Template.FSentenceCount; i++) {
+                var p = '<div id="p' + i + '" class="alert alert-success" role="alert">' + json["FP" + i] + '</div>';
+                main.append(p);
+            }
+
+            for (var i = 0; i < json.FPhoto.length; i++) {
+                var img = '<img src="' + json.FPhoto[0] + '" />';
+                main.append(img);
+            }
+
+        });
+    </script>
+</body>
+</html>
