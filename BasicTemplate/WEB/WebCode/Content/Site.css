@@ -23,6 +23,32 @@ textarea {
     max-width: 280px;
 }*/
 
+.bg-nav {
+    background-image: url(/Resource//img/bg_nav.png);
+    border: none;
+    background-color: transparent;
+}
+
+.navbar-inverse .navbar-toggle {
+    border: none;
+}
+
+    .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+        background-color: transparent;
+    }
+
+.navbar-inverse .navbar-brand {
+    color: #ffffff;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #ffffff;
+}
+
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    border-color: #ffffff;
+}
+
 
 .mt-2 {
     margin-top: 15px !important

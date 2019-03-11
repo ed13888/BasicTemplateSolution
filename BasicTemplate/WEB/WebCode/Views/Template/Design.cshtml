@@ -1,7 +1,7 @@
-﻿
+﻿@model Common.Entity.Business.TemplateEntity
 @{
     ViewBag.Title = "Design";
-    var count = Convert.ToInt32(ViewBag.Count);
+    var count = Model.FSentenceCount;
     var dic = ViewBag.Dic as IDictionary<int, string>;
 }
 <form class="form-horizontal" method="post" action="/template/create">
@@ -61,6 +61,7 @@
         </div>
     </div>
     <input type="text" value="@ViewBag.Guid" id="guid" name="FUId" style="display:none;" />
+    <input type="text" value="@Model.FId" id="guid" name="FTemplateId" style="display:none;" />
 </form>
 
 @section scripts{

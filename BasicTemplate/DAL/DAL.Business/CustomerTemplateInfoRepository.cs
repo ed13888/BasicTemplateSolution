@@ -34,6 +34,7 @@ namespace DAL.Business
             var param = new
             {
                 @FUId = m.FUId ?? Guid.NewGuid().ToString("N"),
+                @FTemplateId = m.Template.FId,
                 @FTitle = m.FTitle,
                 @FMusic = m.FMusic,
                 @FPhoto = m.FPhoto,
@@ -54,8 +55,8 @@ namespace DAL.Business
             };
 
 
-            var sql = @"INSERT INTO `TCustomerTemplateInfo`(`FUId`,`FTitle`,`FMusic`,`FPhoto`,`FDescription`,`FProducer`,`FP1`,`FP2`,`FP3`,`FP4`,`FP5`,`FP6`,`FP7`,`FP8`,`FP9`,`FP10`,`FExpireDate`,`FNeedDelete`)
-            VALUES(@FUId,@FTitle,@FMusic,@FPhoto,@FDescription,@FProducer,@FP1,@FP2,@FP3,@FP4,@FP5,@FP6,@FP7,@FP8,@FP9,@FP10,@FExpireDate,@FNeedDelete);";
+            var sql = @"INSERT INTO `TCustomerTemplateInfo`(`FUId`,`FTemplateId`,`FTitle`,`FMusic`,`FPhoto`,`FDescription`,`FProducer`,`FP1`,`FP2`,`FP3`,`FP4`,`FP5`,`FP6`,`FP7`,`FP8`,`FP9`,`FP10`,`FExpireDate`,`FNeedDelete`)
+            VALUES(@FUId,@FTemplateId,@FTitle,@FMusic,@FPhoto,@FDescription,@FProducer,@FP1,@FP2,@FP3,@FP4,@FP5,@FP6,@FP7,@FP8,@FP9,@FP10,@FExpireDate,@FNeedDelete);";
 
             var val = MySqlHelper.Execute(sql, param);
             return val;

@@ -4,33 +4,73 @@
     <meta charset="utf-8" />
     <title></title>
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Plugins/fullpage/css/fullpage.css" rel="stylesheet" />
     <style>
+        body {
+
+        }
+
         img {
             width: 100%;
+            max-height: 200px;
+        }
+
+        #section0,
+        #section1,
+        #section2,
+        #section3,
+        #slide1,
+        #slide2 {
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        #section0 {
+            background-image: url(/Resource/img/bg1.jpg);
+        }
+
+        #section1 {
+            background-image: url(/Resource/img/bg2.jpg);
+        }
+
+        #section2 {
+            background-image: url(/Resource/img/bg3.jpg);
+            padding: 6% 0 0 0;
+        }
+
+        #section3 {
+            background-image: url(/Resource/img/bg4.jpg);
+            padding: 6% 0 0 0;
         }
     </style>
 </head>
 <body>
-    <div id="fullpage" style="display:none;">
-        <div class="section">
+    <div id="fullpage" class="text-center" style="display:none;">
+        <div class="section" id="section0">
             第一屏
             <div id="main"></div>
         </div>
-        <div class="section">第二屏</div>
-        <div class="section">
+        <div class="section" id="section1">第二屏</div>
+        <div class="section" id="section2">
             <div class="slide">第三屏的第一屏</div>
             <div class="slide">第三屏的第二屏</div>
             <div class="slide">第三屏的第三屏</div>
             <div class="slide">第三屏的第四屏</div>
         </div>
-        <div class="section">第四屏</div>
+        <div class="section" id="section3">第四屏</div>
     </div>
+    <audio src="" id="audio" autoplay="autoplay" controls="controls" loop="true" hidden="true"></audio>
     <script src="../Scripts/jquery-3.3.1.min.js"></script>
     <script src="../Scripts/bootstrap.min.js"></script>
-    <script src="../Plugins/fullpage/js/fullpage.min.js"></script>
+    <script src="../Plugins/fullpage/js/fullpage.js"></script>
     <script>
         $(function () {
             $('#fullpage').fadeIn(200).fullpage({
+                lazyLoad: true,
+                verticalCentered: true,
+                css3: false,
+                easingcss3: 'cubic-bezier(0.175, 0.885, 0.320, 1.275)',
+                //navigationPosition: 'right',//导航小圆点的位置
                 //实例化完执行的回调函数
                 afterRender: function () {
                     //$(".fullpage:first-child").find(".animated").each(function () {
@@ -45,13 +85,14 @@
                     //$(".fullpage" + nextIndex).find(".animated").each(function () {
                     //    add($(this));
                     //});
-                }
+                },
+                licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE'
             });
 
             var json = JSON.parse(localStorage.json);
             var main = $("#main");
 
-            for (var i = 1; i <= json.Template.FSentenceCount; i++) {
+            for (var i = 1; i <= Math.min(json.Template.FSentenceCount, 2); i++) {
                 var p = '<div id="p' + i + '" class="alert alert-success" role="alert">' + json["FP" + i] + '</div>';
                 main.append(p);
             }
@@ -60,8 +101,20 @@
                 var img = '<img src="' + json.FPhoto[0] + '" />';
                 main.append(img);
             }
+            autoPlay(json.FMusic);
 
         });
+
+        function autoPlay(url) {
+            var myAuto = document.getElementById('audio');
+            if (url) $(myAuto).attr("src", url);
+            myAuto.play();
+        }
+        function closePlay() {
+            var myAuto = document.getElementById('audio');
+            myAuto.pause();
+            myAuto.load();
+        }
     </script>
 </body>
 </html>

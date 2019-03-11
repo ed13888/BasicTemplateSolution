@@ -39,10 +39,9 @@ namespace WebCode.Controllers
         public ActionResult Design(int id = 0)
         {
             var m = BusinessBll.GetTemplateById(this, id);
-            ViewBag.Count = m.FSentenceCount;
             ViewBag.Dic = dic;
             ViewBag.Guid = Guid.NewGuid().ToString("N");
-            return View();
+            return View(m);
         }
 
         [HttpPost]
@@ -59,6 +58,7 @@ namespace WebCode.Controllers
             json = $"{{{json}}}";
 
             var m = JsonConvert.DeserializeObject<CustomerTemplateInfoEntity>(json);
+            m.Template = new TemplateEntity { FId = Convert.ToInt32(Request.Form["FTemplateId"]) };
             var val = BusinessBll.CreateTemplate(this, m);
 
             //跳转预览
