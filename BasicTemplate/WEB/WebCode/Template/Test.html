@@ -11,12 +11,43 @@
     </style>
 </head>
 <body>
-    <div id="main" class="container">
+    <div id="fullpage" style="display:none;">
+        <div class="section">
+            第一屏
+            <div id="main"></div>
+        </div>
+        <div class="section">第二屏</div>
+        <div class="section">
+            <div class="slide">第三屏的第一屏</div>
+            <div class="slide">第三屏的第二屏</div>
+            <div class="slide">第三屏的第三屏</div>
+            <div class="slide">第三屏的第四屏</div>
+        </div>
+        <div class="section">第四屏</div>
     </div>
     <script src="../Scripts/jquery-3.3.1.min.js"></script>
     <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Plugins/fullpage/js/fullpage.min.js"></script>
     <script>
         $(function () {
+            $('#fullpage').fadeIn(200).fullpage({
+                //实例化完执行的回调函数
+                afterRender: function () {
+                    //$(".fullpage:first-child").find(".animated").each(function () {
+                    //    add($(this));
+                    //});
+                },
+                //滚动前的回调函数
+                onLeave: function (index, nextIndex) {
+                    //$(".fullpage" + index).find(".animated").each(function () {
+                    //    reduce($(this));
+                    //});
+                    //$(".fullpage" + nextIndex).find(".animated").each(function () {
+                    //    add($(this));
+                    //});
+                }
+            });
+
             var json = JSON.parse(localStorage.json);
             var main = $("#main");
 
