@@ -51,6 +51,61 @@ textarea {
 }
 
 
+.mt-4 {
+    margin-top: 30px !important
+}
+
+.mb-4 {
+    margin-bottom: 30px !important
+}
+
+.ml-4 {
+    margin-left: 30px !important
+}
+
+.mr-4 {
+    margin-right: 30px !important
+}
+
+.mx-4 {
+    margin-right: 30px !important;
+    margin-left: 30px !important
+}
+
+.my-4 {
+    margin-top: 30px !important;
+    margin-bottom: 30px !important
+}
+
+
+
+.mt-6 {
+    margin-top: 45px !important
+}
+
+.mb-6 {
+    margin-bottom: 45px !important
+}
+
+.ml-6 {
+    margin-left: 45px !important
+}
+
+.mr-6 {
+    margin-right: 45px !important
+}
+
+.mx-6 {
+    margin-right: 45px !important;
+    margin-left: 45px !important
+}
+
+.my-6 {
+    margin-top: 45px !important;
+    margin-bottom: 45px !important
+}
+
+
 
 
 

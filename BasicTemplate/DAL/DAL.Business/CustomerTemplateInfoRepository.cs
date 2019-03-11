@@ -19,7 +19,7 @@ namespace DAL.Business
         {
             var param = new
             {
-                @FUId = Guid.NewGuid().ToString("N"),
+                @FUId = m.FUId ?? Guid.NewGuid().ToString("N"),
                 @FTitle = m.FTitle,
                 @FMusic = m.FMusic,
                 @FPhoto = m.FPhoto,

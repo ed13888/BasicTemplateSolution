@@ -38,7 +38,8 @@
     <div class="control-group my-2">
         <label class="control-label" for="photo">选择照片*</label>
         <div class="controls">
-            <input id="photo" name="fphoto" class="form-control" type="file" multiple="multiple" accept="image/*">
+            <input id="photo" class="form-control" type="file" multiple="multiple" accept="image/*">
+            <input type="text" name="fphoto" id="fphoto" style="display:none;" />
         </div>
     </div>
     <div class="control-group my-2">
@@ -59,7 +60,7 @@
             <button type="submit" class="btn btn-success">提交并预览</button>
         </div>
     </div>
-
+    <input type="text" value="@ViewBag.Guid" id="guid" name="FUId" style="display:none;" />
 </form>
 
 @section scripts{
@@ -80,6 +81,21 @@
                     browseClass: "btn btn-primary", //按钮样式
                     previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
                     msgFilesTooMany: "选择上传的文件数量({n}) 超过允许的最大数值{m}！",
+                    uploadExtraData: function () {//向后台传递参数
+                        var data = {
+                            guid: $("#guid").val(),
+                        };
+                        return data;
+                    },
+                }).on("filebatchselected", function (event, files) {
+                    $(this).fileinput("upload");
+                }).on("fileuploaded", function (event, data) {
+                    if (data.response && data.response.status) {
+                        $("#fphoto").val($("#fphoto").val() + ";" + data.response.imgUrl);
+                    }
+                    else {
+                        layer.msg("上传失败!");
+                    }
                 });
             }
             initFileInput("photo", "/FileUpload/Upload");

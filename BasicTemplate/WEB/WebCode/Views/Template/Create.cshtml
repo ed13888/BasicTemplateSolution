@@ -1,6 +1,7 @@
 ﻿@model Common.Entity.Business.CustomerTemplateInfoEntity
 @{
     Layout = null;
+    var ImgList = Model.FPhoto.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
 }
 
 <!DOCTYPE html>
@@ -9,6 +10,12 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@Model.FTitle</title>
+    <style>
+        img {
+            width: 200px;
+            height: 200px;
+        }
+    </style>
 </head>
 <body onload="autoPlay();">
     <div>
@@ -27,6 +34,11 @@
             <p>@Model.FDescription</p><br />
 
             <p>@Model.FProducer</p><br />
+
+            @for (int i = 0; i < ImgList.Count; i++)
+            {
+                <p><img src="@(ImgList[i])" /></p><br />
+            }
 
         </center>
 

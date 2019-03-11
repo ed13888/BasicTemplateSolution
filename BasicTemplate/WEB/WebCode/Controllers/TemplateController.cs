@@ -41,6 +41,7 @@ namespace WebCode.Controllers
             var m = BusinessBll.GetById(this, id);
             ViewBag.Count = m.FSentenceCount;
             ViewBag.Dic = dic;
+            ViewBag.Guid = Guid.NewGuid().ToString("N");
             return View();
         }
 
@@ -58,7 +59,8 @@ namespace WebCode.Controllers
             json = $"{{{json}}}";
 
             var m = JsonConvert.DeserializeObject<CustomerTemplateInfoEntity>(json);
-            //var val = BusinessBll.CreateTemplate(this, m);
+            var val = BusinessBll.CreateTemplate(this, m);
+
 
             return View(m);
         }
