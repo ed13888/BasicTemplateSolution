@@ -7,12 +7,8 @@ using System.Threading.Tasks;
 
 namespace Common.Interface.BusinessInterface
 {
-    public interface ITemplateService
+    public interface ICustomerTemplateInfoService
     {
-        bool Insert(TemplateEntity m);
-
-        IList<TemplateEntity> GetList(string strWhere = "");
-
-        TemplateEntity GetById(int id);
+        bool Insert(CustomerTemplateInfoEntity m);
     }
 }

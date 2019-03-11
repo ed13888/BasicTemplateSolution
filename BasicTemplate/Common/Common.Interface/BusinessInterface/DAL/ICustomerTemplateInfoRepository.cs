@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace Common.Interface.BusinessInterface.DAL
 {
-    public interface ITemplateRepository
+    public interface ICustomerTemplateInfoRepository
     {
-        int Insert(TemplateEntity m);
-        IList<TemplateEntity> GetList(string strWhere = "");
-        TemplateEntity GetById(int id);
+        int Insert(CustomerTemplateInfoEntity m);
     }
 }

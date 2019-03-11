@@ -11,9 +11,17 @@ namespace WEBService.WebBusiness
 {
     public class BusinessBll
     {
-        public static bool CreateTemplate(Controller controller, TemplateEntity entity)
+        public static IList<TemplateEntity> GetList(Controller controller, string strWhere = "")
         {
-            var val = CommonClass.TemplateService.Insert(entity);
+            return CommonClass.TemplateService.GetList(strWhere);
+        }
+        public static TemplateEntity GetById(Controller controller, int id)
+        {
+            return CommonClass.TemplateService.GetById(id);
+        }
+        public static bool CreateTemplate(Controller controller, CustomerTemplateInfoEntity entity)
+        {
+            var val = CommonClass.CustomerTemplateInfoRepository.Insert(entity);
             return true;
         }
     }

@@ -43,8 +43,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountInterface\DAL\IAccountRepository.cs" />
+    <Compile Include="BusinessInterface\DAL\ICustomerTemplateInfoRepository.cs" />
     <Compile Include="BusinessInterface\DAL\ITemplateRepository.cs" />
     <Compile Include="AccountInterface\IAccountService.cs" />
+    <Compile Include="BusinessInterface\ICustomerTemplateInfoService.cs" />
     <Compile Include="BusinessInterface\ITemplateService.cs" />
     <Compile Include="ISystemConfigRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

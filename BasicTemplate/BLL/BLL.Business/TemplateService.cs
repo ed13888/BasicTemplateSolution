@@ -20,6 +20,16 @@ namespace BLL.Business
         [Dependency]
         public ITemplateRepository _TemplateRepository { set; get; }
 
+        public TemplateEntity GetById(int id)
+        {
+            return _TemplateRepository.GetById(id);
+        }
+
+        public IList<TemplateEntity> GetList(string strWhere = "")
+        {
+            return _TemplateRepository.GetList(strWhere);
+        }
+
         public bool Insert(TemplateEntity m)
         {
             return _TemplateRepository.Insert(m) > 0;
