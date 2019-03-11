@@ -11,11 +11,11 @@ namespace WEBService.WebBusiness
 {
     public class BusinessBll
     {
-        public static IList<TemplateEntity> GetList(Controller controller, string strWhere = "")
+        public static IList<TemplateEntity> GetTemplateList(Controller controller, string strWhere = "")
         {
             return CommonClass.TemplateService.GetList(strWhere);
         }
-        public static TemplateEntity GetById(Controller controller, int id)
+        public static TemplateEntity GetTemplateById(Controller controller, int id)
         {
             return CommonClass.TemplateService.GetById(id);
         }
@@ -23,6 +23,11 @@ namespace WEBService.WebBusiness
         {
             var val = CommonClass.CustomerTemplateInfoRepository.Insert(entity);
             return true;
+        }
+        public static CustomerTemplateInfoEntity GetCustomerTemplateById(Controller controller, string fuid)
+        {
+            var m = CommonClass.CustomerTemplateInfoRepository.GetByFuid(fuid);
+            return m;
         }
     }
 }

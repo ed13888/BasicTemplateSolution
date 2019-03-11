@@ -10,5 +10,6 @@ namespace Common.Interface.BusinessInterface
     public interface ICustomerTemplateInfoService
     {
         bool Insert(CustomerTemplateInfoEntity m);
+        CustomerTemplateInfoEntity GetByFuid(string fuid);
     }
 }

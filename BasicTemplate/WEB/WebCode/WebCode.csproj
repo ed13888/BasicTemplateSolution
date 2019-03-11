@@ -299,6 +299,7 @@
     <Content Include="Views\Template\Index.cshtml" />
     <Content Include="Views\FileUpload\Upload.cshtml" />
     <Content Include="Views\Template\Create.cshtml" />
+    <Content Include="Views\Template\Preview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

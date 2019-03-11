@@ -13,5 +13,6 @@ namespace Common.Entity.Business
         public string FImgUrl { get; set; }
         public int FCheckCount { get; set; }
         public int FSentenceCount { get; set; }
+        public string FTemplateUrl { get; set; }
     }
 }

@@ -24,5 +24,9 @@ namespace Common.Entity.Business
         public string FP8 { get; set; }
         public string FP9 { get; set; }
         public string FP10 { get; set; }
+        public DateTime FExpireDate { get; set; } = DateTime.Now;
+        public bool FNeedDelete { get; set; } = true;
+
+        public TemplateEntity Template { get; set; } = null;
     }
 }

@@ -49,6 +49,18 @@ namespace Common.Misc.SQL
                 return connection.Query<T>(storedProcName, param, (IDbTransaction)null, true, new int?(), new CommandType?(commandType));
         }
 
+        public static IEnumerable<T> Query<T, T1>(
+          string databaseName,
+          string storedProcName,
+          Func<T, T1, T> map,
+          string splitOn,
+          object param = null,
+          CommandType commandType = CommandType.Text)
+        {
+            using (MySqlConnection connection = DBFactory.CreateMySqlConnection(databaseName))
+                return connection.Query<T, T1, T>(storedProcName, map, param, (IDbTransaction)null, true, splitOn, new int?(), new CommandType?(commandType));
+        }
+
         public static async Task<IEnumerable<T>> QueryAsync<T>(
           string databaseName,
           string storedProcName,

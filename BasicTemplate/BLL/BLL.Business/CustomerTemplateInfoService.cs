@@ -20,6 +20,11 @@ namespace BLL.Business
         [Dependency]
         public ICustomerTemplateInfoRepository _CustomerTemplateInfoRepository { set; get; }
 
+        public CustomerTemplateInfoEntity GetByFuid(string fuid)
+        {
+            return _CustomerTemplateInfoRepository.GetByFuid(fuid);
+        }
+
         public bool Insert(CustomerTemplateInfoEntity m)
         {
             return _CustomerTemplateInfoRepository.Insert(m) > 0;

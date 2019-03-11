@@ -31,14 +31,14 @@ namespace WebCode.Controllers
         // GET: Template
         public ActionResult Index()
         {
-            var list = BusinessBll.GetList(this);
+            var list = BusinessBll.GetTemplateList(this);
             return View(list);
         }
 
         [Route("Design/{id:int?}.html")]
         public ActionResult Design(int id = 0)
         {
-            var m = BusinessBll.GetById(this, id);
+            var m = BusinessBll.GetTemplateById(this, id);
             ViewBag.Count = m.FSentenceCount;
             ViewBag.Dic = dic;
             ViewBag.Guid = Guid.NewGuid().ToString("N");
@@ -61,7 +61,20 @@ namespace WebCode.Controllers
             var m = JsonConvert.DeserializeObject<CustomerTemplateInfoEntity>(json);
             var val = BusinessBll.CreateTemplate(this, m);
 
+            //跳转预览
+            return Redirect($"Preview/{m.FUId}.html");
+        }
 
+        [Route("Preview")]
+        /// <summary>
+        /// 预览页
+        /// </summary>
+        /// <returns></returns>
+        /// 
+        public ActionResult Preview()
+        {
+            var fuid = Convert.ToString(RouteData.Values["id"]);
+            var m = BusinessBll.GetCustomerTemplateById(this, fuid);
             return View(m);
         }
     }

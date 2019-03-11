@@ -1,0 +1,62 @@
+﻿@model Common.Entity.Business.CustomerTemplateInfoEntity
+@{
+    Layout = null;
+    var ImgList = Model.FPhoto.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@Model.FTitle</title>
+    <style>
+        img {
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body onload="autoPlay();">
+    <div>
+        <center>
+
+            <p>这是您创建的模板哟~</p>
+
+            <p>@Model.FP1</p><br />
+
+            <p>@Model.FP2</p><br />
+
+            <p>@Model.FP3</p><br />
+
+            <p>@Model.FP4</p><br />
+
+            <p>@Model.FDescription</p><br />
+
+            <p>@Model.FProducer</p><br />
+
+            @for (int i = 0; i < ImgList.Count; i++)
+            {
+                <p><img src="@(ImgList[i])" /></p><br />
+            }
+
+        </center>
+
+        <audio src="@Model.FMusic" id="audio" autoplay="autoplay" controls="controls" loop="true" hidden="true"></audio>
+    </div>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script>
+        $(function () {
+
+        });
+    </script>
+
+    <script>
+        function autoPlay() {
+            var myAuto = document.getElementById('audio');
+            myAuto.play();
+        }
+
+    </script>
+</body>
+</html>
