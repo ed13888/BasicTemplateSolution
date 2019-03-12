@@ -13,17 +13,26 @@
             border-radius: 4px;
             box-shadow: 0 3px 8px -6px rgba(0,0,0,.4);
         }
+
+        .temp-flex-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
         .temp-body {
             width: 100%;
+            max-width: 400px;
         }
 
             .temp-body .temp-body-logo {
                 display: block;
+                position: relative;
             }
 
             .temp-body .temp-img {
                 width: 100%;
-                height: 200px;
+                max-height: 200px;
                 border-radius: 7px;
             }
 
@@ -32,16 +41,16 @@
             height: 22px;
             line-height: 22px;
             position: absolute;
-            bottom: 107px;
+            bottom: 0;
+            right: 0;
             font-size: 12px;
-            right: 14.9px;
             padding: 0 7px;
             background: rgba(239,155,89,0.9);
             color: #fff;
         }
 
         .temp-body .temp-body-bottom {
-            height: 92px;
+            height: 69px;
         }
 
             .temp-body .temp-body-bottom .temp-shows {
@@ -61,29 +70,30 @@
     </style>
 }
 
-<div class="row my-6 bg">
-    @for (int i = 0; i < list.Count; i++)
-    {
-        <div class="col-md-4 my-2">
-            <div class="temp-body">
-                <a href="/template/design/@(list[i].FId).html" title="标题Title" rel="bookmark" class="temp-body-logo">
-                    <img class="temp-img" src="@(list[i].FImgUrl)" alt="1111">
-                    <span class="temp-tip">免费</span>
-                </a>
-                <div class="temp-body-bottom">
-                    <p class="temp-showtp my-2">
-                        <span class="temp-showtiele">@(list[i].FName)</span> |
-                        <span class="temp-shows">
-                            围观: @(list[i].FCheckCount)次
-                            <i class="am-icon-get-pocket"></i>
-                        </span>
-                    </p>
-                    <div class="temp-body-bottom-justify">
-                        @*<a type="reset" class="btn"  href="/template/design/@(list[i].FId).html">立即制作</a>*@
-                        <button class="btn btn-default" onclick="javascrtpt:window.location.href='/template/design/@(list[i].FId).html'">立即制作</button>
+<div class="container">
+    <div class="row my-4 ">
+        @for (int i = 0; i < list.Count; i++)
+        {
+            <div class="col-sm-4 my-2 temp-flex-center">
+                <div class="temp-body bg px-2 py-2">
+                    <a href="/template/design/@(list[i].FId).html" title="@(list[i].FName)" rel="bookmark" class="temp-body-logo text-center">
+                        <img class="temp-img" src="@(list[i].FImgUrl)" alt="1111">
+                        <span class="temp-tip">免费</span>
+                    </a>
+                    <div class="temp-body-bottom">
+                        <p class="temp-showtp my-2">
+                            <span class="temp-showtiele">@(list[i].FName)</span> |
+                            <span class="temp-shows">
+                                围观: @(list[i].FCheckCount)次
+                                <i class="am-icon-get-pocket"></i>
+                            </span>
+                        </p>
+                        <div class="temp-body-bottom-justify">
+                            <button class="btn btn-default" onclick="javascrtpt:window.location.href='/template/design/@(list[i].FId).html'">立即制作</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    }
+        }
+    </div>
 </div>
