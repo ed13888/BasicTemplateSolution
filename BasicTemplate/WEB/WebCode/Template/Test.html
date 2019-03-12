@@ -5,14 +5,18 @@
     <title></title>
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
     <link href="../Plugins/fullpage/css/fullpage.css" rel="stylesheet" />
+    <link href="../Content/animate.css" rel="stylesheet" />
     <style>
         body {
-
         }
 
         img {
             width: 100%;
             max-height: 200px;
+        }
+
+        .section {
+            position: relative;
         }
 
         #section0,
@@ -48,7 +52,10 @@
     <div id="fullpage" class="text-center" style="display:none;">
         <div class="section" id="section0">
             第一屏
-            <div id="main"></div>
+            <div id="main">
+                <div class="animated fadeInLeft" style="width:200px;height:200px;background-color:black;"></div>
+
+            </div>
         </div>
         <div class="section" id="section1">第二屏</div>
         <div class="section" id="section2">
@@ -63,6 +70,7 @@
     <script src="../Scripts/jquery-3.3.1.min.js"></script>
     <script src="../Scripts/bootstrap.min.js"></script>
     <script src="../Plugins/fullpage/js/fullpage.js"></script>
+    <script src="../Scripts/jquery.animate.js"></script>
     <script>
         $(function () {
             $('#fullpage').fadeIn(200).fullpage({
@@ -89,6 +97,9 @@
                 licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE'
             });
 
+            $('.animated').animateCss('bounceOutLeft');
+
+            if (!localStorage.json) return;
             var json = JSON.parse(localStorage.json);
             var main = $("#main");
 
