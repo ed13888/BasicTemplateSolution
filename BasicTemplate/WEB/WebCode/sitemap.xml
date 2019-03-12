@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="sitemap.xsl"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>http://www.chaogege.info/</loc>
+    <priority>1.0</priority>
+    <lastmod>2019-03-12T07:08:38+00:00</lastmod>
+    <changefreq>Always</changefreq>
+  </url>
+  <url>
+    <loc>http://www.chaogege.info/home/index.html</loc>
+    <priority>0.8</priority>
+    <lastmod>2019-02-16T05:59:16+00:00</lastmod>
+    <changefreq>Always</changefreq>
+  </url>
+  <url>
+    <loc>http://www.chaogege.info/template/index.html</loc>
+    <priority>0.8</priority>
+    <lastmod>2019-02-16T05:59:16+00:00</lastmod>
+    <changefreq>Always</changefreq>
+  </url>
+  <url>
+    <loc>http://www.chaogege.info/article/index.html</loc>
+    <priority>0.8</priority>
+    <lastmod>2019-02-16T05:59:16+00:00</lastmod>
+    <changefreq>Always</changefreq>
+  </url>
+</urlset>
