@@ -76,11 +76,31 @@ function setLoading(val) {
     var progressBar = $("#loadingModal .progress-bar");
     if (val >= 100) {
         //$("#progress").fadeOut(100);
-        $("#loadingModal").modal('hide');
+        //JQ方式
+        //$("#loadingModal").modal('hide');
+        //原生js方式
+        hideLoading();
     }
     else {
         progressBar.animate({ width: (val || 0) + '%' }, 100);
     }
+}
+
+function showLoading() {
+    document.body.classList.add("modal-open");
+    document.getElementById("loadingModal").style.display = "block";
+    document.getElementById("modalMask").style.display = "block";
+}
+
+function hideLoading() {
+    //JQ方式
+    //$('#loadingModal').modal({ backdrop: 'static', keyboard: false });
+    //$("#loadingModal").modal('show');
+
+    //原生js方式
+    document.getElementById("loadingModal").style.display = "none";
+    document.getElementById("modalMask").style.display = "none";
+    $("body").removeClass("modal-open");
 }
 
 

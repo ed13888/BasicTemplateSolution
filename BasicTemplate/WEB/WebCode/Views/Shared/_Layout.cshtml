@@ -20,6 +20,30 @@
     @RenderSection("style", required: false)
 </head>
 <body>
+    <!--进度条-->
+    <div class="modal fade in" id="loadingModal">
+        <div style="width: 200px;height:20px; z-index: 20000; position: absolute; text-align: center; left: 50%; top: 50%;margin-left:-100px;margin-top:-10px">
+            <div class="progress progress-striped active" style="margin-bottom: 0;">
+                <div class="progress-bar" style="width: 0%;"></div>
+            </div>
+            <h5>正在加载...</h5>
+        </div>
+    </div>
+    <!--遮罩-->
+    <div id="modalMask" class="modal-backdrop fade in"></div>
+    <script>
+        (function () {
+            document.body.classList.add("modal-open");
+            document.getElementById("loadingModal").style.display = "block";
+            document.getElementById("modalMask").style.display = "block";
+        })()
+    </script>
+
+
+
+
+
+
     <div class="navbar navbar-inverse navbar-fixed-top bg-nav">
         <div class="container">
             <div class="navbar-header">
@@ -33,8 +57,9 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="/"><span class="glyphicon glyphicon-home"></span> 主页</a></li>
-                    <li><a href="/"><span class="glyphicon glyphicon-list-alt"></span> 菜单</a></li>
-                    <li><a href="/template/index.html"><span class="glyphicon glyphicon-globe"></span> 网页</a></li>
+                    @*<li><a href="/"><span class="glyphicon glyphicon-list-alt"></span> 菜单</a></li>*@
+                    <li><a href="/template/index.html"><span class="glyphicon glyphicon-globe"></span> 模板</a></li>
+                    <li><a href="/article/index.html"><span class="glyphicon glyphicon-pencil"></span> 投稿</a></li>
                 </ul>
             </div>
         </div>
@@ -67,15 +92,15 @@
                 </a>
             </li>
             <li>
-                <a href="#m-num" data-am-offcanvas="">
-                    <span class="glyphicon glyphicon-list"></span>
-                    <span class="am-navbar-label">菜单</span>
+                <a href="/template/index.html">
+                    <span class="glyphicon glyphicon-globe"></span>
+                    <span class="am-navbar-label">模板</span>
                 </a>
             </li>
             <li>
-                <a href="/template/index.html">
-                    <span class="glyphicon glyphicon-globe"></span>
-                    <span class="am-navbar-label">网页</span>
+                <a href="/article/index.html">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span class="am-navbar-label">投稿</span>
                 </a>
             </li>
             <li>
@@ -93,26 +118,14 @@
         </ul>
     </div>
 
-    <!--进度条-->
-    <div class="modal fade" id="loadingModal">
-        <div style="width: 200px;height:20px; z-index: 20000; position: absolute; text-align: center; left: 50%; top: 50%;margin-left:-100px;margin-top:-10px">
-            <div class="progress progress-striped active" style="margin-bottom: 0;">
-                <div class="progress-bar" style="width: 0%;"></div>
-            </div>
-            <h5>正在加载...</h5>
-        </div>
-    </div>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/layer")
     @Scripts.Render("~/bundles/fileinput")
     @Scripts.Render("~/bundles/site")
-    @RenderSection("scripts", required: false)
+    @RenderSection("script", required: false)
 
     <script>
-        $('#loadingModal').modal({ backdrop: 'static', keyboard: false });
-        $("#loadingModal").modal('show');
 
         document.onreadystatechange = function () {
             if (document.readyState == 'complete') {
@@ -137,6 +150,7 @@
             $('#gotop').click(function () {
                 $('html,body').animate({ scrollTop: '0px' }, 200);
             });
+            setLoading(50);
         });
     </script>
 

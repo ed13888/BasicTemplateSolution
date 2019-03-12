@@ -164,6 +164,7 @@
     <Compile Include="App_Start\SignalRConnection.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
+    <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\FileUploadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TemplateController.cs" />
@@ -321,6 +322,7 @@
     <Content Include="Views\FileUpload\Upload.cshtml" />
     <Content Include="Views\Template\Create.cshtml" />
     <Content Include="Views\Template\Preview.cshtml" />
+    <Content Include="Views\Article\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

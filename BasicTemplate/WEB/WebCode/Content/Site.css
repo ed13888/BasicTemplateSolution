@@ -215,6 +215,13 @@ textarea {
 
 
 
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 
 
 /*自定义样式*/
