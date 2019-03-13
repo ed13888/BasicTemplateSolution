@@ -30,6 +30,11 @@ namespace BLL.Business
             return _TemplateRepository.GetList(strWhere);
         }
 
+        public bool IncreaceCheckCount(int id)
+        {
+            return _TemplateRepository.IncreaceCheckCount(id) > 0;
+        }
+
         public bool Insert(TemplateEntity m)
         {
             return _TemplateRepository.Insert(m) > 0;

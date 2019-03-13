@@ -19,6 +19,12 @@ namespace WEBService.WebBusiness
         {
             return CommonClass.TemplateService.GetById(id);
         }
+        public static bool IncreaceTemplateCheckCount(Controller controller, int id)
+        {
+            return CommonClass.TemplateService.IncreaceCheckCount(id);
+        }
+
+
         public static bool CreateTemplate(Controller controller, CustomerTemplateInfoEntity entity)
         {
             var val = CommonClass.CustomerTemplateInfoRepository.Insert(entity);

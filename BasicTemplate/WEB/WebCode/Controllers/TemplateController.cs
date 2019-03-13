@@ -39,6 +39,7 @@ namespace WebCode.Controllers
         public ActionResult Design(int id = 0)
         {
             var m = BusinessBll.GetTemplateById(this, id);
+            BusinessBll.IncreaceTemplateCheckCount(this, id);
             ViewBag.Dic = dic;
             ViewBag.Guid = Guid.NewGuid().ToString("N");
             return View(m);

@@ -14,5 +14,7 @@ namespace Common.Interface.BusinessInterface
         IList<TemplateEntity> GetList(string strWhere = "");
 
         TemplateEntity GetById(int id);
+
+        bool IncreaceCheckCount(int id);
     }
 }

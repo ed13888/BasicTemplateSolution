@@ -31,6 +31,13 @@ namespace DAL.Business
             return list;
         }
 
+        public int IncreaceCheckCount(int id)
+        {
+            var sql = $"update TTemplate set FCheckCount=FCheckCount+1 where FId=@FId";
+            var val = MySqlHelper.Execute(sql, new { @FId = id });
+            return val;
+        }
+
         public int Insert(TemplateEntity m)
         {
             //var param = new

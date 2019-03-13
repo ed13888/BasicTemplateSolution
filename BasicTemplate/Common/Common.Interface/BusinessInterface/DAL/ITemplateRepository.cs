@@ -12,5 +12,7 @@ namespace Common.Interface.BusinessInterface.DAL
         int Insert(TemplateEntity m);
         IList<TemplateEntity> GetList(string strWhere = "");
         TemplateEntity GetById(int id);
+
+        int IncreaceCheckCount(int id);
     }
 }
