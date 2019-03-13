@@ -392,6 +392,7 @@ textarea {
 
     .navbar-inverse .navbar-brand {
         background-size: 100% auto;
-        width: 80vw;
+        width: 45vw;
+        margin-left: 10px;
     }
 }
