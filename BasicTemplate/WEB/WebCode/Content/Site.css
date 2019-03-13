@@ -39,6 +39,8 @@ textarea {
 
 .navbar-inverse .navbar-brand {
     color: #ffffff;
+    background: url(/Resource/img/logo.png) no-repeat center;
+    width: 300px;
 }
 
 .navbar-inverse .navbar-nav > li > a {

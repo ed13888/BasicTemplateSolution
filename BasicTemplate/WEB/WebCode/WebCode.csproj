@@ -266,6 +266,7 @@
     <Content Include="Resource\img\bg4.jpg" />
     <Content Include="Resource\img\bg5.jpg" />
     <Content Include="Resource\img\goTop.png" />
+    <Content Include="Resource\img\logo.png" />
     <Content Include="Resource\img\test\1.jpg" />
     <Content Include="Resource\img\test\10.jpg" />
     <Content Include="Resource\img\test\11.jpg" />
