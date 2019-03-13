@@ -4,66 +4,67 @@
     var count = Model.FSentenceCount;
     var dic = ViewBag.Dic as IDictionary<int, string>;
 }
-<form class="form-horizontal" method="post" action="/template/create">
-    <div class="control-group my-2">
-        <label class="control-label" for="title">网站标题*</label>
-        <div class="controls">
-            <input class="form-control" type="text" id="title" name="ftitle" value="我是标题___啦啦啦" placeholder="网站标题">
-        </div>
-    </div>
-    <div class="control-group my-2">
-        <label class="control-label" for="music">背景音乐*</label>
-        <div class="controls">
-            <input class="form-control" type="text" id="music" name="fmusic" placeholder="背景音乐" value="/Resource/mp3/1.mp3" style="display:none;">
-            <select class="form-control" onchange="document.getElementById('music').value = '' + this.options[this.selectedIndex].value">
-                <option value="">页面背景音乐</option>
-                <option value="/Resource/mp3/1.mp3">《暖暖》----------------【梁静茹】</option>
-                <option value="/Resource/mp3/2.mp3">《丫头》----------------【王童语】</option>
-                <option value="/Resource/mp3/3.mp3">《多幸运》--------------【韩安旭】</option>
-                <option value="/Resource/mp3/4.mp3">《就是爱你》--------------【陶喆】</option>
-                <option value="/Resource/mp3/5.mp3">《星月神话》--------------【金沙】</option>
-                @*<option value="http://www.zaiyiqiba.com/mp3/kgmp3.php?id=018551D54490C272B54D064D92663826">《一次就好》------------【杨宗纬】</option>*@
-            </select>
-        </div>
-    </div>
-    @for (int i = 1; i <= count; i++)
-    {
+<div class="container">
+    <form class="form-horizontal" method="post" action="/template/create">
         <div class="control-group my-2">
-            <label class="control-label" for="p@(i)">第@(dic[i])句话*</label>
+            <label class="control-label" for="title">网站标题*</label>
             <div class="controls">
-                <textarea class="form-control" rows="6" id="p@(i)" name="fp@(i)" placeholder="第@(dic[i])句话">@(i)</textarea>
+                <input class="form-control" type="text" id="title" name="ftitle" value="我是标题___啦啦啦" placeholder="网站标题">
             </div>
         </div>
-    }
-    <div class="control-group my-2">
-        <label class="control-label" for="photo">选择照片*</label>
-        <div class="controls">
-            <input id="photo" class="form-control" type="file" multiple="multiple" accept="image/*">
-            <input type="text" name="fphoto" id="fphoto" style="display:none;" />
+        <div class="control-group my-2">
+            <label class="control-label" for="music">背景音乐*</label>
+            <div class="controls">
+                <input class="form-control" type="text" id="music" name="fmusic" placeholder="背景音乐" value="/Resource/mp3/1.mp3" style="display:none;">
+                <select class="form-control" onchange="document.getElementById('music').value = '' + this.options[this.selectedIndex].value">
+                    <option value="">页面背景音乐</option>
+                    <option value="/Resource/mp3/1.mp3">《暖暖》----------------【梁静茹】</option>
+                    <option value="/Resource/mp3/2.mp3">《丫头》----------------【王童语】</option>
+                    <option value="/Resource/mp3/3.mp3">《多幸运》--------------【韩安旭】</option>
+                    <option value="/Resource/mp3/4.mp3">《就是爱你》--------------【陶喆】</option>
+                    <option value="/Resource/mp3/5.mp3">《星月神话》--------------【金沙】</option>
+                    @*<option value="http://www.zaiyiqiba.com/mp3/kgmp3.php?id=018551D54490C272B54D064D92663826">《一次就好》------------【杨宗纬】</option>*@
+                </select>
+            </div>
         </div>
-    </div>
-    <div class="control-group my-2">
-        <label class="control-label" for="description">页面介绍*</label>
-        <div class="controls">
-            <textarea class="form-control" rows="6" id="description" name="fdescription" placeholder="这个页面是我在 我要沙雕网给你制作的，希望你会喜欢">这里是页面介绍哟</textarea>
+        @for (int i = 1; i <= count; i++)
+        {
+            <div class="control-group my-2">
+                <label class="control-label" for="p@(i)">第@(dic[i])句话*</label>
+                <div class="controls">
+                    <textarea class="form-control" rows="6" id="p@(i)" name="fp@(i)" placeholder="第@(dic[i])句话">@(i)</textarea>
+                </div>
+            </div>
+        }
+        <div class="control-group my-2">
+            <label class="control-label" for="photo">选择照片*</label>
+            <div class="controls">
+                <input id="photo" class="form-control" type="file" multiple="multiple" accept="image/*">
+                <input type="text" name="fphoto" id="fphoto" style="display:none;" />
+            </div>
         </div>
-    </div>
-    <div class="control-group my-2">
-        <label class="control-label" for="producer">制作人*</label>
-        <div class="controls">
-            <input class="form-control" type="text" id="producer" name="fproducer" placeholder="制作人" value="这里是显示制作人哟">
+        <div class="control-group my-2">
+            <label class="control-label" for="description">页面介绍*</label>
+            <div class="controls">
+                <textarea class="form-control" rows="6" id="description" name="fdescription" placeholder="这个页面是我在 我要沙雕网给你制作的，希望你会喜欢">这里是页面介绍哟</textarea>
+            </div>
         </div>
-    </div>
-    <div class="row my-2 text-center">
-        <div class="col-xs-12">
-            <button type="reset" class="btn">清空重置</button>
-            <button type="submit" class="btn btn-success">提交并预览</button>
+        <div class="control-group my-2">
+            <label class="control-label" for="producer">制作人*</label>
+            <div class="controls">
+                <input class="form-control" type="text" id="producer" name="fproducer" placeholder="制作人" value="这里是显示制作人哟">
+            </div>
         </div>
-    </div>
-    <input type="text" value="@ViewBag.Guid" id="guid" name="FUId" style="display:none;" />
-    <input type="text" value="@Model.FId" id="guid" name="FTemplateId" style="display:none;" />
-</form>
-
+        <div class="row my-2 text-center">
+            <div class="col-xs-12">
+                <button type="reset" class="btn">清空重置</button>
+                <button type="submit" class="btn btn-success">提交并预览</button>
+            </div>
+        </div>
+        <input type="text" value="@ViewBag.Guid" id="guid" name="FUId" style="display:none;" />
+        <input type="text" value="@Model.FId" id="guid" name="FTemplateId" style="display:none;" />
+    </form>
+</div>
 @section script{
     <script>
         $(function () {
