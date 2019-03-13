@@ -8,6 +8,10 @@ function setGoTop() {
         $('#gotop').stop().fadeOut(400);
     }
 }
+function goTop() {
+    $('html,body').animate({ scrollTop: '0px' }, 200);
+}
+
 function autoPlay() {
     var myAuto = document.getElementById('audio');
     myAuto.play();

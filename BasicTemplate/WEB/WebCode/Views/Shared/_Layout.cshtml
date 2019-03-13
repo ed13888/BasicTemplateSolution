@@ -147,9 +147,7 @@
                 setGoTop();
             });
             //返回顶部按钮绑定事件
-            $('#gotop').click(function () {
-                $('html,body').animate({ scrollTop: '0px' }, 200);
-            });
+            $('#gotop').click(goTop);
             setLoading(50);
         });
     </script>

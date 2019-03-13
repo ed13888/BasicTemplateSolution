@@ -9,13 +9,13 @@
         <div class="control-group my-2">
             <label class="control-label" for="title">网站标题*</label>
             <div class="controls">
-                <input class="form-control" type="text" id="title" name="ftitle" value="我是标题___啦啦啦" placeholder="网站标题">
+                <input class="form-control form-element" type="text" id="title" name="FTitle" value="" placeholder="网站标题">
             </div>
         </div>
         <div class="control-group my-2">
             <label class="control-label" for="music">背景音乐*</label>
             <div class="controls">
-                <input class="form-control" type="text" id="music" name="fmusic" placeholder="背景音乐" value="/Resource/mp3/1.mp3" style="display:none;">
+                <input class="form-control form-element" type="text" id="music" name="FMusic" placeholder="背景音乐" value="" style="display:none;">
                 <select class="form-control" onchange="document.getElementById('music').value = '' + this.options[this.selectedIndex].value">
                     <option value="">页面背景音乐</option>
                     <option value="/Resource/mp3/1.mp3">《暖暖》----------------【梁静茹】</option>
@@ -32,7 +32,7 @@
             <div class="control-group my-2">
                 <label class="control-label" for="p@(i)">第@(dic[i])句话*</label>
                 <div class="controls">
-                    <textarea class="form-control" rows="6" id="p@(i)" name="fp@(i)" placeholder="第@(dic[i])句话">@(i)</textarea>
+                    <textarea class="form-control form-element" rows="6" id="p@(i)" name="FP@(i)" placeholder="第@(dic[i])句话"></textarea>
                 </div>
             </div>
         }
@@ -40,24 +40,24 @@
             <label class="control-label" for="photo">选择照片*</label>
             <div class="controls">
                 <input id="photo" class="form-control" type="file" multiple="multiple" accept="image/*">
-                <input type="text" name="fphoto" id="fphoto" style="display:none;" />
+                <input class="form-element" type="text" name="fphoto" id="FPhoto" style="display:none;" />
             </div>
         </div>
         <div class="control-group my-2">
             <label class="control-label" for="description">页面介绍*</label>
             <div class="controls">
-                <textarea class="form-control" rows="6" id="description" name="fdescription" placeholder="这个页面是我在 我要沙雕网给你制作的，希望你会喜欢">这里是页面介绍哟</textarea>
+                <textarea class="form-control form-element" rows="6" id="description" name="FDescription" placeholder="这个页面是我在 我要沙雕网给你制作的，希望你会喜欢"></textarea>
             </div>
         </div>
         <div class="control-group my-2">
             <label class="control-label" for="producer">制作人*</label>
             <div class="controls">
-                <input class="form-control" type="text" id="producer" name="fproducer" placeholder="制作人" value="这里是显示制作人哟">
+                <input class="form-control form-element" type="text" id="producer" name="FProducer" placeholder="制作人" value="">
             </div>
         </div>
         <div class="row my-2 text-center">
             <div class="col-xs-12">
-                <button type="reset" class="btn">清空重置</button>
+                <button type="reset" class="btn" onclick="javascript: goTop();">清空重置</button>
                 <button type="submit" class="btn btn-success">提交并预览</button>
             </div>
         </div>
@@ -101,6 +101,23 @@
                 });
             }
             initFileInput("photo", "/FileUpload/Upload");
+
+            var tempModel = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+            //初始化表单
+            var formDefaultValue = $.extend({
+                ftitle: "我是标题___啦啦啦",
+                fmusic: "/Resource/mp3/1.mp3",
+                fdescription: "这里是页面介绍哟",
+                fproducer:"这里是显示制作人哟"
+            }, tempModel);
+
+            $("form").find(".form-control").each(function (i, v) {
+                var $v = $(v);
+                var defaultValue = formDefaultValue[$v.attr("name")];
+                if (defaultValue)
+                    $v.val(defaultValue);
+            });
+
         });
     </script>
 }
