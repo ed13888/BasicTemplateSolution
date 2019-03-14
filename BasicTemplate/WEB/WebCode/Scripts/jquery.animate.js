@@ -140,19 +140,25 @@
             out: "zoomOutUp"
         },
 
-        special: {
-            in: "hinge",
-            out: "jackInTheBox"
-        },
+        //special: {
+        //    in: "hinge",
+        //    out: "jackInTheBox"
+        //},
 
-        roll: {
-            in: "rollIn",
-            out: "rollOut"
-        }
+        //roll: {
+        //    in: "rollIn",
+        //    out: "rollOut"
+        //}
 
 
 
 
     };
+
+    $.animateList = [];
+
+    for (var i in $.animateOption) {
+        $.animateList.push($.animateOption[i]);
+    }
 
 })(jQuery);

@@ -189,7 +189,9 @@
                     temp.find(".animated").each(function (index, v) {
                         var $v = $(v);
                         var random = $v.hasClass("last") ? maxDelay : Math.ceil(Math.random() * (maxDelay - 1));
-                        $v.attr("name", "FP" + i).attr("delay", random);
+
+                        var opt = $.animateList[Math.floor(Math.random() * $.animateList.length)];
+                        $v.attr("name", opt.in).attr("delay", random);
 
                     });
                     pageRoot.append(temp);
@@ -252,21 +254,21 @@
                     onLeave: function (index, nextIndex, direction) {
                         $(index.item).find(".animated").each(function (i, v) {
                             var $v = $(v);
-                            var id = $v.attr("name");
+                            var name = $v.attr("name");
                             var delay = $v.attr("delay");
-                            var opt = option[id];
-                            if (opt)
-                                $(this).addClass("hide").removeClass(opt.animate).removeClass("delay-" + delay + "s");
+                            //var opt = option[id];
+                            if (name)
+                                $(this).addClass("hide").removeClass(name).removeClass("delay-" + delay + "s");
                         });
                     },
                     afterLoad: function (anchorLink, currentLink) {
                         $(currentLink.item).find(".animated").each(function (i, v) {
                             var $v = $(v);
-                            var id = $v.attr("name");
+                            var name = $v.attr("name");
                             var delay = $v.attr("delay");
-                            var opt = option[id];
-                            if (opt)
-                                $(this).removeClass("hide").addClass(opt.animate).addClass("delay-" + delay + "s");
+                            //var opt = option[id];
+                            if (name)
+                                $(this).removeClass("hide").addClass(name).addClass("delay-" + delay + "s");
                         });
                     },
                     afterResize: function () {
@@ -274,8 +276,7 @@
                     afterSlideLoad: function (anchorLink, index, slideAnchor, slideIndex) {
                     },
                     onSlideLeave: function (anchorLink, index, slideIndex, direction, nextSlideIndex) {
-                    },
-                    licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE'
+                    }
                 });
 
             });
