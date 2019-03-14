@@ -21,6 +21,7 @@
 
         .section {
             position: relative;
+            background: url(/Resource/img/test/bg.jpg) center center no-repeat;
         }
 
         #section0,
@@ -34,21 +35,21 @@
         }
 
         #section1 {
-            background-image: url(/Resource/img/bg1.jpg);
+            /*background-image: url(/Resource/img/bg1.jpg);*/
         }
 
         #section2 {
-            background-image: url(/Resource/img/bg2.jpg);
+            /*background-image: url(/Resource/img/bg2.jpg);*/
         }
 
         #section3 {
-            background-image: url(/Resource/img/bg3.jpg);
-            padding: 6% 0 0 0;
+            /*background-image: url(/Resource/img/bg3.jpg);
+            padding: 6% 0 0 0;*/
         }
 
         #section4 {
-            background-image: url(/Resource/img/bg4.jpg);
-            padding: 6% 0 0 0;
+            /*background-image: url(/Resource/img/bg4.jpg);
+            padding: 6% 0 0 0;*/
         }
     </style>
 </head>
@@ -80,8 +81,15 @@
     <script src="../Plugins/fullpage/js/fullpage.js"></script>
     <script src="../Scripts/jquery.animate.js"></script>
     <script>
+
+
+        //document.onreadystatechange = function () {
+        //    if (document.readyState == 'complete') {
+        //        window.parent.hideLoading();
+        //    }
+        //};
+
         $(function () {
-            //$('.animated').animateCss('bounceOutLeft');
 
             if (!localStorage.json) return;
             var json = JSON.parse(localStorage.json);

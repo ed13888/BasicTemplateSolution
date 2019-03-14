@@ -22,44 +22,147 @@
             height: 200px;
         }
 
+
+
+        .loader {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            /*margin: 75px;*/
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .loader-star {
+            position: absolute;
+            top: calc(50% - 12px);
+        }
+        /*LOADER-1*/
+
+        .loader-1 .loader-outter {
+            position: absolute;
+            border: 4px solid #f50057;
+            border-left-color: transparent;
+            border-bottom: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            -webkit-animation: loader-1-outter 1s cubic-bezier(.42, .61, .58, .41) infinite;
+            animation: loader-1-outter 1s cubic-bezier(.42, .61, .58, .41) infinite;
+        }
+
+        .loader-1 .loader-inner {
+            position: absolute;
+            border: 4px solid #f50057;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            left: calc(50% - 20px);
+            top: calc(50% - 20px);
+            border-right: 0;
+            border-top-color: transparent;
+            -webkit-animation: loader-1-inner 1s cubic-bezier(.42, .61, .58, .41) infinite;
+            animation: loader-1-inner 1s cubic-bezier(.42, .61, .58, .41) infinite;
+        }
+
+        @@-webkit-keyframes loader-1-outter {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @@keyframes loader-1-outter {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @@-webkit-keyframes loader-1-inner {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(-360deg);
+                transform: rotate(-360deg);
+            }
+        }
+
+        @@keyframes loader-1-inner {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(-360deg);
+                transform: rotate(-360deg);
+            }
+        }
+
         #iframe {
+        }
+
+        #loadingModal {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 1050;
+            display: none;
+            overflow: hidden;
+            -webkit-overflow-scrolling: touch;
+            outline: 0;
+        }
+
+        #modalMask {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 1040;
+            background-color: #000;
         }
     </style>
 </head>
 <body>
+    <!--进度条-->
+    <div id="loadingModal">
+        <div style="width: 200px;height:20px; z-index: 20000; position: absolute; text-align: center; left: 50%; top: 50%;margin-left:-100px;margin-top:-10px">
+            <div class="loader loader-1">
+                <div class="loader-outter"></div>
+                <div class="loader-inner"></div>
+            </div>
+            <h5>正在加载...</h5>
+        </div>
+    </div>
+    <!--遮罩-->
+    <div id="modalMask"></div>
+    <script>
+        (function () {
+            document.getElementById("loadingModal").style.display = "block";
+            document.getElementById("modalMask").style.display = "block";
+        })()
+    </script>
+
 
     <iframe id="iframe" style="width:100vw;height:100vh;" frameborder="0"></iframe>
-    @*<div>
-            <center>
-
-                <p>这是您创建的模板哟~</p>
-
-                <p>@Model.FP1</p><br />
-
-                <p>@Model.FP2</p><br />
-
-                <p>@Model.FP3</p><br />
-
-                <p>@Model.FP4</p><br />
-
-                <p>@Model.FDescription</p><br />
-
-                <p>@Model.FProducer</p><br />
-
-                @for (int i = 0; i < ImgList.Count; i++)
-                {
-                    <p><img src="@(ImgList[i])" /></p><br />
-                }
-
-                <div id="test_div">
-
-                </div>
-
-
-            </center>
-
-            <audio src="@Model.FMusic" id="audio" autoplay="autoplay" controls="controls" loop="true" hidden="true"></audio>
-        </div>*@
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 
     <script>
@@ -68,17 +171,38 @@
             json.FPhoto = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ImgList));
             localStorage.json = JSON.stringify(json);
 
-            //$.ajax({
-            //    url: '/Template/Test.html',
-            //    type: 'get',
-            //    success: function (res) {
-            //        $('#test_div').html($(res));
-            //    }
-            //});
+            var iframe = document.getElementById("iframe");
+            if (iframe.attachEvent) {
+                iframe.attachEvent("onreadystatechange", function () {
+                    //此事件在内容没有被载入时候也会被触发，所以我们要判断状态
+                    //有时候会比较怪异 readyState状态会跳过 complete 所以我们loaded状态也要判断
+                    if (iframe.readyState === "complete" || iframe.readyState == "loaded") {
+                        //代码能执行到这里说明已经载入成功完毕了
+                        //要清除掉事件
+                        iframe.detachEvent("onreadystatechange", arguments.callee);
+                        //这里是回调函数
 
-            $("#iframe").attr("src","@Html.Raw(Model.Template.FTemplateUrl)");
-            //$('#test_div').load('/Template/Test.html');
+                        hideLoading();
+                    }
+                });
+            } else {
+                iframe.addEventListener("load", function () {
+                    //代码能执行到这里说明已经载入成功完毕了
+                    this.removeEventListener("load", arguments.call, false);
+                    hideLoading();
+                    //这里是回调函数
+                }, false);
+            }
+
+
+            $("#iframe").attr("src", "@Html.Raw(Model.Template.FTemplateUrl)");
         });
+
+        function hideLoading() {
+            //原生js方式
+            document.getElementById("loadingModal").style.display = "none";
+            document.getElementById("modalMask").style.display = "none";
+        }
     </script>
 </body>
 </html>
