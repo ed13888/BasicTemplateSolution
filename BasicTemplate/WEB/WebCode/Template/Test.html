@@ -66,9 +66,11 @@
         .music {
             width: 30px;
             height: 30px;
-            position: absolute;
+            position: fixed;
             top: 42px;
             right: 20px;
+            z-index: 1;
+            -webkit-animation: musicRotate 2s linear infinite;
         }
 
         .music-open {
@@ -84,10 +86,34 @@
             background-repeat: no-repeat;
             background-size: contain;
         }
+
+        @-webkit-keyframes musicRotate {
+
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+
+            25% {
+                -webkit-transform: rotate(90deg);
+            }
+
+            50% {
+                -webkit-transform: rotate(180deg);
+            }
+
+            75% {
+                -webkit-transform: rotate(270deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
     </style>
 </head>
 <body>
     <div id="fullpage" class="text-center" style="display:none;">
+        <div id="btnMusic" class="music music-open music-close"></div>
         <!--<div class="section" id="section1">
         </div>
         <div class="section" id="section2">
@@ -108,7 +134,6 @@
     <div id="section-template" style="display:none;">
         <div class="section">
             <div class="section-content">
-                <div class="music music-open"></div>
                 <div class="animated hide" style="width:145px;height:196px;position:absolute;left:-26px;top:-16px;">
                     <img src="/Resource/img/test/1.jpg" />
                 </div>
@@ -158,7 +183,7 @@
             </div>
         </div>
     </div>
-    <audio src="" id="audio" autoplay="autoplay" controls="controls" loop="true" hidden="true"></audio>
+    <audio src="" id="audio" autoplay="autoplay" controls="controls" preload loop="loop" hidden="true"></audio>
     <script src="../Scripts/jquery-3.3.1.min.js"></script>
     <script src="../Scripts/bootstrap.min.js"></script>
     <script src="../Plugins/fullpage/js/fullpage.js"></script>
@@ -169,6 +194,13 @@
             if (!localStorage.json) return;
             var json = JSON.parse(localStorage.json);
 
+            var myAuto = document.getElementById('audio');
+
+            document.addEventListener("WeixinJSBridgeReady", function () {
+                myAuto.setAttribute("src", json.FMusic);
+                myAuto.play();
+            }, false);
+
             document.onreadystatechange = function () {
                 if (document.readyState == 'complete') {
                     window.parent.hideLoading();
@@ -177,6 +209,17 @@
             };
 
             $(function () {
+
+                $("#btnMusic").click(function () {
+                    var myAuto = document.getElementById('audio');
+                    if ($(this).hasClass("music-open")) {
+                        $(this).removeClass("music-open").addClass("music-close");
+                        myAuto.pause();
+                    } else {
+                        $(this).removeClass("music-close").addClass("music-open");
+                        myAuto.play();
+                    }
+                });
 
                 var tempHtml = $("#section-template").html();
                 var pageRoot = $("#fullpage");
@@ -205,40 +248,40 @@
                 //}
 
 
-                var option = {
-                    FP1: {
-                        animate: $.animateOption.bounce.in,
-                        delay: 2
-                    },
-                    FP2: {
-                        animate: $.animateOption.bounceDown.in,
-                        delay: 2
-                    },
-                    FP3: {
-                        animate: $.animateOption.bounceLeft.in,
-                        delay: 2
-                    },
-                    FP4: {
-                        animate: $.animateOption.bounceRight.in,
-                        delay: 2
-                    },
-                    FP5: {
-                        animate: $.animateOption.bounceUp.in,
-                        delay: 2
-                    },
-                    FP6: {
-                        animate: $.animateOption.fade.in,
-                        delay: 2
-                    },
-                    FP7: {
-                        animate: $.animateOption.fadeDown.in,
-                        delay: 2
-                    },
-                    FP8: {
-                        animate: $.animateOption.fadeDownBig.in,
-                        delay: 2
-                    },
-                };
+                //var option = {
+                //    FP1: {
+                //        animate: $.animateOption.bounce.in,
+                //        delay: 2
+                //    },
+                //    FP2: {
+                //        animate: $.animateOption.bounceDown.in,
+                //        delay: 2
+                //    },
+                //    FP3: {
+                //        animate: $.animateOption.bounceLeft.in,
+                //        delay: 2
+                //    },
+                //    FP4: {
+                //        animate: $.animateOption.bounceRight.in,
+                //        delay: 2
+                //    },
+                //    FP5: {
+                //        animate: $.animateOption.bounceUp.in,
+                //        delay: 2
+                //    },
+                //    FP6: {
+                //        animate: $.animateOption.fade.in,
+                //        delay: 2
+                //    },
+                //    FP7: {
+                //        animate: $.animateOption.fadeDown.in,
+                //        delay: 2
+                //    },
+                //    FP8: {
+                //        animate: $.animateOption.fadeDownBig.in,
+                //        delay: 2
+                //    },
+                //};
 
                 $('#fullpage').fadeIn(200).fullpage({
                     lazyLoad: true,
@@ -281,15 +324,22 @@
 
             });
 
+
             function autoPlay(url) {
-                var myAuto = document.getElementById('audio');
                 if (url) $(myAuto).attr("src", url);
                 myAuto.play();
             }
             function closePlay() {
-                var myAuto = document.getElementById('audio');
                 myAuto.pause();
                 myAuto.load();
+            }
+
+            function playPause() {
+                if (myAuto.paused) {
+                    myAuto.play();
+                } else {
+                    myAuto.pause();
+                }
             }
 
             function rondom(min, max) {
