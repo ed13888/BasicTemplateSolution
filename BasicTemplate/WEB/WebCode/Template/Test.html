@@ -88,8 +88,26 @@
 </head>
 <body>
     <div id="fullpage" class="text-center" style="display:none;">
-        <div class="section" id="section1">
-            <div id="section1-content" class="section-content">
+        <!--<div class="section" id="section1">
+        </div>
+        <div class="section" id="section2">
+            <div id="section2-content" class="section-content"></div>
+        </div>
+        <div class="section" id="section3">
+            <div id="section3-content" class="section-content"></div>
+            <div class="slide">第三屏的第一屏</div>
+            <div class="slide">第三屏的第二屏</div>
+            <div class="slide">第三屏的第三屏</div>
+            <div class="slide">第三屏的第四屏</div>
+        </div>
+        <div class="section" id="section4">
+            <div id="section4-content" class="section-content"></div>
+        </div>-->
+    </div>
+
+    <div id="section-template" style="display:none;">
+        <div class="section">
+            <div class="section-content">
                 <div class="music music-open"></div>
                 <div style="width:145px;height:196px;position:absolute;left:-26px;top:-16px;">
                     <img src="/Resource/img/test/1.jpg" />
@@ -101,7 +119,7 @@
                     <img src="/Resource/img/test/11.jpg" />
                 </div>
                 <div style="position: absolute;top: 534px;width: 100%;z-index: 1;">
-                    <span style="font-family: HappyZcool;color: rgb(255, 255, 255);font-size: 18px;-webkit-font-smoothing: antialiased;-webkit-text-stroke-width: .2px;">此页面送给我最爱的宝贝</span>
+                    <span class="section-content-span" style="font-family: HappyZcool;color: rgb(255, 255, 255);font-size: 18px;-webkit-font-smoothing: antialiased;-webkit-text-stroke-width: .2px;">此页面送给我最爱的宝贝</span>
                 </div>
                 <div style="width: 158px;height: 114px;top: 46px;left:285px; position:absolute;">
                     <img src="/Resource/img/test/14.jpg" />
@@ -139,19 +157,6 @@
 
             </div>
         </div>
-        <div class="section" id="section2">
-            <div id="section2-content" class="section-content"></div>
-        </div>
-        <div class="section" id="section3">
-            <div id="section3-content" class="section-content"></div>
-            <div class="slide">第三屏的第一屏</div>
-            <div class="slide">第三屏的第二屏</div>
-            <div class="slide">第三屏的第三屏</div>
-            <div class="slide">第三屏的第四屏</div>
-        </div>
-        <div class="section" id="section4">
-            <div id="section4-content" class="section-content"></div>
-        </div>
     </div>
     <audio src="" id="audio" autoplay="autoplay" controls="controls" loop="true" hidden="true"></audio>
     <script src="../Scripts/jquery-3.3.1.min.js"></script>
@@ -173,15 +178,22 @@
 
             $(function () {
 
+                var tempHtml = $("#section-template").html();
+                var pageRoot = $("#fullpage");
 
                 var page = 1;
-                //for (var i = 1; i <= json.Template.FSentenceCount; i++) {
-                //    var content = $("#section" + page + "-content");
-                //    var p = '<div id="FP' + i + '" class="alert alert-success animated hide" role="alert">' + json["FP" + i] + '</div>';
-                //    content.append(p);
-                //    page = parseInt(i / 2) + 1;
+                for (var i = 1; i <= json.Template.FSentenceCount; i++) {
+                    //var content = $("#section" + page + "-content");
+                    //var p = '<div id="FP' + i + '" class="alert alert-success animated hide" role="alert">' + json["FP" + i] + '</div>';
+                    //content.append(p);
+                    //page = parseInt(i / 2) + 1;
 
-                //}
+                    var temp = $(tempHtml);
+                    temp.find(".section-content-span:eq(0)").html(json["FP" + i]);
+                    pageRoot.append(temp);
+                    page = i;
+
+                }
 
                 //for (var i = 0; i < json.FPhoto.length; i++) {
                 //    var img = '<img src="' + json.FPhoto[0] + '" />';

@@ -105,10 +105,10 @@
             var tempModel = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
             //初始化表单
             var formDefaultValue = $.extend({
-                ftitle: "我是标题___啦啦啦",
-                fmusic: "/Resource/mp3/1.mp3",
-                fdescription: "这里是页面介绍哟",
-                fproducer:"这里是显示制作人哟"
+                FTitle: "我是标题___啦啦啦",
+                FMusic: "/Resource/mp3/1.mp3",
+                FDescription: "这里是页面介绍哟",
+                FProducer:"这里是显示制作人哟"
             }, tempModel);
 
             $("form").find(".form-control").each(function (i, v) {
