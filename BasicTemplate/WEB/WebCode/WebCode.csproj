@@ -284,6 +284,8 @@
     <Content Include="Resource\img\test\8.jpg" />
     <Content Include="Resource\img\test\9.jpg" />
     <Content Include="Resource\img\test\bg.jpg" />
+    <Content Include="Resource\img\test\close.jpg" />
+    <Content Include="Resource\img\test\open.jpg" />
     <Content Include="Resource\img\wxpay.png" />
     <Content Include="Resource\mp3\2.mp3" />
     <Content Include="robots.txt" />

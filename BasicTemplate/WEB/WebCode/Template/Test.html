@@ -8,6 +8,7 @@
     <link href="../Content/animate.css" rel="stylesheet" />
     <style>
         body {
+
         }
 
         img {
@@ -22,6 +23,12 @@
         .section {
             position: relative;
             background: url(/Resource/img/test/bg.jpg) center center no-repeat;
+        }
+
+        .section-content {
+            width: 100%;
+            height: 100%;
+            position: relative;
         }
 
         #section0,
@@ -51,28 +58,67 @@
             /*background-image: url(/Resource/img/bg4.jpg);
             padding: 6% 0 0 0;*/
         }
+
+        .music {
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            top: 42px;
+            right: 20px;
+        }
+
+        .music-open {
+            background-image: url(/Resource/img/test/open.jpg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+
+        .music-close {
+            background-image: url(/Resource/img/test/close.jpg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
     </style>
 </head>
 <body>
     <div id="fullpage" class="text-center" style="display:none;">
         <div class="section" id="section1">
-            <div id="section1-content">
-                <!--<div class="animated fadeInLeft delay-5s" style="width:200px;height:200px;background-color:black;"></div>-->
-
+            <div id="section1-content" class="section-content">
+                <div class="music music-open"></div>
+                <div style="width:145px;height:196px;position:absolute;left:-26px;top:-16px;">
+                    <img src="/Resource/img/test/1.jpg" />
+                </div>
+                <div style="left: 145px; width: 45px; height: 41px; top: 56px; position:absolute;">
+                    <img src="/Resource/img/test/13.jpg" />
+                </div>
+                <div style="left: 200px;width: 45px;height: 59px;top: 28px; position:absolute;">
+                    <img src="/Resource/img/test/11.jpg" />
+                </div>
+                <div style="position: absolute;left: 90px;    top: 400px;">
+                    <span style="font-family: HappyZcool;color: rgb(255, 255, 255);font-size: 1em;">此页面送给我最爱的宝贝</span>
+                </div>
+                <div style="width: 158px;height: 114px;top: 46px;right:-80px; position:absolute;">
+                    <img src="/Resource/img/test/14.jpg" />
+                </div>
+                <div style="width: 349px;height: 219px;top: 106px;left:25px; position:absolute;">
+                    <img src="/Resource/img/test/8.jpg" />
+                </div>
             </div>
         </div>
         <div class="section" id="section2">
-            <div id="section2-content"></div>
+            <div id="section2-content" class="section-content"></div>
         </div>
         <div class="section" id="section3">
-            <div id="section3-content"></div>
+            <div id="section3-content" class="section-content"></div>
             <div class="slide">第三屏的第一屏</div>
             <div class="slide">第三屏的第二屏</div>
             <div class="slide">第三屏的第三屏</div>
             <div class="slide">第三屏的第四屏</div>
         </div>
         <div class="section" id="section4">
-            <div id="section4-content"></div>
+            <div id="section4-content" class="section-content"></div>
         </div>
     </div>
     <audio src="" id="audio" autoplay="autoplay" controls="controls" loop="true" hidden="true"></audio>
@@ -95,18 +141,18 @@
             var json = JSON.parse(localStorage.json);
 
             var page = 1;
-            for (var i = 1; i <= json.Template.FSentenceCount; i++) {
-                var content = $("#section" + page + "-content");
-                var p = '<div id="FP' + i + '" class="alert alert-success animated hide" role="alert">' + json["FP" + i] + '</div>';
-                content.append(p);
-                page = parseInt(i / 2) + 1;
+            //for (var i = 1; i <= json.Template.FSentenceCount; i++) {
+            //    var content = $("#section" + page + "-content");
+            //    var p = '<div id="FP' + i + '" class="alert alert-success animated hide" role="alert">' + json["FP" + i] + '</div>';
+            //    content.append(p);
+            //    page = parseInt(i / 2) + 1;
 
-            }
+            //}
 
-            for (var i = 0; i < json.FPhoto.length; i++) {
-                var img = '<img src="' + json.FPhoto[0] + '" />';
-                main.append(img);
-            }
+            //for (var i = 0; i < json.FPhoto.length; i++) {
+            //    var img = '<img src="' + json.FPhoto[0] + '" />';
+            //    main.append(img);
+            //}
             autoPlay(json.FMusic);
 
 
