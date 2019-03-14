@@ -188,9 +188,9 @@
                     temp.find(".section-content-span:eq(0)").html(json["FP" + i]);
                     temp.find(".animated").each(function (index, v) {
                         var $v = $(v);
-                        var random = $v.hasClass("last") ? maxDelay : Math.ceil(Math.random() * (maxDelay - 1));
+                        var random = $v.hasClass("last") ? maxDelay : rondom(1, maxDelay - 1);
 
-                        var opt = $.animateList[Math.floor(Math.random() * $.animateList.length)];
+                        var opt = $.animateList[rondom(0, $.animateList.length - 1)];
                         $v.attr("name", opt.in).attr("delay", random);
 
                     });
@@ -291,6 +291,12 @@
                 myAuto.pause();
                 myAuto.load();
             }
+
+            function rondom(min, max) {
+                //parseInt(Math.random() * (max - min + 1) + min, 10);
+                return Math.floor(Math.random() * (max - min + 1) + min);
+            }
+
         })();
     </script>
 </body>
