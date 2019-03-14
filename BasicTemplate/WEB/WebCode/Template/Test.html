@@ -159,120 +159,122 @@
     <script src="../Plugins/fullpage/js/fullpage.js"></script>
     <script src="../Scripts/jquery.animate.js"></script>
     <script>
-
-
-        //document.onreadystatechange = function () {
-        //    if (document.readyState == 'complete') {
-        //        window.parent.hideLoading();
-        //    }
-        //};
-
-        $(function () {
+        (function () {
 
             if (!localStorage.json) return;
             var json = JSON.parse(localStorage.json);
 
-            var page = 1;
-            //for (var i = 1; i <= json.Template.FSentenceCount; i++) {
-            //    var content = $("#section" + page + "-content");
-            //    var p = '<div id="FP' + i + '" class="alert alert-success animated hide" role="alert">' + json["FP" + i] + '</div>';
-            //    content.append(p);
-            //    page = parseInt(i / 2) + 1;
-
-            //}
-
-            //for (var i = 0; i < json.FPhoto.length; i++) {
-            //    var img = '<img src="' + json.FPhoto[0] + '" />';
-            //    main.append(img);
-            //}
-            autoPlay(json.FMusic);
-
-
-            var option = {
-                FP1: {
-                    animate: $.animateOption.bounce.in,
-                    delay: 2
-                },
-                FP2: {
-                    animate: $.animateOption.bounceDown.in,
-                    delay: 2
-                },
-                FP3: {
-                    animate: $.animateOption.bounceLeft.in,
-                    delay: 2
-                },
-                FP4: {
-                    animate: $.animateOption.bounceRight.in,
-                    delay: 2
-                },
-                FP5: {
-                    animate: $.animateOption.bounceUp.in,
-                    delay: 2
-                },
-                FP6: {
-                    animate: $.animateOption.fade.in,
-                    delay: 2
-                },
-                FP7: {
-                    animate: $.animateOption.fadeDown.in,
-                    delay: 2
-                },
-                FP8: {
-                    animate: $.animateOption.fadeDownBig.in,
-                    delay: 2
-                },
+            document.onreadystatechange = function () {
+                if (document.readyState == 'complete') {
+                    window.parent.hideLoading();
+                    autoPlay(json.FMusic);
+                }
             };
 
-            $('#fullpage').fadeIn(200).fullpage({
-                lazyLoad: true,
-                verticalCentered: true,
-                css3: false,
-                easingcss3: 'cubic-bezier(0.175, 0.885, 0.320, 1.275)',
-                //navigationPosition: 'right',//导航小圆点的位置
-                //实例化完执行的回调函数
-                afterRender: function () {
+            $(function () {
 
-                },
-                //滚动前的回调函数
-                onLeave: function (index, nextIndex, direction) {
-                    $(index.item).find(".animated").each(function (i, v) {
-                        var $v = $(v);
-                        var id = $v.attr("id");
-                        var opt = option[id];
-                        if (opt)
-                            $(this).addClass("hide").removeClass(opt.animate).removeClass("delay-" + opt.delay + "s");
-                    });
-                },
-                afterLoad: function (anchorLink, currentLink) {
-                    $(currentLink.item).find(".animated").each(function (i, v) {
-                        var $v = $(v);
-                        var id = $v.attr("id");
-                        var opt = option[id];
-                        if (opt)
-                            $(this).removeClass("hide").addClass(opt.animate).addClass("delay-" + opt.delay + "s");
-                    });
-                },
-                afterResize: function () {
-                },
-                afterSlideLoad: function (anchorLink, index, slideAnchor, slideIndex) {
-                },
-                onSlideLeave: function (anchorLink, index, slideIndex, direction, nextSlideIndex) {
-                },
-                licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE'
+
+                var page = 1;
+                //for (var i = 1; i <= json.Template.FSentenceCount; i++) {
+                //    var content = $("#section" + page + "-content");
+                //    var p = '<div id="FP' + i + '" class="alert alert-success animated hide" role="alert">' + json["FP" + i] + '</div>';
+                //    content.append(p);
+                //    page = parseInt(i / 2) + 1;
+
+                //}
+
+                //for (var i = 0; i < json.FPhoto.length; i++) {
+                //    var img = '<img src="' + json.FPhoto[0] + '" />';
+                //    main.append(img);
+                //}
+
+
+                var option = {
+                    FP1: {
+                        animate: $.animateOption.bounce.in,
+                        delay: 2
+                    },
+                    FP2: {
+                        animate: $.animateOption.bounceDown.in,
+                        delay: 2
+                    },
+                    FP3: {
+                        animate: $.animateOption.bounceLeft.in,
+                        delay: 2
+                    },
+                    FP4: {
+                        animate: $.animateOption.bounceRight.in,
+                        delay: 2
+                    },
+                    FP5: {
+                        animate: $.animateOption.bounceUp.in,
+                        delay: 2
+                    },
+                    FP6: {
+                        animate: $.animateOption.fade.in,
+                        delay: 2
+                    },
+                    FP7: {
+                        animate: $.animateOption.fadeDown.in,
+                        delay: 2
+                    },
+                    FP8: {
+                        animate: $.animateOption.fadeDownBig.in,
+                        delay: 2
+                    },
+                };
+
+                $('#fullpage').fadeIn(200).fullpage({
+                    lazyLoad: true,
+                    verticalCentered: true,
+                    css3: false,
+                    easingcss3: 'cubic-bezier(0.175, 0.885, 0.320, 1.275)',
+                    //navigationPosition: 'right',//导航小圆点的位置
+                    //实例化完执行的回调函数
+                    afterRender: function () {
+
+                    },
+                    //滚动前的回调函数
+                    onLeave: function (index, nextIndex, direction) {
+                        $(index.item).find(".animated").each(function (i, v) {
+                            var $v = $(v);
+                            var id = $v.attr("id");
+                            var opt = option[id];
+                            if (opt)
+                                $(this).addClass("hide").removeClass(opt.animate).removeClass("delay-" + opt.delay + "s");
+                        });
+                    },
+                    afterLoad: function (anchorLink, currentLink) {
+                        $(currentLink.item).find(".animated").each(function (i, v) {
+                            var $v = $(v);
+                            var id = $v.attr("id");
+                            var opt = option[id];
+                            if (opt)
+                                $(this).removeClass("hide").addClass(opt.animate).addClass("delay-" + opt.delay + "s");
+                        });
+                    },
+                    afterResize: function () {
+                    },
+                    afterSlideLoad: function (anchorLink, index, slideAnchor, slideIndex) {
+                    },
+                    onSlideLeave: function (anchorLink, index, slideIndex, direction, nextSlideIndex) {
+                    },
+                    licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE'
+                });
+
             });
 
-        });
-
-        function autoPlay(url) {
-            var myAuto = document.getElementById('audio');
-            if (url) $(myAuto).attr("src", url);
-            myAuto.play();
-        }
-        function closePlay() {
-            var myAuto = document.getElementById('audio');
-            myAuto.pause();
-            myAuto.load();
-        }
+            function autoPlay(url) {
+                var myAuto = document.getElementById('audio');
+                if (url) $(myAuto).attr("src", url);
+                myAuto.play();
+            }
+            function closePlay() {
+                var myAuto = document.getElementById('audio');
+                myAuto.pause();
+                myAuto.load();
+            }
+        })();
     </script>
 </body>
 </html>
