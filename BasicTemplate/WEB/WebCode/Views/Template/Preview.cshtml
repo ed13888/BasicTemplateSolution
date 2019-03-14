@@ -27,6 +27,58 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
     <style>
+        @@media only screen and (min-width : 768px) {
+
+            body {
+                display: flex;
+                justify-content: center;
+            }
+
+            #iframeDiv {
+                width: 400px;
+                height: 100vh;
+            }
+
+            #iframe {
+                width: 400px;
+                height: 100vh;
+            }
+
+            #qrcodeDiv {
+                position: absolute;
+                top: 100px;
+                right: -200px;
+                width: 100px;
+                height: 100px;
+            }
+
+            #qrcode-span {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        @@media only screen and (max-width : 768px) {
+
+            #iframe {
+                width: 100vw;
+                height: 100vh;
+            }
+
+            #iframeDiv {
+                width: 100vw;
+                height: 100vh;
+            }
+
+            #qrcodeDiv {
+                display: none;
+            }
+        }
+
+
+
+
+
         body {
             margin: 0;
             overflow: hidden;
@@ -37,7 +89,9 @@
             height: 200px;
         }
 
-
+        #iframeDiv {
+            position: relative;
+        }
 
         .loader {
             position: relative;
@@ -176,12 +230,27 @@
         })()
     </script>
 
-
-    <iframe id="iframe" style="width:100vw;height:100vh;" frameborder="0"></iframe>
+    <div id="iframeDiv">
+        <iframe id="iframe" frameborder="0"></iframe>
+        <div id="qrcodeDiv">
+            <div id="qrcode"></div>
+            <div id="qrcode-span">扫一扫</div>
+        </div>
+    </div>
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Plugins/jquery.qrcode/jquery.qrcode.min.js"></script>
 
     <script>
         $(function () {
+
+            $("#qrcode").qrcode({
+                     render: "canvas", //canvas方式
+                     width: 100, //宽度
+                     height: 100, //高度
+                     text: window.location.href //任意内容
+
+            });
+
             var json = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
             json.FPhoto = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ImgList));
             localStorage.json = JSON.stringify(json);

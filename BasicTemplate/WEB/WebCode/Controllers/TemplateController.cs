@@ -46,7 +46,7 @@ namespace WebCode.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create()
+        public ActionResult CreateTemplate()
         {
             string json = "";
             for (int i = 0; i < Request.Form.Keys.Count; i++)
@@ -61,9 +61,16 @@ namespace WebCode.Controllers
             var m = JsonConvert.DeserializeObject<CustomerTemplateInfoEntity>(json);
             m.Template = new TemplateEntity { FId = Convert.ToInt32(Request.Form["FTemplateId"]) };
             var val = BusinessBll.CreateTemplate(this, m);
+            return Redirect($"Create/{m.FUId}.html");
+        }
 
+        public ActionResult Create()
+        {
+            var fuid = Convert.ToString(RouteData.Values["id"]);
             //跳转预览
-            return Redirect($"Preview/{m.FUId}.html");
+            //return Redirect($"Preview/{m.FUId}.html");
+            ViewBag.Url = $"http://{Request.Url.Authority}/template/preview/{fuid}.html";
+            return View();
         }
 
         [Route("Preview")]

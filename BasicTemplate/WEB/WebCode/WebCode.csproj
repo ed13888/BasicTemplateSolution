@@ -247,6 +247,9 @@
     <Content Include="Plugins\fullpage\js\fullpage.min.js" />
     <Content Include="Plugins\jquery.backstretch\js\jquery.backstretch.js" />
     <Content Include="Plugins\jquery.backstretch\js\jquery.backstretch.min.js" />
+    <Content Include="Plugins\jquery.qrcode\jquery.qrcode.js" />
+    <Content Include="Plugins\jquery.qrcode\jquery.qrcode.min.js" />
+    <Content Include="Plugins\jquery.qrcode\qrcode.js" />
     <Content Include="Plugins\layer\layer.js" />
     <Content Include="Plugins\layer\mobile\layer.js" />
     <Content Include="Plugins\layer\mobile\need\layer.css" />
