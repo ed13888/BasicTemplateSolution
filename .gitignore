@@ -2412,3 +2412,13 @@
 /BasicTemplate/WEB/WebCode/obj/Release/Package/PackageTmp/Resource/img/test/bg.jpg
 /BasicTemplate/WEB/WebCode/obj/Release/Package/PackageTmp/Resource/img/test/close.jpg
 /BasicTemplate/WEB/WebCode/obj/Release/Package/PackageTmp/Resource/img/test/open.jpg
+/BasicTemplate/Service/TimerService/bin/Debug/Config/ConnectionStrings.config
+/BasicTemplate/Service/TimerService/bin/Debug/Config/TimingTask.xml
+/BasicTemplate/Service/TimerService/bin/Debug/Config/log4net.config
+/BasicTemplate/Service/TimerService/bin/Debug/Config/unity.config
+/BasicTemplate/Service/TimerService/bin/Debug/FluentScheduler.dll
+/BasicTemplate/Service/TimerService/bin/Debug/FluentScheduler.pdb
+/BasicTemplate/Service/TimerService/bin/Debug/FluentScheduler.xml
+/BasicTemplate/Service/TimerService/bin/Debug/TimerService.rar
+/BasicTemplate/WEB/WebCode/obj/Release/Package/PackageTmp/Plugins/clipboard/clipboard.js
+/BasicTemplate/WEB/WebCode/obj/Release/Package/PackageTmp/Plugins/clipboard/clipboard.min.js
