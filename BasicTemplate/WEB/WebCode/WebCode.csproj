@@ -240,6 +240,8 @@
     <Content Include="Plugins\bootstrap-fileinput\js\plugins\purify.min.js" />
     <Content Include="Plugins\bootstrap-fileinput\js\plugins\sortable.js" />
     <Content Include="Plugins\bootstrap-fileinput\js\plugins\sortable.min.js" />
+    <Content Include="Plugins\clipboard\clipboard.js" />
+    <Content Include="Plugins\clipboard\clipboard.min.js" />
     <Content Include="Plugins\fullpage\css\fullpage.css" />
     <Content Include="Plugins\fullpage\css\fullpage.min.css" />
     <Content Include="Plugins\fullpage\js\fullpage.extensions.min.js" />

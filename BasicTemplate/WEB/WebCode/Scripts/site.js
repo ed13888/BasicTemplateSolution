@@ -140,3 +140,17 @@ function loadSignalR() {
 
     return conn;
 }
+
+
+function setClipboard(name) {
+    var clipboard = new ClipboardJS('.linkcopy');
+
+    clipboard.on('success', function (e) {
+        console.log(e);
+    });
+
+    clipboard.on('error', function (e) {
+        console.log(e);
+    });
+}
+

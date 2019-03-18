@@ -12,6 +12,9 @@
     <title>@($"{Model.FTitle}-制作人:{Model.FProducer}")</title>
     @*<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">*@
 
+    <meta name="share-icon" content="https://gss0.baidu.com/9vo3dSag_xI4khGko9WTAnF6hhy/fex/pic/item/8601a18b87d6277fe9119fac2f381f30e924fc27.jpg">
+    <link rel="shortcut icon" href="https://gss0.baidu.com/9vo3dSag_xI4khGko9WTAnF6hhy/fex/pic/item/8601a18b87d6277fe9119fac2f381f30e924fc27.jpg">
+
     <meta name="full-screen" content="true">
     <meta name="screen-orientation" content="portrait">
     <meta name="browsermode" content="application">
@@ -21,17 +24,51 @@
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache,must-revalidate">
     <meta http-equiv="expires" content="-1">
-    <meta name="viewport" content="width=400, user-scalable=no, minimal-ui">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <script>
+        var global = typeof _global_ !== 'undefined' ? _global_ : window;
+        global.legend = global.legend ? global.legend : {};
+        global.legend.checkDomain = false;
+        global.legend.publishDomain = "";
+        global.legend.business = { "type": "h5" };
+        global.legend.layoutMode = "multi";
+        global.legend.id = "631c613c-9182-2309-4bbe-d5a7ad4b2708";
+        !function () {
+            window.legend.checkDomain &&
+                (window.legend.publishDomain
+                    ||
+                    (window.legend.publishDomain = location.hostname,
+                        "jing.baidu.com" === window.legend.publishDomain
+                        && (window.legend.publishDomain = "")
+                    ),
+                    -1 === [window.legend.publishDomain, "wapbaike.baidu.com"].indexOf(location.hostname) &&
+                    (location.href = location.href.replace(location.hostname, window.legend.publishDomain))
+                ),
+                delete window.legend.publishDomain;
+            var e = 400, n = '<meta name="viewport" content="width=' + e + ', user-scalable=no, minimal-ui" >';
+            document.write(n),
+                "multi" === window.legend.layoutMode &&
+                window.addEventListener("DOMContentLoaded", function () {
+                    var e = document.body.clientHeight, n = 500;
+                    if (self === top && 20 > e) document.body.style.height = "591px";
+                    else if (n > e && "multi" === window.layoutMode) {
+                        var i = document.querySelector(".lg-container");
+                        i && (i.style.webkitTransformOrigin = "50% 0", i.style.webkitTransform = "translateZ(0) scale(" + e / n + ")")
+                    }
+                }, !1)
+        }();
+    </script>
 
     <style>
+        /*PC*/
         @@media only screen and (min-width : 768px) {
 
             body {
                 display: flex;
                 justify-content: center;
+                background-color: rgba(0,0,0,.5);
             }
 
             #iframeDiv {
@@ -41,23 +78,43 @@
 
             #iframe {
                 width: 400px;
-                height: 100vh;
+                height: 650px;
             }
 
             #qrcodeDiv {
                 position: absolute;
-                top: 100px;
-                right: -200px;
-                width: 100px;
-                height: 100px;
+                top: 35%;
+                right: -300px;
+                width: 128px;
+                height: 128px;
             }
 
             #qrcode-span {
                 width: 100%;
                 text-align: center;
             }
+
+
+            .phone {
+                position: absolute;
+                top: 15%;
+                left: 40px;
+                width: 400px;
+                height: 650px;
+                display: inline-block;
+                background: red;
+                box-sizing: content-box;
+                border-top: 40px solid #FFF;
+                border-left: 10px solid #FFF;
+                border-right: 10px solid #FFF;
+                border-bottom: 60px solid #FFF;
+                border-radius: 20px;
+                transform-origin: 100% 0;
+                transform: scale(1);
+            }
         }
 
+        /*Mobile*/
         @@media only screen and (max-width : 768px) {
 
             #iframe {
@@ -235,7 +292,7 @@
     </script>
 
     <div id="iframeDiv">
-        <iframe id="iframe" frameborder="0"></iframe>
+        <iframe id="iframe" class="phone" frameborder="0"></iframe>
         <div id="qrcodeDiv">
             <div id="qrcode"></div>
             <div id="qrcode-span">扫一扫</div>
@@ -249,8 +306,8 @@
 
             $("#qrcode").qrcode({
                      render: "canvas", //canvas方式
-                     width: 100, //宽度
-                     height: 100, //高度
+                     width: 128, //宽度
+                     height: 128, //高度
                      text: window.location.href //任意内容
 
             });
