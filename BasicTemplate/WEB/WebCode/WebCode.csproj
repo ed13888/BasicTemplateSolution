@@ -297,6 +297,10 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Config\ConnectionStrings.config" />
+    <Content Include="fonts\happyzcool.ttf" />
+    <Content Include="fonts\myrb.ttf" />
+    <Content Include="fonts\ht.ttf" />
+    <Content Include="fonts\syht.otf" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -338,6 +342,7 @@
     <Content Include="Views\Template\Create.cshtml" />
     <Content Include="Views\Template\Preview.cshtml" />
     <Content Include="Views\Article\Index.cshtml" />
+    <Content Include="sitemap.sitemap" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

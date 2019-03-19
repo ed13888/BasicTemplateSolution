@@ -1,6 +1,13 @@
-﻿body {
+﻿
+@font-face {
+    font-family: ht;
+    src: url(/fonts/zh7.ttf)
+}
+
+body {
     padding-top: 50px;
     padding-bottom: 50px;
+    font-family: ht;
 }
 
 /* Set padding to keep content from hitting the edges */
