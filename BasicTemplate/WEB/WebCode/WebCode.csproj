@@ -273,6 +273,7 @@
     <Content Include="Resource\img\goTop.png" />
     <Content Include="Resource\img\logo.png" />
     <Content Include="Resource\img\logo2.png" />
+    <Content Include="Resource\img\pig.png" />
     <Content Include="Resource\img\test\1.jpg" />
     <Content Include="Resource\img\test\10.jpg" />
     <Content Include="Resource\img\test\11.jpg" />
@@ -303,6 +304,7 @@
     <Content Include="fonts\syht.otf" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\hello.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -317,6 +319,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\site.js" />
+    <Content Include="Scripts\Tdrag.js" />
     <Content Include="sitemap.xml" />
     <Content Include="Template\Test.html" />
     <Content Include="Upload\aa.jpg" />

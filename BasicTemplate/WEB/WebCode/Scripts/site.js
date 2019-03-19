@@ -143,7 +143,7 @@ function loadSignalR() {
 
 
 function setClipboard(name) {
-    var clipboard = new ClipboardJS('.linkcopy');
+    var clipboard = new ClipboardJS(name);
 
     clipboard.on('success', function (e) {
         console.log(e);
