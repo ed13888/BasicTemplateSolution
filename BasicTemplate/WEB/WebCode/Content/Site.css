@@ -460,4 +460,8 @@ textarea {
         width: 45vw;
         margin-left: 10px;
     }
+
+    #spig {
+        display: none;
+    }
 }
