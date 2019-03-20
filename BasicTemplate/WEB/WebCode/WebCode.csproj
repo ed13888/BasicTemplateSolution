@@ -294,7 +294,9 @@
     <Content Include="Resource\img\test\open.jpg" />
     <Content Include="Resource\img\wxpay.png" />
     <Content Include="Resource\mp3\2.mp3" />
-    <Content Include="robots.txt" />
+    <Content Include="robots.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Config\ConnectionStrings.config" />
@@ -321,7 +323,15 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\site.js" />
     <Content Include="Scripts\Tdrag.js" />
-    <Content Include="sitemap.xml" />
+    <Content Include="sitemap.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sitemap.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sitemap.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Template\Test.html" />
     <Content Include="Upload\aa.jpg" />
     <Content Include="Upload\无标题.png" />
@@ -346,7 +356,9 @@
     <Content Include="Views\Template\Create.cshtml" />
     <Content Include="Views\Template\Preview.cshtml" />
     <Content Include="Views\Article\Index.cshtml" />
-    <Content Include="sitemap.sitemap" />
+    <Content Include="sitemap.sitemap">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
