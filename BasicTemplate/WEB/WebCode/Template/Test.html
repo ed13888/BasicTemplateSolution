@@ -165,7 +165,6 @@
 
             document.onreadystatechange = function () {
                 if (document.readyState == 'complete') {
-                    window.parent.hideLoading();
                     myAuto.play(data.FMusic);
                 }
             };
@@ -249,13 +248,7 @@
                 });
 
             });
-
-
-            function rondom(min, max) {
-                //parseInt(Math.random() * (max - min + 1) + min, 10);
-                return Math.floor(Math.random() * (max - min + 1) + min);
-            }
-
+            
         })();
     </script>
 </body>

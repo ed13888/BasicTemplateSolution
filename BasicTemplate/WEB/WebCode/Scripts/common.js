@@ -40,6 +40,13 @@ function get(key) {
     }
 }
 
+
+//产生随机数
+function rondom(min, max) {
+    //parseInt(Math.random() * (max - min + 1) + min, 10);
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 //音乐播放器
 function AudioPlayer(audio, switchButton) {
 
