@@ -90,7 +90,7 @@
         <div class="text-center py-2 bottom-control">
             <div class="col-xs-12">
                 <button type="reset" class="btn" onclick="javascript: goTop();">清空重置</button>
-                <button type="submit" id="submit" class="btn btn-success">提交并预览</button>
+                <button type="submit" id="btnSubmit" class="btn btn-success">提交并预览</button>
             </div>
         </div>
         <input type="text" value="@ViewBag.Guid" id="guid" name="FUId" style="display:none;" />
@@ -99,7 +99,7 @@
 </div>
 @section script{
 
-    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
     <script>
         $(function () {
             //初始化fileinput控件（第一次初始化）
@@ -109,10 +109,11 @@
                     language: 'zh', //设置语言
                     uploadUrl: uploadUrl, //上传的地址
                     maxFileCount: 6,
+                    uploadAsync: true,
                     enctype: 'multipart/form-data',
                     //allowedFileExtensions: ['jpg', 'png', 'bmp', 'jpeg', 'gif'],
                     //allowedFileTypes: ['image'],
-                    showUpload: true, //是否显示上传按钮
+                    showUpload: false, //是否显示上传按钮
                     showCaption: false,//是否显示标题
                     browseClass: "btn btn-primary", //按钮样式
                     previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
@@ -124,7 +125,7 @@
                         return data;
                     },
                 }).on("filebatchselected", function (event, files) {
-                    $(this).fileinput("upload");
+                    //$(this).fileinput("upload");
                 }).on("fileuploaded", function (event, data) {
                     if (data.response && data.response.status) {
                         $("#fphoto").val($("#fphoto").val() + ";" + data.response.imgUrl);
@@ -132,6 +133,8 @@
                     else {
                         layer.msg("上传失败!");
                     }
+                    //提交表单
+                    $(validator.currentForm).submit();
                 });
             }
             initFileInput("photo", "/FileUpload/Upload");
@@ -152,46 +155,52 @@
                     $v.val(defaultValue);
             });
 
-            (function checkForm() {
-              var status=  $("form").validate({
-                    onsubmit: true,
-                    ignore: "",//防止过滤隐藏对象
-                    rules: {
-                        FTitle: {
-                            required: true    //此处就是必填项验证
-                        },
-                        //mobilephone: {
-                        //    required: true,
-                        //    phone: true     //号码格式验证，jquery.validate.js本身不提供此项验证，可通过引入扩展插件或修改jquery.validate.js实现
-                        //},
-                        //email: {
-                        //    required: true,
-                        //    email: true   //邮箱格式验证
-                        //},
-                        FMusic: {
-                            required: true
-                        },
-                        FDescription: {
-                            required: true
-                        },
-                        FProducer: {
-                            required: true
-                        },
+
+            var validator = $("form").validate({
+                onsubmit: false,
+                ignore: "",//防止过滤隐藏对象
+                rules: {
+                    FTitle: {
+                        required: true    //此处就是必填项验证
                     },
-                    messages: {     //相对应的错误提示信息
-                        FTitle: {
-                            required: "请输入标题！"
-                        },
-                        FMusic: "请选择背景音乐！",
-                        FDescription: "请输入页面介绍！",
-                        FProducer: "请输入制作人！"
+                    FMusic: {
+                        required: true
                     },
-                    success: "valid",
-                    submitHandler: function () {
-                        return true;
+                    FDescription: {
+                        required: true
+                    },
+                    FProducer: {
+                        required: true
+                    },
+                },
+                messages: {     //相对应的错误提示信息
+                    FTitle: {
+                        required: "请输入标题！"
+                    },
+                    FMusic: "请选择背景音乐！",
+                    FDescription: "请输入页面介绍！",
+                    FProducer: "请输入制作人！"
+                },
+                success: "valid",
+                submitHandler: function (form, event) {
+                    return true;
+                },
+                invalidHandler: function (event, validator) {
+                    if (validator.errorList.length > 0) {
+                        $(validator.errorList[0].element).focus();
                     }
-                });
-            }) ();
+                }
+            });
+
+            $("#btnSubmit").click(function (e) {
+                if (validator.form()) {
+                    var fileArray = $('#photo').fileinput('getFileStack');
+                    if (fileArray.length > 0) {
+                        $("#photo").fileinput("upload");
+                        e.preventDefault();
+                    }
+                }
+            });
 
         });
     </script>
