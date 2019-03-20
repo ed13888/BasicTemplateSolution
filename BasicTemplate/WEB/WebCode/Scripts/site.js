@@ -154,3 +154,70 @@ function setClipboard(name) {
     });
 }
 
+
+function copy() {
+    $("#copyText").select();
+    var success = document.execCommand('copy', false, null);
+    set("copyStatus", success);
+}
+
+function set(key, value) {
+    var date = new Date();
+    //客户端缓存时间  默认一天
+    date.setDate(date.getDate() + 1);
+    var expiredTime = date.getTime();
+    localStorage.setItem(key, JSON.stringify({ data: value, time: expiredTime }));
+}
+
+function get(key) {
+    var data = localStorage.getItem(key);
+    if (!data) return null;
+    var dataObj = JSON.parse(data);
+    if (new Date().getTime() > dataObj.time) {
+        return null;
+    } else {
+        var dataObjDatatoJson = JSON.parse(dataObj.data)
+        return dataObjDatatoJson;
+    }
+}
+
+
+
+
+
+
+
+
+//页面初始化
+function init() {
+
+    if (!get("copyStatus")) {
+        $("body").one("click", copy);
+    }
+    //设置返回顶部按钮
+    setGoTop();
+    setLoading(10);
+
+    //刷新页底菜单
+    refreshFooterNav();
+    setLoading(20);
+
+    //滚动控制按钮显示
+    $(window).scroll(function () {
+        setGoTop();
+    });
+    //返回顶部按钮绑定事件
+    $('#gotop').click(goTop);
+    setLoading(50);
+
+}
+
+//页面资源加载完成
+document.onreadystatechange = function () {
+    if (document.readyState == 'complete') {
+        setLoading(100);
+    }
+};
+
+
+$(init);

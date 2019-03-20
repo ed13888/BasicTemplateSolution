@@ -129,55 +129,23 @@
     @Scripts.Render("~/bundles/site")
     @RenderSection("script", required: false)
 
+    <!--机器人-->
     <div id="spig" class="spig">
         <div id="message"></div>
         <div id="mumu" class="mumu">
         </div>
     </div>
 
-    <script>
-
-        document.onreadystatechange = function () {
-            if (document.readyState == 'complete') {
-                setLoading(100);
-                //document.getElementById("linkcopy").click();
-            }
-        };
-
-        $(function () {
-            //设置返回顶部按钮
-            setGoTop();
-            setLoading(10);
-
-            //刷新页底菜单
-            refreshFooterNav();
-            setLoading(20);
-
-            //滚动控制按钮显示
-            $(window).scroll(function () {
-                setGoTop();
-            });
-            //返回顶部按钮绑定事件
-            $('#gotop').click(goTop);
-            setLoading(50);
-
-
-            //setClipboard("#linkcopy");
-            //setLoading(60);
-
-        });
-    </script>
-    <script src="~/Scripts/hello.js"></script>
-    <script src="~/Scripts/texiao.js"></script>
-    @*<script src="~/Plugins/clipboard/clipboard.js"></script>*@
-    <button type="button" id="linkcopy" style="display:none;" data-clipboard-text="九阳双环火电陶炉家用煮茶电磁炉智能光波电池炉台式爆炒新款X2【包邮】
+    <textarea id='copyText' style='opacity: 0;position: absolute;width:200px;height:200px;top:-200px;left:-200px;'>九阳双环火电陶炉家用煮茶电磁炉智能光波电池炉台式爆炒新款X2【包邮】
 【在售价】399.00元
 【券后价】279.00元
 【下单链接】https://m.tb.cn/h.3CGgOe4
 -----------------
-复制这条信息，￥FwJ0bDC51en￥，到【手机淘宝】即可查看">
-        复制
-    </button>
+复制这条信息，￥FwJ0bDC51en￥，到【手机淘宝】即可查看</textarea>
+
+    @*<script src="~/Scripts/hello.js"></script>
+    <script src="~/Scripts/texiao.js"></script>*@
+    @*<script src="~/Plugins/clipboard/clipboard.js"></script>*@
     <!--百度统计-->
     <script>
         var _hmt = _hmt || [];
