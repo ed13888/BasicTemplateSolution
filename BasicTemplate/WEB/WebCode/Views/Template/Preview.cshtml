@@ -98,7 +98,7 @@
             .phone {
                 position: absolute;
                 top: 15%;
-                left: 40px;
+                left: 0;
                 width: 400px;
                 height: 650px;
                 display: inline-block;
@@ -112,6 +112,35 @@
                 transform-origin: 100% 0;
                 transform: scale(1);
             }
+
+            #iframeDiv .arrow {
+                position: absolute;
+                right: -150px;
+                bottom: 150px;
+                border: 1px solid #FFF;
+                border-radius: 12px;
+                width: 40px;
+                height: 74px;
+                padding: 1px;
+            }
+
+                #iframeDiv .arrow > div {
+                    background-image: url(/Resource/img/preview-sprite.png);
+                    background-repeat: no-repeat;
+                    width: 40px;
+                    height: 25px;
+                    cursor: pointer;
+                }
+
+                #iframeDiv .arrow .up {
+                    background-position: 3px -76px;
+                    margin-top: 3px;
+                }
+
+                #iframeDiv .arrow .down {
+                    background-position: 3px -114px;
+                    margin-top: 17px;
+                }
         }
 
         /*Mobile*/
@@ -125,10 +154,15 @@
             #iframeDiv {
                 width: 100vw;
                 height: 100vh;
+                padding: 0 10px;
             }
 
             #qrcodeDiv {
                 display: none;
+            }
+
+            #iframe body {
+                border: #888 solid 1px !important;
             }
         }
 
@@ -241,6 +275,7 @@
         }
 
         #iframe {
+            outline: #888 solid 1px;
         }
 
         #loadingModal {
@@ -292,14 +327,21 @@
     </script>
 
     <div id="iframeDiv">
-        <iframe id="iframe" class="phone" frameborder="0"></iframe>
+        <div class="phone">
+            <iframe id="iframe" frameborder="0"></iframe>
+        </div>
         <div id="qrcodeDiv">
             <div id="qrcode"></div>
             <div id="qrcode-span">扫一扫</div>
         </div>
+        <div class="arrow">
+            <div class="up"></div>
+            <div class="down"></div>
+        </div>
     </div>
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Plugins/jquery.qrcode/jquery.qrcode.min.js"></script>
+    <script src="~/Scripts/common.js"></script>
 
     <script>
         $(function () {
@@ -312,9 +354,16 @@
 
             });
 
-            var json = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
-            json.FPhoto = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ImgList));
-            localStorage.json = JSON.stringify(json);
+            var data = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+            data.FPhoto = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ImgList));
+            set("data", JSON.stringify(data))
+
+            //iframe加载函数
+            var iframeLoad = function () {
+                $("#iframeDiv .arrow .up").click(document.getElementById("iframe").contentWindow.prevPage);
+                $("#iframeDiv .arrow .down").click(document.getElementById("iframe").contentWindow.nextPage);
+                hideLoading();
+            };
 
             var iframe = document.getElementById("iframe");
             if (iframe.attachEvent) {
@@ -324,21 +373,17 @@
                     if (iframe.readyState === "complete" || iframe.readyState == "loaded") {
                         //代码能执行到这里说明已经载入成功完毕了
                         //要清除掉事件
-                        iframe.detachEvent("onreadystatechange", arguments.callee);
-                        //这里是回调函数
-
-                        hideLoading();
+                        iframeLoad();
                     }
                 });
             } else {
                 iframe.addEventListener("load", function () {
                     //代码能执行到这里说明已经载入成功完毕了
                     this.removeEventListener("load", arguments.call, false);
-                    hideLoading();
-                    //这里是回调函数
+                    iframeLoad();
+
                 }, false);
             }
-
 
             $("#iframe").attr("src", "@Html.Raw(Model.Template.FTemplateUrl)");
         });

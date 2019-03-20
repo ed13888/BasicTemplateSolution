@@ -30,6 +30,7 @@ namespace WebCode
 
 
             bundles.Add(new ScriptBundle("~/bundles/site").Include(
+                      "~/Scripts/common.js",
                       "~/Scripts/site.js",
                       "~/Scripts/hello.js",
                       "~/Scripts/texiao.js"));

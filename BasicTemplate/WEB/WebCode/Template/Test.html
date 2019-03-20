@@ -6,6 +6,7 @@
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
     <link href="../Plugins/fullpage/css/fullpage.css" rel="stylesheet" />
     <link href="../Content/animate.css" rel="stylesheet" />
+    <link href="../Content/iframeCommon.css" rel="stylesheet" />
     <style>
         @font-face {
             font-family: HappyZcool;
@@ -35,10 +36,10 @@
             position: relative;
         }
 
-        #section0,
         #section1,
         #section2,
         #section3,
+        #section4,
         #slide1,
         #slide2 {
             background-size: cover;
@@ -61,53 +62,6 @@
         #section4 {
             /*background-image: url(/Resource/img/bg4.jpg);
             padding: 6% 0 0 0;*/
-        }
-
-        .music {
-            width: 30px;
-            height: 30px;
-            position: fixed;
-            top: 42px;
-            right: 20px;
-            z-index: 1;
-            -webkit-animation: musicRotate 2s linear infinite;
-        }
-
-        .music-open {
-            background-image: url(/Resource/img/test/open.jpg);
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: contain;
-        }
-
-        .music-close {
-            background-image: url(/Resource/img/test/close.jpg);
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: contain;
-        }
-
-        @-webkit-keyframes musicRotate {
-
-            0% {
-                -webkit-transform: rotate(0deg);
-            }
-
-            25% {
-                -webkit-transform: rotate(90deg);
-            }
-
-            50% {
-                -webkit-transform: rotate(180deg);
-            }
-
-            75% {
-                -webkit-transform: rotate(270deg);
-            }
-
-            100% {
-                -webkit-transform: rotate(360deg);
-            }
         }
     </style>
 </head>
@@ -186,8 +140,10 @@
     <audio src="" id="audio" autoplay="autoplay" controls="controls" preload loop="loop" hidden="true"></audio>
     <script src="../Scripts/jquery-3.3.1.min.js"></script>
     <script src="../Scripts/bootstrap.min.js"></script>
-    <script src="../Plugins/fullpage/js/fullpage.js"></script>
+    <script src="../Plugins/fullpage/js/fullpage.min.js"></script>
     <script src="../Scripts/jquery.animate.js"></script>
+    <script src="../Scripts/common.js"></script>
+    <script src="../Scripts/iframeCommon.js"></script>
     <script>
         (function () {
 
@@ -197,44 +153,38 @@
                 img1.src = "/Resource/img/test/close.jpg";
             }
 
-            if (!localStorage.json) return;
-            var json = JSON.parse(localStorage.json);
+            var data = get("data");
 
-            var myAuto = document.getElementById('audio');
+            if (!data) return;
+
+            var myAuto = new AudioPlayer(document.getElementById('audio'), $("#btnMusic"));
 
             document.addEventListener("WeixinJSBridgeReady", function () {
-                myAuto.setAttribute("src", json.FMusic);
-                myAuto.play();
+                myAuto.play(data.FMusic);
             }, false);
 
             document.onreadystatechange = function () {
                 if (document.readyState == 'complete') {
                     window.parent.hideLoading();
-                    autoPlay(json.FMusic);
+                    myAuto.play(data.FMusic);
                 }
             };
 
             $(function () {
 
-                $("#btnMusic").click(function () {
-                    var myAuto = document.getElementById('audio');
-                    if ($(this).hasClass("music-open")) {
-                        $(this).removeClass("music-open").addClass("music-close");
-                        myAuto.pause();
-                    } else {
-                        $(this).removeClass("music-close").addClass("music-open");
-                        myAuto.play();
-                    }
-                });
+                //$("#btnMusic").click(function () {
+                //    myAuto.toggle();
+                //    $(this).toggleClass("music-open").toggleClass("music-close");
+                //});
 
                 var tempHtml = $("#section-template").html();
                 var pageRoot = $("#fullpage");
 
                 var page = 1;
                 var maxDelay = 6;
-                for (var i = 1; i <= json.Template.FSentenceCount; i++) {
+                for (var i = 1; i <= data.Template.FSentenceCount; i++) {
                     var temp = $(tempHtml);
-                    temp.find(".section-content-span:eq(0)").html(json["FP" + i]);
+                    temp.find(".section-content-span:eq(0)").html(data["FP" + i]);
                     temp.find(".animated").each(function (index, v) {
                         var $v = $(v);
                         var random = $v.hasClass("last") ? maxDelay : rondom(1, maxDelay - 1);
@@ -248,46 +198,11 @@
 
                 }
 
-                //for (var i = 0; i < json.FPhoto.length; i++) {
-                //    var img = '<img src="' + json.FPhoto[0] + '" />';
+                //for (var i = 0; i < data.FPhoto.length; i++) {
+                //    var img = '<img src="' + data.FPhoto[0] + '" />';
                 //    main.append(img);
                 //}
 
-
-                //var option = {
-                //    FP1: {
-                //        animate: $.animateOption.bounce.in,
-                //        delay: 2
-                //    },
-                //    FP2: {
-                //        animate: $.animateOption.bounceDown.in,
-                //        delay: 2
-                //    },
-                //    FP3: {
-                //        animate: $.animateOption.bounceLeft.in,
-                //        delay: 2
-                //    },
-                //    FP4: {
-                //        animate: $.animateOption.bounceRight.in,
-                //        delay: 2
-                //    },
-                //    FP5: {
-                //        animate: $.animateOption.bounceUp.in,
-                //        delay: 2
-                //    },
-                //    FP6: {
-                //        animate: $.animateOption.fade.in,
-                //        delay: 2
-                //    },
-                //    FP7: {
-                //        animate: $.animateOption.fadeDown.in,
-                //        delay: 2
-                //    },
-                //    FP8: {
-                //        animate: $.animateOption.fadeDownBig.in,
-                //        delay: 2
-                //    },
-                //};
 
                 $('#fullpage').fadeIn(200).fullpage({
                     lazyLoad: true,
@@ -301,11 +216,17 @@
                     },
                     //滚动前的回调函数
                     onLeave: function (index, nextIndex, direction) {
+                        //var _directionAnimate = direction == "down" ? "slideOutUp" : "slideOutDown";
+                        //var _view = $(".section-content", index.item);
+                        //_view.addClass("animated").addClass(_directionAnimate);
+                        //setTimeout(function () {
+                        //    _view.removeClass("animated").removeClass("_directionAnimate");
+                        //}, 500);
+
                         $(index.item).find(".animated").each(function (i, v) {
                             var $v = $(v);
                             var name = $v.attr("name");
                             var delay = $v.attr("delay");
-                            //var opt = option[id];
                             if (name)
                                 $(this).addClass("hide").removeClass(name).removeClass("delay-" + delay + "s");
                         });
@@ -315,7 +236,6 @@
                             var $v = $(v);
                             var name = $v.attr("name");
                             var delay = $v.attr("delay");
-                            //var opt = option[id];
                             if (name)
                                 $(this).removeClass("hide").addClass(name).addClass("delay-" + delay + "s");
                         });
@@ -330,23 +250,6 @@
 
             });
 
-
-            function autoPlay(url) {
-                if (url) $(myAuto).attr("src", url);
-                myAuto.play();
-            }
-            function closePlay() {
-                myAuto.pause();
-                myAuto.load();
-            }
-
-            function playPause() {
-                if (myAuto.paused) {
-                    myAuto.play();
-                } else {
-                    myAuto.pause();
-                }
-            }
 
             function rondom(min, max) {
                 //parseInt(Math.random() * (max - min + 1) + min, 10);
