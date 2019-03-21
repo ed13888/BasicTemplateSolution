@@ -56,7 +56,7 @@
             }
         });
     }
-    
+
 
     function setClipboard(name) {
         var clipboard = new ClipboardJS(name);
@@ -107,6 +107,7 @@
     document.onreadystatechange = function () {
         if (document.readyState == 'complete') {
             setLoading(100);
+            $("body").addClass("body-font");
         }
     };
 
