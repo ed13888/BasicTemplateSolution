@@ -78,7 +78,7 @@
         <div class="control-group my-2">
             <label class="control-label" for="description">页面介绍*</label>
             <div class="controls">
-                <textarea class="form-control form-element" rows="6" id="description" name="FDescription" placeholder="这个页面是我在 我要沙雕网给你制作的，希望你会喜欢"></textarea>
+                <textarea class="form-control form-element" rows="6" id="description" name="FDescription" placeholder="这个页面是我在沙雕表白网给你制作的，希望你会喜欢"></textarea>
             </div>
         </div>
         <div class="control-group my-2">
@@ -115,6 +115,8 @@
                     //allowedFileExtensions: ['jpg', 'png', 'bmp', 'jpeg', 'gif'],
                     //allowedFileTypes: ['image'],
                     showUpload: false, //是否显示上传按钮
+                    //showUploadedThumbs:false,
+                    fileActionSettings: { showRemove: true, showUpload: false, showZoom: true, },
                     showCaption: false,//是否显示标题
                     browseClass: "btn btn-primary", //按钮样式
                     previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",

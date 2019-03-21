@@ -23,6 +23,8 @@
         .temp-body {
             width: 100%;
             max-width: 400px;
+            position: relative;
+            overflow: hidden;
         }
 
             .temp-body .temp-body-logo {
@@ -67,6 +69,20 @@
                 .temp-body .temp-body-bottom .temp-body-bottom-justify button {
                     width: 100%;
                 }
+
+
+        .cover-hidden {
+            font-size: 18px;
+            display: inline-block;
+            border: 1px solid #ccc;
+            padding: 8px 57px;
+            background: #ed3f14;
+            transform: rotate(45deg);
+            position: absolute;
+            right: -75px;
+            top: -10px;
+            color: #fff;
+        }
     </style>
 }
 
@@ -79,6 +95,10 @@
                     <a href="/template/design/@(list[i].FId).html" title="@(list[i].FName)" rel="bookmark" class="temp-body-logo text-center">
                         <img class="temp-img" src="@(list[i].FImgUrl)" alt="1111">
                         <span class="temp-tip">免费</span>
+                        @if (i != 0)
+                        {
+                            <div class="cover-hidden">开发中</div>
+                        }
                     </a>
                     <div class="temp-body-bottom">
                         <p class="temp-showtp my-2">
