@@ -116,21 +116,21 @@
                 for (var e = t[i](o[0]), n = 0, a = e.length; n < a; n++)
                     layer.close(0 | e[0].getAttribute("index"))
             }
-        },
-        "function" == typeof define ? define(function () {
-            return layer
-        }) : function () {
-            var e = document.scripts
-                , n = e[e.length - 1]
-                , i = n.src
-                , a = i.substring(0, i.lastIndexOf("/") + 1);
-            n.getAttribute("merge") || document.head.appendChild(function () {
-                var e = t.createElement("link");
-                return e.href = a + "need/layer.css?2.0",
-                    e.type = "text/css",
-                    e.rel = "styleSheet",
-                    e.id = "layermcss",
-                    e
-            }())
-        }()
+        };
+        //"function" == typeof define ? define(function () {
+        //    return layer
+        //}) : function () {
+        //    var e = document.scripts
+        //        , n = e[e.length - 1]
+        //        , i = n.src
+        //        , a = i.substring(0, i.lastIndexOf("/") + 1);
+        //    n.getAttribute("merge") || document.head.appendChild(function () {
+        //        var e = t.createElement("link");
+        //        return e.href = a + "need/layer.css?2.0",
+        //            e.type = "text/css",
+        //            e.rel = "styleSheet",
+        //            e.id = "layermcss",
+        //            e
+        //    }())
+        //}()
 }(window);

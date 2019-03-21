@@ -183,10 +183,15 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\iframeCommon.css" />
+    <Content Include="Content\Site.css">
+      <DependentUpon>Site.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Site.min.css">
+      <DependentUpon>Site.css</DependentUpon>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Plugins\bootstrap-fileinput\css\fileinput-rtl.css" />
     <Content Include="Plugins\bootstrap-fileinput\css\fileinput-rtl.min.css" />
     <Content Include="Plugins\bootstrap-fileinput\css\fileinput.css" />
@@ -255,10 +260,16 @@
     <Content Include="Plugins\jquery.qrcode\qrcode.js" />
     <Content Include="Plugins\layer\layer.js" />
     <Content Include="Plugins\layer\mobile\layer.js" />
-    <Content Include="Plugins\layer\mobile\need\layer.css" />
+    <Content Include="Plugins\layer\mobile\css\layer.css" />
+    <Content Include="Plugins\layer\mobile\css\layer.min.css">
+      <DependentUpon>layer.css</DependentUpon>
+    </Content>
     <Content Include="Plugins\layer\theme\default\icon-ext.png" />
     <Content Include="Plugins\layer\theme\default\icon.png" />
     <Content Include="Plugins\layer\theme\default\layer.css" />
+    <Content Include="Plugins\layer\theme\default\layer.min.css">
+      <DependentUpon>layer.css</DependentUpon>
+    </Content>
     <Content Include="Plugins\layer\theme\default\loading-0.gif" />
     <Content Include="Plugins\layer\theme\default\loading-1.gif" />
     <Content Include="Plugins\layer\theme\default\loading-2.gif" />
@@ -305,6 +316,13 @@
     <Content Include="fonts\myrb.ttf" />
     <Content Include="fonts\ht.ttf" />
     <Content Include="fonts\syht.otf" />
+    <Content Include="Content\Site.less" />
+    <None Include="bundleconfig.json" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
+    <Content Include="fonts\zh7.ttf" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\common.js" />

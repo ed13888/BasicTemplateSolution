@@ -1,0 +1,350 @@
+﻿
+@font-face {
+    font-family: ht;
+    src: url(/fonts/zh7.ttf)
+}
+
+body {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    font-family: ht;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+/*input,
+select,
+textarea {
+    max-width: 280px;
+}*/
+
+.bg-nav {
+    background-image: url(/Resource//img/bg_nav.png);
+    border: none;
+    background-color: transparent;
+}
+
+.navbar-inverse .navbar-toggle {
+    border: none;
+}
+
+.navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+    background-color: transparent;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #ffffff;
+    background: url(/Resource/img/logo.png) no-repeat center;
+    width: 300px;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    border-color: #ffffff;
+}
+
+.navbar-logo {
+    width: 50px;
+    height: 50px;
+    float: left;
+    margin-right: 10px;
+}
+
+.navbar-logo img {
+    width: 100%;
+    height: 100%;
+}
+
+@width: 15px;
+@initVal: 2;
+
+.generate-columns(6);
+
+.generate-columns(@n, @i: @initVal) when (@i =< @n) {
+    @val: @width*@i/@initVal;
+
+    .mt-@{i} {
+        margin-top: @val !important
+    }
+
+    .ml-@{i} {
+        margin-left: @val !important
+    }
+
+    .mr-@{i} {
+        margin-right: @val !important
+    }
+
+    .mx-@{i} {
+        margin-right: @val !important;
+        margin-left: @val !important
+    }
+
+    .my-@{i} {
+        margin-top: @val !important;
+        margin-bottom: @val !important
+    }
+
+    .pt-@{i} {
+        padding-top: @val !important
+    }
+
+    .pb-@{i} {
+        padding-bottom: @val !important
+    }
+
+    .pl-@{i} {
+        padding-left: @val !important
+    }
+
+    .pr-@{i} {
+        padding-right: @val !important
+    }
+
+    .px-@{i} {
+        padding-right: @val !important;
+        padding-left: @val !important
+    }
+
+    .py-@{i} {
+        padding-top: @val !important;
+        padding-bottom: @val !important
+    }
+
+    .generate-columns(@n, (@i + @initVal));
+}
+
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/*自定义样式*/
+.am-navbar {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 49px;
+    line-height: 49px;
+    z-index: 1010;
+}
+
+.am-navbar .am-navbar-nav {
+    padding-left: 8px;
+    padding-right: 8px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.am-navbar ul {
+    padding-left: 0;
+    margin: 0;
+    list-style: none;
+    width: 100%;
+}
+
+.smnav {
+    background: #fff !important;
+    border-top: 1px solid #eee;
+    box-shadow: 1px 1px 2px 2px rgba(219,219,219,0.6);
+}
+
+.am-navbar-nav {
+    position: relative;
+    z-index: 1015;
+}
+
+[class*=am-avg-] {
+    display: block;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.am-navbar .am-navbar-nav li {
+    display: table-cell;
+    width: 1%;
+    float: none;
+}
+
+.smnav li a {
+    color: #999 !important;
+}
+
+.am-navbar-nav a .glyphicon {
+    width: 24px;
+    height: 24px;
+    margin: 4px auto 0;
+    display: block;
+    line-height: 24px;
+}
+
+.smnav li a {
+    color: #999 !important;
+}
+
+.am-navbar-nav a {
+    display: inline-block;
+    width: 100%;
+    height: 49px;
+    line-height: 20px;
+}
+
+#footer_nav li.active * {
+    color: red;
+}
+
+*, :after, :before {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.am-gotop-fixed {
+    position: fixed;
+    right: 10px;
+    bottom: 60px;
+    z-index: 1010;
+    width: 32px;
+    min-height: 32px;
+    overflow: hidden;
+    border-radius: 0;
+    text-align: center;
+    display: none;
+    cursor: pointer;
+}
+
+.am-gotop-icon-custom {
+    display: inline-block;
+    max-width: 30px;
+    vertical-align: middle;
+}
+
+.am-gotop-fixed a {
+    display: block;
+}
+
+
+.btn-pay {
+    margin-bottom: 20px;
+    padding: 8px 25px;
+    font-size: 16px;
+    color: #fff !important;
+    background-color: #ea6f5a;
+    border-radius: 20px;
+}
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background-color: #F5F5F5;
+}
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+}
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #ea6f5a;
+}
+/*PC 不显示页底菜单*/
+@media only screen and (min-width : 768px) {
+    body {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    #footer_nav {
+        display: none;
+    }
+
+    #spig {
+        display: block;
+        width: 150px;
+        height: 150px;
+        position: absolute;
+        top: -200px;
+        left: 160px;
+        z-index: 9999;
+    }
+
+    #mumu {
+        width: 150px;
+        height: 150px;
+        cursor: move;
+        background: url(/Resource/img/pig.png) center bottom no-repeat;
+        background-position: center bottom;
+    }
+
+    #message {
+        color: #191919;
+        border: 1px solid #c4c4c4;
+        background: #ddd;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        min-height: 1em;
+        padding: 5px;
+        position: absolute;
+        bottom: 125px;
+        text-align: center;
+        width: 100% !important;
+        z-index: 10000;
+        -moz-box-shadow: 0 0 15px #eeeeee;
+        -webkit-box-shadow: 0 0 15px #eeeeee;
+        border-color: #eeeeee;
+        box-shadow: 0 0 15px #eeeeee;
+        outline: none;
+        opacity: 0;
+    }
+
+    #message:before {
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-left: 12px solid transparent;
+        border-right: 12px solid transparent;
+        border-top: 15px solid #ddd;
+    }
+}
+/*   Mobile  */
+@media only screen and (max-width : 768px) {
+    .navbar-logo {
+        display: none;
+    }
+
+    .navbar-inverse .navbar-brand {
+        background-size: 100% auto;
+        width: 45vw;
+        margin-left: 10px;
+    }
+
+    #spig {
+        display: none;
+    }
+}

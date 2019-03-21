@@ -1,0 +1,14 @@
+[
+  {
+    "outputFileName": "Plugins/layer/theme/default/layer.min.css",
+    "inputFiles": [
+      "Plugins/layer/theme/default/layer.css"
+    ]
+  },
+  {
+    "outputFileName": "Plugins/layer/mobile/css/layer.min.css",
+    "inputFiles": [
+      "Plugins/layer/mobile/css/layer.css"
+    ]
+  }
+]
