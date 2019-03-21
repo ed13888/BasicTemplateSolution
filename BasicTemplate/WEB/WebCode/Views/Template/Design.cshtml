@@ -10,18 +10,18 @@
             color: red;
         }
 
-        form {
-            margin-bottom: 80px;
+        #container {
+            margin-bottom: 65px;
         }
 
-            form .bottom-control {
-                position: fixed;
-                width: 100%;
-                left: 0;
-                bottom: 0;
-                overflow: hidden;
-                background-color: #f5f5f5;
-            }
+        form .bottom-control {
+            position: fixed;
+            width: 100%;
+            left: 0;
+            bottom: 0;
+            overflow: hidden;
+            background-color: #f5f5f5;
+        }
 
         @@media only screen and (max-width : 768px) {
             form .bottom-control {
@@ -35,7 +35,7 @@
         }
     </style>
 }
-<div class="container">
+<div id="container" class="container">
     <form class="form-horizontal" method="post" action="/template/createtemplate">
         <div class="control-group my-2">
             <label class="control-label" for="title">网站标题*</label>
@@ -46,8 +46,9 @@
         <div class="control-group my-2">
             <label class="control-label" for="music">背景音乐*</label>
             <div class="controls">
-                <select class="form-control" onchange="document.getElementById('music').value = '' + this.options[this.selectedIndex].value">
-                    <option value="">页面背景音乐</option>
+                <select id="music" name="FMusic" class="form-control">
+                    @*onchange="document.getElementById('music').value = '' + this.options[this.selectedIndex].value">*@
+                    <option value="">请选择页面背景音乐</option>
                     <option value="/Resource/mp3/1.mp3">《暖暖》----------------【梁静茹】</option>
                     <option value="/Resource/mp3/2.mp3">《丫头》----------------【王童语】</option>
                     <option value="/Resource/mp3/3.mp3">《多幸运》--------------【韩安旭】</option>
@@ -55,7 +56,7 @@
                     <option value="/Resource/mp3/5.mp3">《星月神话》--------------【金沙】</option>
                     @*<option value="http://www.zaiyiqiba.com/mp3/kgmp3.php?id=018551D54490C272B54D064D92663826">《一次就好》------------【杨宗纬】</option>*@
                 </select>
-                <input class="form-control form-element" type="text" id="music" name="FMusic" placeholder="背景音乐" value="" style="display:none;">
+                @*<input class="form-control form-element" type="text" id="music" name="FMusic" placeholder="背景音乐" value="" style="display:none;">*@
             </div>
         </div>
         @for (int i = 1; i <= count; i++)
@@ -99,7 +100,7 @@
 </div>
 @section script{
 
-    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
     <script>
         $(function () {
             //初始化fileinput控件（第一次初始化）
@@ -142,10 +143,10 @@
             var tempModel = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
             //初始化表单
             var formDefaultValue = $.extend({
-                FTitle: "我是标题___啦啦啦",
-                //FMusic: "/Resource/mp3/1.mp3",
-                FDescription: "这里是页面介绍哟",
-                FProducer:"这里是显示制作人哟"
+                //FTitle: "我是标题___啦啦啦",
+                ////FMusic: "/Resource/mp3/1.mp3",
+                //FDescription: "这里是页面介绍哟",
+                //FProducer:"这里是显示制作人哟"
             }, tempModel);
 
             $("form").find(".form-control").each(function (i, v) {
@@ -187,7 +188,9 @@
                 },
                 invalidHandler: function (event, validator) {
                     if (validator.errorList.length > 0) {
-                        $(validator.errorList[0].element).focus();
+                        var errorElement = $(validator.errorList[0].element);
+                        $("html,body").animate({ scrollTop: errorElement.offset().top - "85" + "px" }, 500);
+                        errorElement[0].focus();
                     }
                 }
             });
@@ -199,6 +202,9 @@
                         $("#photo").fileinput("upload");
                         e.preventDefault();
                     }
+                }
+                else {
+                    e.preventDefault();
                 }
             });
 
