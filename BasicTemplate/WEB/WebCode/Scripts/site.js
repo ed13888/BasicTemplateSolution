@@ -56,75 +56,7 @@
             }
         });
     }
-
-
-
-    function setLoading(val) {
-        val = val || 0;
-        var progressBar = $("#loadingModal .progress-bar");
-        if (val >= 100) {
-            //$("#progress").fadeOut(100);
-            //JQ方式
-            //$("#loadingModal").modal('hide');
-            //原生js方式
-            hideLoading();
-        }
-        else {
-            progressBar.animate({ width: (val || 0) + '%' }, 100);
-        }
-    }
-
-    function showLoading() {
-        document.body.classList.add("modal-open");
-        document.getElementById("loadingModal").style.display = "block";
-        document.getElementById("modalMask").style.display = "block";
-    }
-
-    function hideLoading() {
-        //JQ方式
-        //$('#loadingModal').modal({ backdrop: 'static', keyboard: false });
-        //$("#loadingModal").modal('show');
-
-        //原生js方式
-        document.getElementById("loadingModal").style.display = "none";
-        document.getElementById("modalMask").style.display = "none";
-        $("body").removeClass("modal-open");
-    }
-
-
-    function loadSignalR() {
-
-        var conn = $.connection("/myPath");
-
-        conn.start().done(function (data) {
-            var content = $("#info").val();
-            var name = getCookie("connectionName");
-            $("#info").val("连接成功，您的名片为： " + name + "\r\n" + content);
-        });
-
-        conn.received(function (data) {
-            var content = $("#info").val();
-            $("#info").val(data + "\r\n" + content);
-        });
-
-        $("#btnSendMsg").bind("click", sendMsg)
-        $("#msg").bind("keydown", function (event) {
-            if (event.keyCode == "13") {
-                sendMsg();
-            }
-        })
-
-        function sendMsg() {
-            var val = $('#msg').val();
-            if (val != "") {
-                conn.send(val);
-                $('#msg').val("");
-            }
-        }
-
-        return conn;
-    }
-
+    
 
     function setClipboard(name) {
         var clipboard = new ClipboardJS(name);
@@ -183,3 +115,70 @@
 
 
 })(jQuery);
+
+
+
+function setLoading(val) {
+    val = val || 0;
+    var progressBar = $("#loadingModal .progress-bar");
+    if (val >= 100) {
+        //$("#progress").fadeOut(100);
+        //JQ方式
+        //$("#loadingModal").modal('hide');
+        //原生js方式
+        hideLoading();
+    }
+    else {
+        progressBar.animate({ width: (val || 0) + '%' }, 100);
+    }
+}
+
+function showLoading() {
+    document.body.classList.add("modal-open");
+    document.getElementById("loadingModal").style.display = "block";
+    document.getElementById("modalMask").style.display = "block";
+}
+
+function hideLoading() {
+    //JQ方式
+    //$('#loadingModal').modal({ backdrop: 'static', keyboard: false });
+    //$("#loadingModal").modal('show');
+
+    //原生js方式
+    document.getElementById("loadingModal").style.display = "none";
+    document.getElementById("modalMask").style.display = "none";
+    $("body").removeClass("modal-open");
+}
+
+function loadSignalR() {
+
+    var conn = $.connection("/myPath");
+
+    conn.start().done(function (data) {
+        var content = $("#info").val();
+        var name = getCookie("connectionName");
+        $("#info").val("连接成功，您的名片为： " + name + "\r\n" + content);
+    });
+
+    conn.received(function (data) {
+        var content = $("#info").val();
+        $("#info").val(data + "\r\n" + content);
+    });
+
+    $("#btnSendMsg").bind("click", sendMsg)
+    $("#msg").bind("keydown", function (event) {
+        if (event.keyCode == "13") {
+            sendMsg();
+        }
+    })
+
+    function sendMsg() {
+        var val = $('#msg').val();
+        if (val != "") {
+            conn.send(val);
+            $('#msg').val("");
+        }
+    }
+
+    return conn;
+}
