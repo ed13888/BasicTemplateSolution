@@ -340,6 +340,7 @@
     <Content Include="Resource\img\grid-img\9.jpg" />
     <Content Include="Resource\img\logo.png" />
     <Content Include="Resource\img\logo2.png" />
+    <Content Include="Resource\img\picture.png" />
     <Content Include="Resource\img\pig.png" />
     <Content Include="Resource\img\test\1.jpg" />
     <Content Include="Resource\img\test\10.jpg" />
@@ -435,6 +436,7 @@
     <Content Include="sitemap.sitemap">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Views\Home\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

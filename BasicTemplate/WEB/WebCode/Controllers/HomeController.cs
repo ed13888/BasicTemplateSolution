@@ -28,6 +28,11 @@ namespace WebCode.Controllers
             return View();
         }
 
+        public ActionResult Error()
+        {
+            return View();
+        }
+
         public ActionResult Login()
         {
             return View();
