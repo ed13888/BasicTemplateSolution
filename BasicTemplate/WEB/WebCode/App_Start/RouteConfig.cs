@@ -13,7 +13,8 @@ namespace WebCode
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute("pc_index", "index.html", new { controller = "Template", action = "Index" });
+            //routes.MapRoute("pc_index", "index.html", new { controller = "Template", action = "Index" });
+            routes.MapRoute("pc_index", "index.html", new { controller = "Home", action = "Index" });
 
             routes.MapRoute(
                "Action1Html", // action伪静态  
@@ -36,7 +37,7 @@ namespace WebCode
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Template", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

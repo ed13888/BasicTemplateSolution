@@ -183,3 +183,17 @@ function loadSignalR() {
 
     return conn;
 }
+
+function starNum(id, value, _complete) {
+    var temp = $("#" + id);
+    complete = function () {
+        _complete && _complete(temp);
+    };
+    temp.animate({ count: value }, {
+        duration: 1000,
+        step: function () {
+            temp.text(parseInt(this.count));
+        },
+        complete: complete
+    });
+}
