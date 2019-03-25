@@ -197,3 +197,25 @@ function starNum(id, value, _complete) {
         complete: complete
     });
 }
+
+//banner动画
+function animateImgBlock() {
+
+    var imglist = $(".img-block");
+    var len = imglist.length;
+    var ran = rondom(0, len - 1);
+    var animateRandom = rondom(0, $.animateList.length - 1);
+    var animateDom = $(imglist[ran]);
+    var animate = $.animateList[animateRandom];
+    var delay = "delay-1s";
+
+    setTimeout(function () {
+        animateDom.addClass(animate.in);
+    }, 1000);
+
+
+    setTimeout(function () {
+        animateDom.removeClass(animate.in);
+        animateImgBlock();
+    }, 2000);
+}
