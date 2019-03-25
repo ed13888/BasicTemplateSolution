@@ -38,7 +38,7 @@ namespace WebCode
             //这里记录错误日志信息
             exception.Error("MvcApplication 捕获异常");
             //跳转到指定的自定义错误页
-            Response.Redirect("/Home/Error");
+            Response.Redirect("/error.html");
         }
 
 
