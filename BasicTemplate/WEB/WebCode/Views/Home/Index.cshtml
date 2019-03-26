@@ -252,6 +252,10 @@
             //signalR
             loadSignalR();
             setLoading(70);
+
+            $.getScript('/fonts/zh7.ttf', function () {
+                $("body").addClass("body-font");
+            });
         });
 
 
@@ -265,7 +269,7 @@
                 var maxRead = 6887162;
                 starNum("banner_num", maxRead, function (temp) {
                     temp.text(maxRead);
-                    $("body").addClass("body-font");
+                    //$("body").addClass("body-font");
                 });
 
                 animateImgBlock();
