@@ -15,6 +15,7 @@
         .img-grid {
             position: relative;
             background-color: #000;
+            opacity: 0;
         }
 
         .img-block {
@@ -258,6 +259,7 @@
             if (document.readyState == 'complete') {
 
                 $(window).trigger("resize");
+                $(".img-grid").css("opacity","1");
                 setLoading(100);
                 var maxRead = 6887162;
                 starNum("banner_num", maxRead, function (temp) {
