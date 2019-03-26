@@ -240,7 +240,8 @@
 
             })
             $(window).resize(function () {
-                var val = document.body.clientWidth / 12;
+                var clientWidth = document.body.clientWidth;
+                var val = clientWidth >= 768 ? clientWidth / 12 : clientWidth / 9;
                 $(".img-block").width(val).height(val);
             });
 
@@ -259,7 +260,7 @@
             if (document.readyState == 'complete') {
 
                 $(window).trigger("resize");
-                $(".img-grid").css("opacity","1");
+                $(".img-grid").css("opacity", "1");
                 setLoading(100);
                 var maxRead = 6887162;
                 starNum("banner_num", maxRead, function (temp) {
