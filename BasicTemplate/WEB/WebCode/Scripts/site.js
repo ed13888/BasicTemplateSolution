@@ -99,6 +99,19 @@
         });
         //返回顶部按钮绑定事件
         $('#gotop').click(goTop);
+
+        //请求字体文件
+        $.ajax({
+            type: 'GET',
+            url: '/fonts/zh7.ttf',
+            dataType: 'text',
+            ifModified: true,
+            cache: true,
+            success: function () {
+                $("body").addClass("body-font");
+            },
+        });
+
         setLoading(50);
 
     }
@@ -107,7 +120,7 @@
     document.onreadystatechange = function () {
         if (document.readyState == 'complete') {
             setLoading(100);
-            $("body").addClass("body-font");
+            //$("body").addClass("body-font");
         }
     };
 
