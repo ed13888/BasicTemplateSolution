@@ -19,22 +19,23 @@ namespace Common.Misc
 
         static SystemConfig()
         {
-            if (thread != null)
-            {
-                try
-                {
-                    thread.Abort();
-                    thread.DisableComObjectEagerCleanup();
-                }
-                finally
-                {
-                    thread = null;
-                }
-            }
-            RefreshData(true);
-            thread = new Thread(new ThreadStart(AutoRefreshData));
-            thread.IsBackground = false;
-            thread.Start();
+            //暂时注释
+            //if (thread != null)
+            //{
+            //    try
+            //    {
+            //        thread.Abort();
+            //        thread.DisableComObjectEagerCleanup();
+            //    }
+            //    finally
+            //    {
+            //        thread = null;
+            //    }
+            //}
+            //RefreshData(true);
+            //thread = new Thread(new ThreadStart(AutoRefreshData));
+            //thread.IsBackground = false;
+            //thread.Start();
         }
 
         /// <summary>

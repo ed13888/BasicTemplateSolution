@@ -19,13 +19,13 @@
       <publishTime>03/10/2019 19:38:24</publishTime>
     </File>
     <File Include="bin/BLL.Business.dll">
-      <publishTime>06/25/2019 22:44:45</publishTime>
+      <publishTime>06/26/2019 00:00:10</publishTime>
     </File>
     <File Include="bin/BLL.Business.dll.config">
       <publishTime>03/10/2019 19:38:22</publishTime>
     </File>
     <File Include="bin/BLL.Business.pdb">
-      <publishTime>06/25/2019 22:44:45</publishTime>
+      <publishTime>06/26/2019 00:00:10</publishTime>
     </File>
     <File Include="bin/Common.Entity.dll">
       <publishTime>06/25/2019 22:44:43</publishTime>
@@ -52,19 +52,19 @@
       <publishTime>03/10/2019 19:38:24</publishTime>
     </File>
     <File Include="bin/Common.Misc.dll">
-      <publishTime>06/25/2019 22:44:45</publishTime>
+      <publishTime>06/26/2019 00:00:10</publishTime>
     </File>
     <File Include="bin/Common.Misc.dll.config">
       <publishTime>03/10/2019 19:38:23</publishTime>
     </File>
     <File Include="bin/Common.Misc.pdb">
-      <publishTime>06/25/2019 22:44:45</publishTime>
+      <publishTime>06/26/2019 00:00:10</publishTime>
     </File>
     <File Include="bin/DAL.Business.dll">
-      <publishTime>06/25/2019 22:44:46</publishTime>
+      <publishTime>06/26/2019 00:00:11</publishTime>
     </File>
     <File Include="bin/DAL.Business.pdb">
-      <publishTime>06/25/2019 22:44:46</publishTime>
+      <publishTime>06/26/2019 00:00:11</publishTime>
     </File>
     <File Include="bin/Dapper.dll">
       <publishTime>03/10/2019 19:38:24</publishTime>
@@ -373,22 +373,22 @@
       <publishTime>03/10/2019 19:38:29</publishTime>
     </File>
     <File Include="bin/WebCode.dll">
-      <publishTime>06/25/2019 23:27:28</publishTime>
+      <publishTime>06/26/2019 00:00:12</publishTime>
     </File>
     <File Include="bin/WebCode.pdb">
-      <publishTime>06/25/2019 23:27:28</publishTime>
+      <publishTime>06/26/2019 00:00:12</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>03/10/2019 19:38:29</publishTime>
     </File>
     <File Include="bin/WEBService.dll">
-      <publishTime>06/25/2019 22:44:46</publishTime>
+      <publishTime>06/26/2019 00:00:11</publishTime>
     </File>
     <File Include="bin/WEBService.dll.config">
       <publishTime>03/10/2019 19:38:24</publishTime>
     </File>
     <File Include="bin/WEBService.pdb">
-      <publishTime>06/25/2019 22:44:46</publishTime>
+      <publishTime>06/26/2019 00:00:11</publishTime>
     </File>
     <File Include="bin/zh-Hans/System.Web.Helpers.resources.dll">
       <publishTime>03/10/2019 19:38:25</publishTime>
@@ -413,6 +413,9 @@
     </File>
     <File Include="Config/ConnectionStrings.config">
       <publishTime>03/10/2019 19:50:10</publishTime>
+    </File>
+    <File Include="Config/log4net.config">
+      <publishTime>06/25/2019 23:53:33</publishTime>
     </File>
     <File Include="Config/unity.config">
       <publishTime>06/25/2019 22:25:40</publishTime>

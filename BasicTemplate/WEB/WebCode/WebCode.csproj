@@ -185,6 +185,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="404.html" />
+    <Content Include="Config\log4net.config" />
     <None Include="Connected Services\IPAddressSearch\IpAddressSearchWebService.disco" />
     <None Include="Connected Services\IPAddressSearch\configuration91.svcinfo" />
     <None Include="Connected Services\IPAddressSearch\configuration.svcinfo" />

@@ -1,4 +1,5 @@
 ﻿using Common.Entity.Business;
+using Common.Misc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,10 +40,11 @@ namespace WebCode.Controllers
                     entity.FCity = IPAddressCityInfo;
                 }
                 var val = BusinessBll.CreateMessageBoard(this, entity);
+                LogsManager.Info("留言成功");
             }
             catch (Exception ex)
             {
-
+                LogsManager.Error(ex);
             }
             return RedirectToAction("Index");
         }
