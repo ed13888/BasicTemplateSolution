@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Business\CustomerTemplateInfoEntity.cs" />
+    <Compile Include="Business\MessageBoardEntity.cs" />
     <Compile Include="Business\TaskEntity.cs" />
     <Compile Include="Business\TemplateEntity.cs" />
     <Compile Include="ConfigEntity.cs" />

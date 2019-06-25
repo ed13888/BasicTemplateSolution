@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomerTemplateInfoService.cs" />
+    <Compile Include="MessageBoardService.cs" />
     <Compile Include="TemplateService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

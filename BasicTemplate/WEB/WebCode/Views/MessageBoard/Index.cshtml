@@ -1,0 +1,118 @@
+﻿
+@{
+    /**/
+
+    ViewBag.Title = "告白墙";
+    var list = Model as IList<Common.Entity.Business.MessageBoardEntity>;
+}
+
+@section style{
+    <style>
+        .wait {
+            min-height: 200px;
+            height: 80vh;
+        }
+
+        .message-info {
+            border: solid 1px;
+            border-color: rgb(169, 169, 169);
+        }
+
+        .message-info-header {
+        }
+
+        .message-info-from {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+            .message-info-from .message-from {
+                width: 45%;
+            }
+
+            .message-info-from .message-mail {
+                width: 45%;
+            }
+
+        .message-info-content {
+        }
+
+            .message-info-content .message-content {
+                width: 100%;
+                height: 100px;
+                resize: none;
+            }
+
+        .message-info-submit button {
+            width: 100%;
+        }
+
+        .message-box {
+            border: solid 1px;
+            border-color: rgb(169, 169, 169);
+            padding: 0;
+        }
+
+            .message-box .message-box-header {
+                height: 30px;
+                background-color: #F5F5F5;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-content: center;
+            }
+
+            .message-box .message-box-body {
+                padding: 10px;
+            }
+
+                .message-box .message-box-body p {
+                    text-indent: 2em;
+                    margin: 0;
+                }
+    </style>
+}
+
+<div class="container">
+    <div class="row my-2">
+        <div class="col-sm-4 my-2">
+            <form action="/messageboard/submit" method="post" class="message-info py-2 px-2">
+                <div class="message-info-header">
+                    <span>终于等到你！</span><br />
+                    <span>大胆向Ta表白吧！</span>
+                </div>
+                <div class="message-info-from mt-2">
+                    <input class="form-control message-from" placeholder="你的称呼" name="FMessageFrom" />
+                    <input class="form-control message-mail" placeholder="你的邮箱" name="FMail" />
+                </div>
+                <div class="message-info-content mt-2">
+                    <textarea class="form-control message-content" name="FContent"></textarea>
+                </div>
+                <div class="message-info-submit">
+                    <button type="submit" class="btn btn-danger">填好了，起飞！</button>
+                </div>
+            </form>
+        </div>
+
+        @foreach (var m in list)
+        {
+            <div class="col-sm-4 my-2">
+                <div class="message-box">
+                    <div class="message-box-header">
+                        <span>1周前 (@m.FProvince▪@m.FCity)</span>
+                        <span>- 来自: @m.FMessageFrom</span>
+                    </div>
+                    <div class="message-box-body">
+                        <p>@m.FContent</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+</div>
+
+
+@section script{
+}

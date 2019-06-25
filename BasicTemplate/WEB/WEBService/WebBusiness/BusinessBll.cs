@@ -27,13 +27,27 @@ namespace WEBService.WebBusiness
 
         public static bool CreateTemplate(Controller controller, CustomerTemplateInfoEntity entity)
         {
-            var val = CommonClass.CustomerTemplateInfoRepository.Insert(entity);
-            return true;
+            var val = CommonClass.CustomerTemplateInfoService.Insert(entity);
+            return val;
         }
         public static CustomerTemplateInfoEntity GetCustomerTemplateById(Controller controller, string fuid)
         {
             var m = CommonClass.CustomerTemplateInfoRepository.GetByFuid(fuid);
             return m;
         }
+
+        public static IList<MessageBoardEntity> GetMessageBoardList(Controller controller, string strWhere = "")
+        {
+            return CommonClass.MessageBoardService.GetList(strWhere);
+        }
+        public static bool CreateMessageBoard(Controller controller, MessageBoardEntity entity)
+        {
+            var val = CommonClass.MessageBoardService.Insert(entity);
+            return val;
+        }
+
+
+
+
     }
 }

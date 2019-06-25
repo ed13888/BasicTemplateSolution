@@ -34,11 +34,13 @@ namespace Common.Misc
         #region <Service>
         public static ITemplateService TemplateService => UnityHelper.Container.Resolve<ITemplateService>("TemplateService");
         public static ICustomerTemplateInfoService CustomerTemplateInfoService => UnityHelper.Container.Resolve<ICustomerTemplateInfoService>("CustomerTemplateInfoService");
+        public static IMessageBoardService MessageBoardService => UnityHelper.Container.Resolve<IMessageBoardService>("MessageBoardService");
         #endregion
 
         #region <Repository>
         public static ITemplateRepository TemplateRepository => UnityHelper.Container.Resolve<ITemplateRepository>("TemplateRepository");
         public static ICustomerTemplateInfoRepository CustomerTemplateInfoRepository => UnityHelper.Container.Resolve<ICustomerTemplateInfoRepository>("CustomerTemplateInfoRepository");
+        public static IMessageBoardRepository MessageBoardRepository => UnityHelper.Container.Resolve<IMessageBoardRepository>("MessageBoardRepository");
         #endregion
 
 

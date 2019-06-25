@@ -73,7 +73,9 @@
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
     </Reference>
@@ -164,9 +166,15 @@
     <Compile Include="App_Start\SignalRConnection.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
+    <Compile Include="Connected Services\IPAddressSearch\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\FileUploadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MessageBoardController.cs" />
     <Compile Include="Controllers\TemplateController.cs" />
     <Compile Include="Filters\CustomAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -177,6 +185,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="404.html" />
+    <None Include="Connected Services\IPAddressSearch\IpAddressSearchWebService.disco" />
+    <None Include="Connected Services\IPAddressSearch\configuration91.svcinfo" />
+    <None Include="Connected Services\IPAddressSearch\configuration.svcinfo" />
+    <None Include="Connected Services\IPAddressSearch\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Content\animate.css" />
     <Content Include="Content\animate.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -278,6 +293,7 @@
     <Content Include="Plugins\wow\css\animate.css" />
     <Content Include="Plugins\wow\js\wow.js" />
     <Content Include="Plugins\wow\js\wow.min.js" />
+    <Content Include="Resource\img\404.png" />
     <Content Include="Resource\img\alipay.png" />
     <Content Include="Resource\img\bg1.jpg" />
     <Content Include="Resource\img\bg2.jpg" />
@@ -342,14 +358,18 @@
     <Content Include="Resource\img\grid-img\9.jpg" />
     <Content Include="Resource\img\logo.png" />
     <Content Include="Resource\img\logo2.png" />
+    <Content Include="Resource\img\logo_bak.png" />
     <Content Include="Resource\img\picture.png" />
     <Content Include="Resource\img\pig.png" />
+    <Content Include="Resource\img\pig1.png" />
+    <Content Include="Resource\img\preview-sprite.png" />
     <Content Include="Resource\img\test\1.jpg" />
     <Content Include="Resource\img\test\10.jpg" />
     <Content Include="Resource\img\test\11.jpg" />
     <Content Include="Resource\img\test\12.jpg" />
     <Content Include="Resource\img\test\13.jpg" />
     <Content Include="Resource\img\test\14.jpg" />
+    <Content Include="Resource\img\test\15.jpg" />
     <Content Include="Resource\img\test\2.jpg" />
     <Content Include="Resource\img\bg_nav.png" />
     <Content Include="Resource\img\test\3.jpg" />
@@ -363,7 +383,11 @@
     <Content Include="Resource\img\test\close.jpg" />
     <Content Include="Resource\img\test\open.jpg" />
     <Content Include="Resource\img\wxpay.png" />
+    <Content Include="Resource\mp3\1.mp3" />
     <Content Include="Resource\mp3\2.mp3" />
+    <Content Include="Resource\mp3\3.mp3" />
+    <Content Include="Resource\mp3\4.mp3" />
+    <Content Include="Resource\mp3\5.mp3" />
     <Content Include="robots.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -381,6 +405,7 @@
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
     <Content Include="fonts\zh7.ttf" />
+    <None Include="Connected Services\IPAddressSearch\IpAddressSearchWebService.wsdl" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\common.js" />
@@ -439,6 +464,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\Home\Error.cshtml" />
+    <Content Include="Views\MessageBoard\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -487,6 +513,12 @@
       <Project>{CB8B19D9-4F92-446E-A1F3-8886FBE6A4A0}</Project>
       <Name>WEBService</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\IPAddressSearch\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
