@@ -39,7 +39,8 @@ namespace Common.Misc
             ThreadPool.SetMinThreads(30, 30);
             //注册MongoDB的Decimal类型
             //BsonSerializer.RegisterSerializationProvider(new CustomSerializationProvider());
-            MonitorUtil.Start();
+            //监控
+            //MonitorUtil.Start();
         }
 
         /// <summary>

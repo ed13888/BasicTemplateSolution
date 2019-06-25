@@ -176,16 +176,24 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="404.html" />
     <Content Include="Content\animate.css" />
     <Content Include="Content\animate.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\iframeCommon.css" />
+    <Content Include="Content\Site.css">
+      <DependentUpon>Site.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Site.min.css">
+      <DependentUpon>Site.css</DependentUpon>
+    </Content>
+    <Content Include="error.html" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Plugins\bootstrap-fileinput\css\fileinput-rtl.css" />
     <Content Include="Plugins\bootstrap-fileinput\css\fileinput-rtl.min.css" />
     <Content Include="Plugins\bootstrap-fileinput\css\fileinput.css" />
@@ -240,6 +248,8 @@
     <Content Include="Plugins\bootstrap-fileinput\js\plugins\purify.min.js" />
     <Content Include="Plugins\bootstrap-fileinput\js\plugins\sortable.js" />
     <Content Include="Plugins\bootstrap-fileinput\js\plugins\sortable.min.js" />
+    <Content Include="Plugins\clipboard\clipboard.js" />
+    <Content Include="Plugins\clipboard\clipboard.min.js" />
     <Content Include="Plugins\fullpage\css\fullpage.css" />
     <Content Include="Plugins\fullpage\css\fullpage.min.css" />
     <Content Include="Plugins\fullpage\js\fullpage.extensions.min.js" />
@@ -252,10 +262,16 @@
     <Content Include="Plugins\jquery.qrcode\qrcode.js" />
     <Content Include="Plugins\layer\layer.js" />
     <Content Include="Plugins\layer\mobile\layer.js" />
-    <Content Include="Plugins\layer\mobile\need\layer.css" />
+    <Content Include="Plugins\layer\mobile\css\layer.css" />
+    <Content Include="Plugins\layer\mobile\css\layer.min.css">
+      <DependentUpon>layer.css</DependentUpon>
+    </Content>
     <Content Include="Plugins\layer\theme\default\icon-ext.png" />
     <Content Include="Plugins\layer\theme\default\icon.png" />
     <Content Include="Plugins\layer\theme\default\layer.css" />
+    <Content Include="Plugins\layer\theme\default\layer.min.css">
+      <DependentUpon>layer.css</DependentUpon>
+    </Content>
     <Content Include="Plugins\layer\theme\default\loading-0.gif" />
     <Content Include="Plugins\layer\theme\default\loading-1.gif" />
     <Content Include="Plugins\layer\theme\default\loading-2.gif" />
@@ -269,8 +285,65 @@
     <Content Include="Resource\img\bg4.jpg" />
     <Content Include="Resource\img\bg5.jpg" />
     <Content Include="Resource\img\goTop.png" />
+    <Content Include="Resource\img\grid-img\1.jpg" />
+    <Content Include="Resource\img\grid-img\10.jpg" />
+    <Content Include="Resource\img\grid-img\11.jpg" />
+    <Content Include="Resource\img\grid-img\12.jpg" />
+    <Content Include="Resource\img\grid-img\13.jpg" />
+    <Content Include="Resource\img\grid-img\14.jpg" />
+    <Content Include="Resource\img\grid-img\15.jpg" />
+    <Content Include="Resource\img\grid-img\16.jpg" />
+    <Content Include="Resource\img\grid-img\17.jpg" />
+    <Content Include="Resource\img\grid-img\18.jpg" />
+    <Content Include="Resource\img\grid-img\19.jpg" />
+    <Content Include="Resource\img\grid-img\2.jpg" />
+    <Content Include="Resource\img\grid-img\20.jpg" />
+    <Content Include="Resource\img\grid-img\21.jpg" />
+    <Content Include="Resource\img\grid-img\22.jpg" />
+    <Content Include="Resource\img\grid-img\23.jpg" />
+    <Content Include="Resource\img\grid-img\24.jpg" />
+    <Content Include="Resource\img\grid-img\25.jpg" />
+    <Content Include="Resource\img\grid-img\26.jpg" />
+    <Content Include="Resource\img\grid-img\27.jpg" />
+    <Content Include="Resource\img\grid-img\28.jpg" />
+    <Content Include="Resource\img\grid-img\29.jpg" />
+    <Content Include="Resource\img\grid-img\3.jpg" />
+    <Content Include="Resource\img\grid-img\30.jpg" />
+    <Content Include="Resource\img\grid-img\31.jpg" />
+    <Content Include="Resource\img\grid-img\32.jpg" />
+    <Content Include="Resource\img\grid-img\33.jpg" />
+    <Content Include="Resource\img\grid-img\34.jpg" />
+    <Content Include="Resource\img\grid-img\35.jpg" />
+    <Content Include="Resource\img\grid-img\36.jpg" />
+    <Content Include="Resource\img\grid-img\37.jpg" />
+    <Content Include="Resource\img\grid-img\38.jpg" />
+    <Content Include="Resource\img\grid-img\39.jpg" />
+    <Content Include="Resource\img\grid-img\4.jpg" />
+    <Content Include="Resource\img\grid-img\40.jpg" />
+    <Content Include="Resource\img\grid-img\41.jpg" />
+    <Content Include="Resource\img\grid-img\42.jpg" />
+    <Content Include="Resource\img\grid-img\43.jpg" />
+    <Content Include="Resource\img\grid-img\44.jpg" />
+    <Content Include="Resource\img\grid-img\45.jpg" />
+    <Content Include="Resource\img\grid-img\46.jpg" />
+    <Content Include="Resource\img\grid-img\47.jpg" />
+    <Content Include="Resource\img\grid-img\48.jpg" />
+    <Content Include="Resource\img\grid-img\49.jpg" />
+    <Content Include="Resource\img\grid-img\5.jpg" />
+    <Content Include="Resource\img\grid-img\50.jpg" />
+    <Content Include="Resource\img\grid-img\51.jpg" />
+    <Content Include="Resource\img\grid-img\52.jpg" />
+    <Content Include="Resource\img\grid-img\53.jpg" />
+    <Content Include="Resource\img\grid-img\54.jpg" />
+    <Content Include="Resource\img\grid-img\55.jpg" />
+    <Content Include="Resource\img\grid-img\6.jpg" />
+    <Content Include="Resource\img\grid-img\7.jpg" />
+    <Content Include="Resource\img\grid-img\8.jpg" />
+    <Content Include="Resource\img\grid-img\9.jpg" />
     <Content Include="Resource\img\logo.png" />
     <Content Include="Resource\img\logo2.png" />
+    <Content Include="Resource\img\picture.png" />
+    <Content Include="Resource\img\pig.png" />
     <Content Include="Resource\img\test\1.jpg" />
     <Content Include="Resource\img\test\10.jpg" />
     <Content Include="Resource\img\test\11.jpg" />
@@ -291,12 +364,29 @@
     <Content Include="Resource\img\test\open.jpg" />
     <Content Include="Resource\img\wxpay.png" />
     <Content Include="Resource\mp3\2.mp3" />
-    <Content Include="robots.txt" />
+    <Content Include="robots.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Config\ConnectionStrings.config" />
+    <Content Include="fonts\happyzcool.ttf" />
+    <Content Include="fonts\myrb.ttf" />
+    <Content Include="fonts\ht.ttf" />
+    <Content Include="fonts\syht.otf" />
+    <Content Include="Content\Site.less" />
+    <None Include="bundleconfig.json" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
+    <Content Include="fonts\zh7.ttf" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\common.js" />
+    <Content Include="Scripts\hello.js" />
+    <Content Include="Scripts\iframeCommon.js" />
+    <Content Include="Scripts\texiao.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -311,7 +401,16 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\site.js" />
-    <Content Include="sitemap.xml" />
+    <Content Include="Scripts\Tdrag.js" />
+    <Content Include="sitemap.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sitemap.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sitemap.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Template\Test.html" />
     <Content Include="Upload\aa.jpg" />
     <Content Include="Upload\无标题.png" />
@@ -336,6 +435,10 @@
     <Content Include="Views\Template\Create.cshtml" />
     <Content Include="Views\Template\Preview.cshtml" />
     <Content Include="Views\Article\Index.cshtml" />
+    <Content Include="sitemap.sitemap">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Home\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

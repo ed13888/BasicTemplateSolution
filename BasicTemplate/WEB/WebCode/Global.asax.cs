@@ -31,6 +31,27 @@ namespace WebCode
         }
 
 
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            Exception ex = Server.GetLastError();
+            //Server.ClearError();
+            //这里记录错误日志信息
+            ex.Error("MvcApplication 捕获异常");
+
+            //先告诉系统异常错误已经处理了,防止跳转失败
+            Server.ClearError();
+            if (ex is HttpException && ((HttpException)ex).GetHttpCode() == 404)
+            {
+                Response.Redirect("/404.html");
+            }
+            else
+            {
+                //跳转到指定的自定义错误页
+                Response.Redirect("/error.html");
+            }
+        }
+
+
         void timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             var context = GlobalHost.ConnectionManager.GetConnectionContext<SignalRConnection>();

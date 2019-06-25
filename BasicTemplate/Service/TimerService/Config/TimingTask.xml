@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TaskList>
+  <Task>
+    <TaskTitle>图片清理任务</TaskTitle>
+    <TaskFullName>TimerService.Task.CleanTask</TaskFullName>
+    <TaskIntervals>21600</TaskIntervals>
+    <TaskStatus>True</TaskStatus>
+  </Task>
+</TaskList>

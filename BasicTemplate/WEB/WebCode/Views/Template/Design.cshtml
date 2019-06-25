@@ -4,7 +4,38 @@
     var count = Model.FSentenceCount;
     var dic = ViewBag.Dic as IDictionary<int, string>;
 }
-<div class="container">
+@section style{
+    <style>
+        .error {
+            color: red;
+        }
+
+        #container {
+            margin-bottom: 65px;
+        }
+
+        form .bottom-control {
+            position: fixed;
+            width: 100%;
+            left: 0;
+            bottom: 0;
+            overflow: hidden;
+            background-color: #f5f5f5;
+        }
+
+        @@media only screen and (max-width : 768px) {
+            form .bottom-control {
+                position: fixed;
+                width: 100%;
+                left: 0;
+                bottom: 50px;
+                overflow: hidden;
+                background-color: #f5f5f5;
+            }
+        }
+    </style>
+}
+<div id="container" class="container">
     <form class="form-horizontal" method="post" action="/template/createtemplate">
         <div class="control-group my-2">
             <label class="control-label" for="title">网站标题*</label>
@@ -15,9 +46,9 @@
         <div class="control-group my-2">
             <label class="control-label" for="music">背景音乐*</label>
             <div class="controls">
-                <input class="form-control form-element" type="text" id="music" name="FMusic" placeholder="背景音乐" value="" style="display:none;">
-                <select class="form-control" onchange="document.getElementById('music').value = '' + this.options[this.selectedIndex].value">
-                    <option value="">页面背景音乐</option>
+                <select id="music" name="FMusic" class="form-control">
+                    @*onchange="document.getElementById('music').value = '' + this.options[this.selectedIndex].value">*@
+                    <option value="">请选择页面背景音乐</option>
                     <option value="/Resource/mp3/1.mp3">《暖暖》----------------【梁静茹】</option>
                     <option value="/Resource/mp3/2.mp3">《丫头》----------------【王童语】</option>
                     <option value="/Resource/mp3/3.mp3">《多幸运》--------------【韩安旭】</option>
@@ -25,6 +56,7 @@
                     <option value="/Resource/mp3/5.mp3">《星月神话》--------------【金沙】</option>
                     @*<option value="http://www.zaiyiqiba.com/mp3/kgmp3.php?id=018551D54490C272B54D064D92663826">《一次就好》------------【杨宗纬】</option>*@
                 </select>
+                @*<input class="form-control form-element" type="text" id="music" name="FMusic" placeholder="背景音乐" value="" style="display:none;">*@
             </div>
         </div>
         @for (int i = 1; i <= count; i++)
@@ -46,7 +78,7 @@
         <div class="control-group my-2">
             <label class="control-label" for="description">页面介绍*</label>
             <div class="controls">
-                <textarea class="form-control form-element" rows="6" id="description" name="FDescription" placeholder="这个页面是我在 我要沙雕网给你制作的，希望你会喜欢"></textarea>
+                <textarea class="form-control form-element" rows="6" id="description" name="FDescription" placeholder="这个页面是我在沙雕表白网给你制作的，希望你会喜欢"></textarea>
             </div>
         </div>
         <div class="control-group my-2">
@@ -55,17 +87,20 @@
                 <input class="form-control form-element" type="text" id="producer" name="FProducer" placeholder="制作人" value="">
             </div>
         </div>
-        <div class="row my-2 text-center">
+
+        <div class="text-center py-2 bottom-control">
             <div class="col-xs-12">
                 <button type="reset" class="btn" onclick="javascript: goTop();">清空重置</button>
-                <button type="submit" class="btn btn-success">提交并预览</button>
+                <button type="submit" id="btnSubmit" class="btn btn-success">提交并预览</button>
             </div>
         </div>
         <input type="text" value="@ViewBag.Guid" id="guid" name="FUId" style="display:none;" />
-        <input type="text" value="@Model.FId" id="guid" name="FTemplateId" style="display:none;" />
+        <input type="text" value="@Model.FId" name="FTemplateId" style="display:none;" />
     </form>
 </div>
 @section script{
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
     <script>
         $(function () {
             //初始化fileinput控件（第一次初始化）
@@ -75,10 +110,13 @@
                     language: 'zh', //设置语言
                     uploadUrl: uploadUrl, //上传的地址
                     maxFileCount: 6,
+                    uploadAsync: true,
                     enctype: 'multipart/form-data',
                     //allowedFileExtensions: ['jpg', 'png', 'bmp', 'jpeg', 'gif'],
                     //allowedFileTypes: ['image'],
-                    showUpload: true, //是否显示上传按钮
+                    showUpload: false, //是否显示上传按钮
+                    //showUploadedThumbs:false,
+                    fileActionSettings: { showRemove: true, showUpload: false, showZoom: true, },
                     showCaption: false,//是否显示标题
                     browseClass: "btn btn-primary", //按钮样式
                     previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
@@ -90,7 +128,7 @@
                         return data;
                     },
                 }).on("filebatchselected", function (event, files) {
-                    $(this).fileinput("upload");
+                    //$(this).fileinput("upload");
                 }).on("fileuploaded", function (event, data) {
                     if (data.response && data.response.status) {
                         $("#fphoto").val($("#fphoto").val() + ";" + data.response.imgUrl);
@@ -98,6 +136,8 @@
                     else {
                         layer.msg("上传失败!");
                     }
+                    //提交表单
+                    $(validator.currentForm).submit();
                 });
             }
             initFileInput("photo", "/FileUpload/Upload");
@@ -105,10 +145,10 @@
             var tempModel = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
             //初始化表单
             var formDefaultValue = $.extend({
-                FTitle: "我是标题___啦啦啦",
-                FMusic: "/Resource/mp3/1.mp3",
-                FDescription: "这里是页面介绍哟",
-                FProducer:"这里是显示制作人哟"
+                //FTitle: "我是标题___啦啦啦",
+                ////FMusic: "/Resource/mp3/1.mp3",
+                //FDescription: "这里是页面介绍哟",
+                //FProducer:"这里是显示制作人哟"
             }, tempModel);
 
             $("form").find(".form-control").each(function (i, v) {
@@ -116,6 +156,58 @@
                 var defaultValue = formDefaultValue[$v.attr("name")];
                 if (defaultValue)
                     $v.val(defaultValue);
+            });
+
+
+            var validator = $("form").validate({
+                onsubmit: false,
+                ignore: "",//防止过滤隐藏对象
+                rules: {
+                    FTitle: {
+                        required: true    //此处就是必填项验证
+                    },
+                    FMusic: {
+                        required: true
+                    },
+                    FDescription: {
+                        required: true
+                    },
+                    FProducer: {
+                        required: true
+                    },
+                },
+                messages: {     //相对应的错误提示信息
+                    FTitle: {
+                        required: "请输入标题！"
+                    },
+                    FMusic: "请选择背景音乐！",
+                    FDescription: "请输入页面介绍！",
+                    FProducer: "请输入制作人！"
+                },
+                success: "valid",
+                submitHandler: function (form, event) {
+                    return true;
+                },
+                invalidHandler: function (event, validator) {
+                    if (validator.errorList.length > 0) {
+                        var errorElement = $(validator.errorList[0].element);
+                        $("html,body").animate({ scrollTop: errorElement.offset().top - "85" + "px" }, 500);
+                        errorElement[0].focus();
+                    }
+                }
+            });
+
+            $("#btnSubmit").click(function (e) {
+                if (validator.form()) {
+                    var fileArray = $('#photo').fileinput('getFileStack');
+                    if (fileArray.length > 0) {
+                        $("#photo").fileinput("upload");
+                        e.preventDefault();
+                    }
+                }
+                else {
+                    e.preventDefault();
+                }
             });
 
         });

@@ -8,7 +8,7 @@ namespace WebCode
         // 有关捆绑的详细信息，请访问 https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            BundleTable.EnableOptimizations = false;
+            //BundleTable.EnableOptimizations = false;
             //cdn
             bundles.UseCdn = true;
 
@@ -20,7 +20,7 @@ namespace WebCode
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/layer").Include(
-                      "~/Plugins/layer/layer.js",
+                      //"~/Plugins/layer/layer.js",
                       "~/Plugins/layer/mobile/layer.js"));
 
 
@@ -30,7 +30,10 @@ namespace WebCode
 
 
             bundles.Add(new ScriptBundle("~/bundles/site").Include(
-                      "~/Scripts/site.js"));
+                      "~/Scripts/common.js",
+                      "~/Scripts/site.js",
+                      "~/Scripts/hello.js",
+                      "~/Scripts/texiao.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
@@ -39,7 +42,7 @@ namespace WebCode
 
             bundles.Add(new StyleBundle("~/Plugins/layer/css").Include(
                       "~/Plugins/layer/theme/default/layer.css",
-                      "~/Plugins/layer/mobile/need/layer.css"));
+                      "~/Plugins/layer/mobile/css/layer.css"));
 
 
             bundles.Add(new StyleBundle("~/Plugins/fileinput/css").Include(

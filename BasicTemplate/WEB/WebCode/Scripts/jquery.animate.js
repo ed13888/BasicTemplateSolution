@@ -140,15 +140,15 @@
             out: "zoomOutUp"
         },
 
-        //special: {
-        //    in: "hinge",
-        //    out: "jackInTheBox"
-        //},
+        special: {
+            in: "hinge",
+            out: "jackInTheBox"
+        },
 
-        //roll: {
-        //    in: "rollIn",
-        //    out: "rollOut"
-        //}
+        roll: {
+            in: "rollIn",
+            out: "rollOut"
+        }
 
 
 
