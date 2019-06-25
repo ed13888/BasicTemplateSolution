@@ -20,24 +20,30 @@ namespace WebCode.Controllers
 
         public ActionResult Submit(MessageBoardEntity entity)
         {
-            IPAddressSearch.IpAddressSearchWebServiceSoapClient client = new IPAddressSearch.IpAddressSearchWebServiceSoapClient();
-            string theIpAddress = GetIP();
-            entity.FIp = theIpAddress;
-            if (theIpAddress != "127.0.0.1")
+            try
             {
+                IPAddressSearch.IpAddressSearchWebServiceSoapClient client = new IPAddressSearch.IpAddressSearchWebServiceSoapClient();
+                string theIpAddress = GetIP();
+                entity.FIp = theIpAddress;
                 string[] IPAddress = client.getCountryCityByIp(theIpAddress);
                 string IPAddressProviceInfo = IPAddress[1].Substring(0, 3);    //provice
                 string IPAddressCityInfo = IPAddress[1].Substring(3, 3);  //city
-                entity.FProvince = IPAddressProviceInfo;
-                entity.FCity = IPAddressCityInfo;
+                if (theIpAddress == "127.0.0.1" || IPAddressProviceInfo == "菲律宾")
+                {
+                    entity.FProvince = "银河系";
+                    entity.FCity = "汪星";
+                }
+                else
+                {
+                    entity.FProvince = IPAddressProviceInfo;
+                    entity.FCity = IPAddressCityInfo;
+                }
+                var val = BusinessBll.CreateMessageBoard(this, entity);
             }
-            else
+            catch (Exception ex)
             {
-                entity.FIp = theIpAddress;
-                entity.FProvince = "银河系";
-                entity.FCity = "汪星";
+
             }
-            var val = BusinessBll.CreateMessageBoard(this, entity);
             return RedirectToAction("Index");
         }
 
