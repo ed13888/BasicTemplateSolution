@@ -1,8 +1,12 @@
 ﻿using Common.Entity.Business;
 using Common.Misc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Xml;
@@ -19,28 +23,64 @@ namespace WebCode.Controllers
             return View(list);
         }
 
-        public ActionResult Submit(MessageBoardEntity entity)
+        public async Task<ActionResult> Submit(MessageBoardEntity entity)
         {
             try
             {
-                IPAddressSearch.IpAddressSearchWebServiceSoapClient client = new IPAddressSearch.IpAddressSearchWebServiceSoapClient();
                 string theIpAddress = GetIP();
                 entity.FIp = theIpAddress;
-                string[] IPAddress = client.getCountryCityByIp(theIpAddress);
-                string IPAddressProviceInfo = IPAddress[1].Substring(0, 3);    //provice
-                string IPAddressCityInfo = IPAddress[1].Substring(3, 3);  //city
-                if (theIpAddress == "127.0.0.1" || IPAddressProviceInfo == "菲律宾")
+                entity.FProvince = "外太空";
+                entity.FCity = "汪星";
+
+                HttpClient client = new HttpClient();
+                var response = await client.GetStringAsync($"http://opendata.baidu.com/api.php?query={theIpAddress}&resource_id=6006&ie=utf8&oe=gbk&cb=op_aladdin_callback&format=json&tn=baidu");
+                var reg = new Regex("{.+}");
+                var json = reg.Match(response).Value;
+                var result = JsonConvert.DeserializeAnonymousType(json, new
                 {
-                    entity.FProvince = "银河系";
-                    entity.FCity = "汪星";
-                }
-                else
+                    status = "",
+                    data = new List<Dictionary<string, string>>()
+
+                });
+                if (result.status == "0" && result.data.Count > 0)
                 {
-                    entity.FProvince = IPAddressProviceInfo;
-                    entity.FCity = IPAddressCityInfo;
+                    var location = result.data[0]["location"];
+                    var splitStr = location.Split(new char[] { '省', '市' });
+                    string province = splitStr[0], city = "";
+                    if (splitStr.Length > 1)
+                        city = splitStr[1];
+
+                    if (theIpAddress != "127.0.0.1" && province != "菲律宾")
+                    {
+                        entity.FProvince = province;
+                        entity.FCity = city;
+                    }
                 }
+
+
+
+                #region webservice 获取地区   暂时弃用
+                //IPAddressSearch.IpAddressSearchWebServiceSoapClient client = new IPAddressSearch.IpAddressSearchWebServiceSoapClient();
+                //string theIpAddress = GetIP();
+                //entity.FIp = theIpAddress;
+                //string[] IPAddress = client.getCountryCityByIp(theIpAddress);
+                //string IPAddressProviceInfo = IPAddress[1].Substring(0, 3);    //provice
+                //string IPAddressCityInfo = IPAddress[1].Substring(3, 3);  //city
+                //if (theIpAddress == "127.0.0.1" || IPAddressProviceInfo == "菲律宾")
+                //{
+                //    entity.FProvince = "银河系";
+                //    entity.FCity = "汪星";
+                //}
+                //else
+                //{
+                //    entity.FProvince = IPAddressProviceInfo;
+                //    entity.FCity = IPAddressCityInfo;
+                //}
+                #endregion
+
+
                 var val = BusinessBll.CreateMessageBoard(this, entity);
-                LogsManager.Info("留言成功");
+                LogsManager.Info(val ? "留言成功" : $"留言失败:{JsonConvert.SerializeObject(entity)}");
             }
             catch (Exception ex)
             {
