@@ -11,7 +11,7 @@
         var d2 = time;
         DateTime d3 = Convert.ToDateTime(string.Format("{0}-{1}-{2}", d1.Year, d1.Month, d1.Day));
         DateTime d4 = Convert.ToDateTime(string.Format("{0}-{1}-{2}", d2.Year, d2.Month, d2.Day));
-        int days = (d4 - d3).Days;
+        int days = (d3 - d4).Days;
         var resutl = "";
         if (days >= 365) resutl = "一年前";
         else if (days >= 30) resutl = "一个月前";
@@ -24,6 +24,8 @@
         else if (days >= 3) resutl = "三天前";
         else if (days >= 2) resutl = "两天前";
         else if (days >= 1) resutl = "一天前";
+        else if (days == 0) resutl = "今天";
+        else resutl = "未知";
 
         return resutl;
     };
