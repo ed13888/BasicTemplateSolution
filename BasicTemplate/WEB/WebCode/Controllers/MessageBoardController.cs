@@ -80,7 +80,7 @@ namespace WebCode.Controllers
 
 
                 var val = BusinessBll.CreateMessageBoard(this, entity);
-                LogsManager.Info(val ? "留言成功" : $"留言失败:{JsonConvert.SerializeObject(entity)}");
+                LogsManager.Info(val ? $"留言成功:{JsonConvert.SerializeObject(entity)}" : $"留言失败:{JsonConvert.SerializeObject(entity)}");
             }
             catch (Exception ex)
             {
