@@ -82,9 +82,9 @@
     //页面初始化
     function init() {
 
-        if (!get("copyStatus")) {
-            $("body").one("click", copy);
-        }
+        //if (!get("copyStatus")) {
+        //    $("body").one("click", copy);
+        //}
         //设置返回顶部按钮
         setGoTop();
         setLoading(10);

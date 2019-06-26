@@ -33,6 +33,10 @@
 
 @section style{
     <style>
+        .error {
+            color: red;
+        }
+
         .wait {
             min-height: 200px;
             height: 80vh;
@@ -102,7 +106,7 @@
 <div class="container">
     <div class="row my-2">
         <div class="col-sm-4 my-2">
-            <form action="/messageboard/submit" method="post" class="message-info py-2 px-2">
+            <form action="/messageboard/submit" method="post" class="form-horizontal message-info py-2 px-2">
                 <div class="message-info-header">
                     <span>终于等到你！</span><br />
                     <span>大胆向Ta表白吧！</span>
@@ -112,10 +116,10 @@
                     <input class="form-control message-mail" placeholder="你的邮箱" name="FMail" />
                 </div>
                 <div class="message-info-content mt-2">
-                    <textarea class="form-control message-content" name="FContent"></textarea>
+                    <textarea class="form-control message-content" placeholder="大胆向Ta表白吧！" name="FContent"></textarea>
                 </div>
                 <div class="message-info-submit">
-                    <button type="submit" class="btn btn-danger">填好了，起飞！</button>
+                    <button id="messagesubmit" type="submit" class="btn btn-danger">填好了，起飞！</button>
                 </div>
             </form>
         </div>
@@ -140,4 +144,53 @@
 
 
 @section script{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script>
+        $(function () {
+            var validator = $("form").validate({
+                onsubmit: false,
+                ignore: "",//防止过滤隐藏对象
+                rules: {
+                    FMessageFrom: {
+                        required: true    //此处就是必填项验证
+                    },
+                    FMail: {
+                        required: true
+                    },
+                    FContent: {
+                        required: true
+                    },
+                },
+                messages: {     //相对应的错误提示信息
+                    FMessageFrom: "请输入你的称呼！",
+                    FMail: "请输入邮箱！",
+                    FContent: "请输入内容！"
+                },
+                success: "valid",
+                submitHandler: function (form, event) {
+                    return true;
+                },
+                invalidHandler: function (event, validator) {
+                    if (validator.errorList.length > 0) {
+                        var errorElement = $(validator.errorList[0].element);
+                        errorElement[0].focus();
+                    }
+                }
+            });
+
+
+            $("#messagesubmit").click(function (e) {
+                if (validator.form()) {
+                    layer.open({
+                        type: 1,
+                        content: '',
+                        shade: true
+                    });
+                }
+                else {
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
 }
